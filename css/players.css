@@ -1,0 +1,237 @@
+/* ===== 全局變數與基礎設定 ===== */
+:root {
+  --primary-color: #000000;    /* 預設：海燕隊色（深海洋藍） */
+  --accent-color: #a5d8ff;     /* 亮點藍 */
+  --second-color: #f0f7f9;     /* 表格隔行配色 */
+  --text-main: #1f2937;        /* 主要文字深灰 */
+  --text-muted: #4b5563;       /* 次要文字 */
+  --bg-light: #f8fafc;         /* 淺色背景區隔 */
+  --border-color: #e2e8f0;     /* 現代感淡線 */
+}
+
+/* 當 body 套用特定球隊類別時，自動覆蓋主色變數 */
+body.team-petrel { --primary-color: #0d5c75; --second-color: #f0f7f9; } /* 奇醫海燕 */
+body.team-whale { --primary-color: #000000; --second-color: #F5F5F5; } /* 藍海虎鯨 */
+body.team-wolves { --primary-color: #334155; --second-color: #F5F5F5; } /* 北鐵狼 */
+body.team-iron { --primary-color: #750000; --second-color: #F9EEEE; } /* 北鐵狼 */
+body.team-nx { --primary-color: #E50914; --second-color: #FFF0F1; } /* NX星航者隊 */
+body.team-duck { --primary-color: #FF5F00; --second-color: #FFF5EC; } /* 全達鴨 */
+body.team-eagle { --primary-color: #007A5E; --second-color: #EEF9F5; } /* 高雄未來之鷹隊 */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Helvetica Neue", Arial, "Noto Sans TC", sans-serif;
+  background: #ffffff;
+  color: var(--text-main);
+  line-height: 1.7;
+}
+
+a {
+  color: #1d4ed8;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+a:hover { text-decoration: underline; }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 20px 80px 20px;
+}
+
+/* ===== 頂部導覽列 ===== */
+.topnav {
+  display: flex;
+  gap: 10px;
+  padding: 14px 0;
+  border-bottom: 2px solid var(--border-color);
+  margin-bottom: 20px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+.topnav a { color: var(--text-muted); font-weight: 500; }
+.topnav a:hover { color: var(--primary-color); }
+
+/* ===== 頁首標題 ===== */
+.header {
+  margin-bottom: 20px;
+}
+.header h1 {
+  margin: 0;
+  font-size: 2.2rem;
+  color: var(--text-main);
+  font-weight: 700;
+}
+.header .sub {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-top: 5px;
+}
+
+/* ===== 單欄內容區 ===== */
+.content-area {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.section {
+  scroll-margin-top: 20px;
+}
+
+.section h2 {
+  font-size: 1.4rem;
+  color: var(--primary-color);
+  margin-top: 0;
+  margin-bottom: 18px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--primary-color);
+  position: relative;
+}
+
+/* ===== 基本資料條列樣式 ===== */
+.profile-list {
+  font-size: 0.95rem;
+  line-height: 2;
+}
+
+.profile-list-item {
+  display: flex;
+  border-bottom: 1px dashed var(--border-color);
+  padding: 4px 0;
+}
+
+.profile-list-item:last-child {
+  border-bottom: none;
+}
+
+.profile-label {
+  font-weight: 600;
+  width: 110px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+/* 清單與文字基礎排版 */
+.career-list, .award-list, .incident-list {
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+.no-break {
+  white-space: nowrap;
+}
+
+/* 年表樣式 */
+.timeline {
+  font-size: 0.95rem;
+}
+.timeline-item {
+  margin-bottom: 8px;
+  display: flex;
+}
+.timeline-year {
+  font-weight: 700;
+  width: 80px;
+  flex-shrink: 0;
+}
+
+/* ===== 生涯成績表格設定 ===== */
+table.stats {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  font-size: 0.82rem;
+}
+
+table.stats th,
+table.stats td {
+  padding: 8px 6px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+table.stats th {
+  background: var(--tbl-main, var(--primary-color)) !important;
+  color: var(--tbl-text, #ffffff) !important;
+  font-weight: 600;
+}
+
+table.stats tbody tr:nth-child(even) td {
+  background: var(--tbl-even, var(--second-color)) !important;
+}
+
+/* 數據高亮標記 */
+.best {
+  font-weight: 700;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.record {
+  font-weight: 800;          /* 字體更重一點點 */
+  color: #dc2626;            /* 飽和紅字 (Red) */
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+/* ===== 新聞區塊專屬細緻排版 ===== */
+.news-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.news-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-size: 0.9rem;
+  border-bottom: 1px dashed var(--border-color);
+  padding-bottom: 8px;
+}
+
+.news-list a {
+  color: var(--text-main);
+  text-decoration: none;
+  padding-right: 15px;
+  line-height: 1.5;
+}
+.news-list a:hover {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
+.news-date {
+  color: var(--text-muted);
+  white-space: nowrap;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+/* 行動裝置 RWD 適應 */
+@media (max-width: 768px) {
+  table.stats {
+    display: block;
+    overflow-x: auto;
+  }
+}
+@media (max-width: 576px) {
+  .news-list li {
+    flex-direction: column;
+    gap: 4px;
+  }
+  .news-date {
+    align-self: flex-end;
+  }
+}
