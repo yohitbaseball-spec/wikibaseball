@@ -1,4 +1,4 @@
-name: Generate Search Data JSON
+name: Generate Search Data JSON 
 
 on:
   push:
