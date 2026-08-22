@@ -354,167 +354,191 @@
   </footer>
 
   <!-- ==== 腳本區 ==== -->
-  <script>
-    /* ===================================================
-     * 1. 搜尋系統 (支援 Enter 直接跳轉 & 鍵盤上下選取)
-     * =================================================== */
-    let searchData = [];
-    let currentFocusIndex = -1;
+<script>
+  /* ===================================================
+   * 1. 搜尋系統 (修正 KeyDown / FocusIndex 與空搜尋問題)
+   * =================================================== */
+  let searchData = [];
+  let currentFocusIndex = -1;
 
-    fetch('./data.json')
-      .then(response => response.ok ? response.json() : [])
-      .then(data => { searchData = data; })
-      .catch(() => console.log("data.json 載入中..."));
+  fetch('./data.json')
+    .then(response => response.ok ? response.json() : [])
+    .then(data => { searchData = data; })
+    .catch(() => console.log("data.json 載入中..."));
 
-    const input = document.getElementById("searchInput");
-    const resultsBox = document.getElementById("searchResults");
-    const resultList = document.getElementById("resultList");
+  const input = document.getElementById("searchInput");
+  const resultsBox = document.getElementById("searchResults");
+  const resultList = document.getElementById("resultList");
 
-    function handleSearch() {
-      const keyword = input.value.trim().toLowerCase();
-      resultList.innerHTML = "";
-      currentFocusIndex = -1;
+  function handleSearch() {
+    const keyword = input.value.trim().toLowerCase();
+    
+    // 每次輸入都清空舊結果與重置高亮索引
+    resultList.innerHTML = "";
+    currentFocusIndex = -1;
 
-      if (!keyword) { 
-        resultsBox.style.display = "none"; 
-        return; 
-      }
+    if (!keyword) { 
+      resultsBox.style.display = "none"; 
+      return; 
+    }
 
-      const matches = searchData.filter(item => item.title.toLowerCase().includes(keyword)).slice(0, 8);
+    const matches = searchData.filter(item => item.title.toLowerCase().includes(keyword)).slice(0, 8);
 
-      if (matches.length === 0) { 
-        resultsBox.style.display = "none"; 
-        return; 
-      }
+    if (matches.length === 0) { 
+      resultsBox.style.display = "none"; 
+      return; 
+    }
 
-      matches.forEach((item, index) => {
-        const li = document.createElement("li");
-        li.setAttribute("data-url", item.url);
-        li.innerHTML = `<a href="${item.url}">${item.title}<small>${item.tag || '頁面'}</small></a>`;
-        resultList.appendChild(li);
+    matches.forEach((item) => {
+      const li = document.createElement("li");
+      li.setAttribute("data-url", item.url);
+      
+      // 當滑鼠移入時，同步更新 currentFocusIndex
+      li.addEventListener("click", () => {
+        window.location.href = item.url;
       });
-      resultsBox.style.display = "block";
-    }
 
-    function handleKeyDown(e) {
-      const listItems = resultList.getElementsByTagName("li");
-      
-      if (e.key === "ArrowDown") {
-        currentFocusIndex++;
-        if (currentFocusIndex >= listItems.length) currentFocusIndex = 0;
-        addActive(listItems);
-      } else if (e.key === "ArrowUp") {
-        currentFocusIndex--;
-        if (currentFocusIndex < 0) currentFocusIndex = listItems.length - 1;
-        addActive(listItems);
-      } else if (e.key === "Enter") {
-        e.preventDefault();
-        if (currentFocusIndex > -1 && listItems[currentFocusIndex]) {
-          const targetUrl = listItems[currentFocusIndex].getAttribute("data-url");
-          window.location.href = targetUrl;
-        } 
-        else if (listItems.length > 0) {
-          const targetUrl = listItems[0].getAttribute("data-url");
-          window.location.href = targetUrl;
-        }
-      }
-    }
-
-    function addActive(items) {
-      if (!items) return false;
-      for (let i = 0; i < items.length; i++) items[i].classList.remove("active");
-      if (currentFocusIndex >= 0 && currentFocusIndex < items.length) {
-        items[currentFocusIndex].classList.add("active");
-      }
-    }
-
-    document.addEventListener("click", e => {
-      if (!e.target.closest(".search-wrapper")) { resultsBox.style.display = "none"; }
+      li.innerHTML = `<a href="${item.url}">${item.title}<small>${item.tag || '頁面'}</small></a>`;
+      resultList.appendChild(li);
     });
+    
+    resultsBox.style.display = "block";
+  }
 
-    /* ===================================================
-     * 2. 戰績表自動更新系統 (含已賽場次 G 計算與渲染)
-     * =================================================== */
-    function loadStandings() {
-      fetch('./standings.json')
-        .then(res => res.json())
-        .then(data => {
-          const container = document.getElementById('standingsGrid');
-          container.innerHTML = '';
+  function handleKeyDown(e) {
+    // 只在結果框顯示時處理上下鍵與 Enter
+    if (resultsBox.style.display === "none") return;
 
-          data.divisions.forEach(div => {
-            let rowsHtml = '';
-            div.teams.forEach((team, idx) => {
-              const rankClass = idx === 0 ? 'rank-num r-1' : 'rank-num';
-              
-              // 若沒填已賽場次，系統自動加總 (勝 + 敗 + 和)
-              const gamesPlayed = team.games !== undefined ? team.games : (team.win + team.loss + team.draw);
+    const listItems = resultList.getElementsByTagName("li");
+    if (listItems.length === 0) return;
 
-              rowsHtml += `
-                <tr>
-                  <td><span class="${rankClass}">${idx + 1}</span></td>
-                  <td class="team-name">${team.name}</td>
-                  <td>${gamesPlayed}</td>
-                  <td>${team.win}</td>
-                  <td>${team.loss}</td>
-                  <td>${team.draw}</td>
-                  <td>${team.pct}</td>
-                </tr>
-              `;
-            });
+    if (e.key === "ArrowDown") {
+      e.preventDefault(); // 防止游標跑到最右邊
+      currentFocusIndex++;
+      if (currentFocusIndex >= listItems.length) currentFocusIndex = 0;
+      addActive(listItems);
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault(); // 防止游標跑到最左邊
+      currentFocusIndex--;
+      if (currentFocusIndex < 0) currentFocusIndex = listItems.length - 1;
+      addActive(listItems);
+    } else if (e.key === "Enter") {
+      e.preventDefault();
+      if (currentFocusIndex > -1 && listItems[currentFocusIndex]) {
+        // 優先跳轉到當前鍵盤高亮的項目
+        const targetUrl = listItems[currentFocusIndex].getAttribute("data-url");
+        if (targetUrl) window.location.href = targetUrl;
+      } else if (listItems.length > 0) {
+        // 若沒有高亮，按 Enter 直接跳轉到第一筆結果
+        const targetUrl = listItems[0].getAttribute("data-url");
+        if (targetUrl) window.location.href = targetUrl;
+      }
+    }
+  }
 
-            const divBox = document.createElement('div');
-            divBox.className = 'division-box';
-            divBox.innerHTML = `
-              <h3>${div.icon || '⚾'} ${div.name}</h3>
-              <table class="standings-table">
-                <thead>
-                  <tr>
-                    <th style="width:8%">排名</th>
-                    <th style="text-align:left">球隊</th>
-                    <th style="width:10%">G</th>
-                    <th style="width:10%">勝</th>
-                    <th style="width:10%">敗</th>
-                    <th style="width:10%">和</th>
-                    <th style="width:16%">勝率</th>
-                  </tr>
-                </thead>
-                <tbody>${rowsHtml}</tbody>
-              </table>
+  function addActive(items) {
+    if (!items) return;
+    for (let i = 0; i < items.length; i++) {
+      items[i].classList.remove("active");
+    }
+    if (currentFocusIndex >= 0 && currentFocusIndex < items.length) {
+      items[currentFocusIndex].classList.add("active");
+      // 自動滾動讓選中的項目可見（選填）
+      items[currentFocusIndex].scrollIntoView({ block: 'nearest' });
+    }
+  }
+
+  // 點擊頁面其他地方時隱藏搜尋結果
+  document.addEventListener("click", e => {
+    if (!e.target.closest(".search-wrapper")) { 
+      resultsBox.style.display = "none"; 
+      currentFocusIndex = -1;
+    }
+  });
+
+  /* ===================================================
+   * 2. 戰績表自動更新系統 (含已賽場次 G 計算與渲染)
+   * =================================================== */
+  function loadStandings() {
+    fetch('./standings.json')
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById('standingsGrid');
+        container.innerHTML = '';
+
+        data.divisions.forEach(div => {
+          let rowsHtml = '';
+          div.teams.forEach((team, idx) => {
+            const rankClass = idx === 0 ? 'rank-num r-1' : 'rank-num';
+            
+            // 若沒填已賽場次，系統自動加總 (勝 + 敗 + 和)
+            const gamesPlayed = team.games !== undefined ? team.games : (team.win + team.loss + team.draw);
+
+            rowsHtml += `
+              <tr>
+                <td><span class="${rankClass}">${idx + 1}</span></td>
+                <td class="team-name">${team.name}</td>
+                <td>${gamesPlayed}</td>
+                <td>${team.win}</td>
+                <td>${team.loss}</td>
+                <td>${team.draw}</td>
+                <td>${team.pct}</td>
+              </tr>
             `;
-            container.appendChild(divBox);
           });
-        })
-        .catch(err => {
-          console.error("無法動態載入戰績表，請確定已新增 standings.json", err);
+
+          const divBox = document.createElement('div');
+          divBox.className = 'division-box';
+          divBox.innerHTML = `
+            <h3>${div.icon || '⚾'} ${div.name}</h3>
+            <table class="standings-table">
+              <thead>
+                <tr>
+                  <th style="width:8%">排名</th>
+                  <th style="text-align:left">球隊</th>
+                  <th style="width:10%">G</th>
+                  <th style="width:10%">勝</th>
+                  <th style="width:10%">敗</th>
+                  <th style="width:10%">和</th>
+                  <th style="width:16%">勝率</th>
+                </tr>
+              </thead>
+              <tbody>${rowsHtml}</tbody>
+            </table>
+          `;
+          container.appendChild(divBox);
         });
-    }
+      })
+      .catch(err => {
+        console.error("無法動態載入戰績表，請確定已新增 standings.json", err);
+      });
+  }
 
-    loadStandings();
+  loadStandings();
 
-    /* ===================================================
-     * 3. 虛擬時間計算器
-     * =================================================== */
-    const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-    function updateFakeTime() {
-      const now = new Date();
-      const utc8 = new Date(now.getTime() + (8 * 60 + now.getTimezoneOffset()) * 60000);
-      const fakeDate = new Date(utc8); fakeDate.setFullYear(2052);
-      
-      const year = fakeDate.getFullYear();
-      const month = String(fakeDate.getMonth() + 1).padStart(2, '0');
-      const day = String(fakeDate.getDate()).padStart(2, '0');
-      const hours = String(fakeDate.getHours()).padStart(2, '0');
-      const minutes = String(fakeDate.getMinutes()).padStart(2, '0');
-      const seconds = String(fakeDate.getSeconds()).padStart(2, '0');
-      const weekday = weekdays[fakeDate.getDay()];
+  /* ===================================================
+   * 3. 虛擬時間計算器
+   * =================================================== */
+  const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  function updateFakeTime() {
+    const now = new Date();
+    const utc8 = new Date(now.getTime() + (8 * 60 + now.getTimezoneOffset()) * 60000);
+    const fakeDate = new Date(utc8); fakeDate.setFullYear(2052);
+    
+    const year = fakeDate.getFullYear();
+    const month = String(fakeDate.getMonth() + 1).padStart(2, '0');
+    const day = String(fakeDate.getDate()).padStart(2, '0');
+    const hours = String(fakeDate.getHours()).padStart(2, '0');
+    const minutes = String(fakeDate.getMinutes()).padStart(2, '0');
+    const seconds = String(fakeDate.getSeconds()).padStart(2, '0');
+    const weekday = weekdays[fakeDate.getDay()];
 
-      document.getElementById('fake-date').textContent = `${year}-${month}-${day}`;
-      document.getElementById('fake-weekday').textContent = `(${weekday})`;
-      document.getElementById('fake-time').textContent = `${hours}:${minutes}:${seconds}`;
-    }
-    setInterval(updateFakeTime, 1000);
-    updateFakeTime();
-  </script>
+    document.getElementById('fake-date').textContent = `${year}-${month}-${day}`;
+    document.getElementById('fake-weekday').textContent = `(${weekday})`;
+    document.getElementById('fake-time').textContent = `${hours}:${minutes}:${seconds}`;
+  }
+  setInterval(updateFakeTime, 1000);
+  updateFakeTime();
+</script>
 </body>
 </html>
