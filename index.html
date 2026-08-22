@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>d棒球維基百科</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ==== Reset & Variables ==== */
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --bg-main: #f1f5f9;
+      --card-bg: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --border-color: #e2e8f0;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+      --radius: 12px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Noto Sans TC", "Inter", sans-serif; background: var(--bg-main); color: var(--text-main); line-height: 1.7; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ==== Header ==== */
+    .header {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #2563eb 100%);
+      color: #fff;
+      padding: 60px 20px 45px;
+      text-align: center;
+      box-shadow: inset 0 -10px 20px rgba(0,0,0,0.15);
+    }
+    .header h1 { font-size: 2.8em; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.5px; }
+    .header p { font-size: 1.1em; opacity: 0.85; font-weight: 400; }
+
+    /* ==== 容器與佈局 ==== */
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
+    
+    .search-wrapper { 
+      max-width: 1280px; 
+      margin: -25px auto 30px; 
+      padding: 0 20px; 
+      position: relative; 
+      z-index: 100;
+    }
+    .search-input-container {
+      position: relative;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      border: 1px solid var(--border-color);
+      transition: all 0.2s ease;
+    }
+    .search-input-container:focus-within {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.2);
+    }
+    .search-box { 
+      width: 100%; 
+      padding: 16px 20px; 
+      font-size: 1.05rem; 
+      border: none;
+      outline: none; 
+      background: transparent;
+      border-radius: var(--radius);
+    }
+    .search-results { 
+      position: absolute; 
+      top: calc(100% + 8px); 
+      left: 20px; 
+      right: 20px; 
+      background: var(--card-bg); 
+      border: 1px solid var(--border-color); 
+      border-radius: var(--radius); 
+      box-shadow: var(--shadow-lg); 
+      overflow: hidden;
+      display: none; 
+    }
+    .search-results ul { list-style: none; margin: 0; padding: 0; }
+    .search-results li { 
+      padding: 12px 20px; 
+      border-bottom: 1px solid var(--border-color); 
+      cursor: pointer; 
+      transition: background 0.15s ease;
+    }
+    .search-results li:last-child { border-bottom: none; }
+    .search-results li:hover, .search-results li.active { background: #f1f5f9; }
+    .search-results a { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+    .search-results small { 
+      font-size: 0.75em; 
+      color: var(--primary); 
+      background: #eff6ff; 
+      padding: 2px 8px; 
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    .main-layout { display: flex; gap: 32px; margin-bottom: 50px; }
+    .sidebar-left { flex: 0 0 280px; }
+    .content-right { flex: 1; min-width: 0; }
+
+    /* ==== Wiki 卡片通用樣式 ==== */
+    .wiki-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin-bottom: 24px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .wiki-card:hover {
+      box-shadow: var(--shadow-md);
+    }
+
+    .wiki-title {
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .wiki-title h2 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* 顏色標籤定義 */
+    .theme-blue h2 { background: #eff6ff; color: #1e40af; } 
+    .theme-green h2 { background: #f0fdf4; color: #166534; }
+    .theme-orange h2 { background: #fff7ed; color: #c2410c; }
+    .theme-red h2 { background: #fff1f2; color: #9f1239; }  
+    .theme-purple h2 { background: #fdf4ff; color: #701a75; }
+
+    /* 導覽選單 */
+    .nav-links-list { list-style: none; }
+    .nav-links-list li { border-bottom: 1px solid #f1f5f9; }
+    .nav-links-list li:last-child { border-bottom: none; }
+    .nav-links-list a { 
+      display: flex; 
+      align-items: center; 
+      gap: 12px; 
+      padding: 10px 8px; 
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-main);
+      border-radius: 6px;
+      transition: all 0.2s ease;
+    }
+    .nav-links-list a:hover { 
+      color: var(--primary); 
+      background: #eff6ff;
+      padding-left: 12px; 
+    }
+
+    .recommend-box {
+      background: #fff7ed;
+      border: 1px dashed #fdba74;
+      border-radius: 8px;
+      padding: 14px;
+      margin-top: 8px;
+    }
+    .recommend-box a { color: #c2410c; font-weight: bold; }
+    .recommend-box a:hover { text-decoration: underline; }
+
+    /* ==== 4區戰績表 Grid ==== */
+    .standings-grid { 
+      display: grid; 
+      grid-template-columns: repeat(2, 1fr); 
+      gap: 16px; 
+      margin-top: 10px; 
+    }
+    .division-box { 
+      background: #fafafa; 
+      border: 1px solid var(--border-color); 
+      border-radius: 8px; 
+      padding: 14px; 
+    }
+    .division-box h3 { 
+      font-size: 1rem; 
+      font-weight: 700; 
+      color: var(--text-main); 
+      margin-bottom: 10px; 
+      display: flex; 
+      align-items: center; 
+      gap: 6px; 
+    }
+    
+    .standings-table { width: 100%; border-collapse: collapse; font-size: 0.88em; }
+    .standings-table th { 
+      background: #f1f5f9; 
+      color: var(--text-muted); 
+      font-weight: 600; 
+      padding: 8px 4px; 
+      text-align: center; 
+    }
+    .standings-table td { padding: 8px 4px; text-align: center; border-bottom: 1px solid var(--border-color); }
+    .standings-table tr:last-child td { border-bottom: none; }
+    .standings-table tr:hover { background: #ffffff; }
+    
+    .team-name { font-weight: 600; text-align: left !important; color: var(--text-main); padding-left: 6px !important; }
+    .rank-num { font-weight: 700; color: #94a3b8; }
+    .r-1 { color: #eab308; }
+
+    /* ==== 虛擬時間 ==== */ 
+    .fake-time-wrapper { display: flex; align-items: center; gap: 12px; margin-top: 10px; }
+    .fake-time { 
+      font-size: 1.05rem; 
+      font-weight: 600; 
+      background: #fdf4ff; 
+      padding: 8px 16px; 
+      border-radius: 8px; 
+      color: #701a75; 
+      display: inline-block; 
+      border: 1px solid #f5d0fe; 
+    }
+
+    .footer { 
+      text-align: center; 
+      padding: 40px 20px; 
+      font-size: 0.9em; 
+      color: var(--text-muted); 
+      background: var(--card-bg); 
+      border-top: 1px solid var(--border-color); 
+    }
+
+    /* ==== 響應式佈局 ==== */
+    @media screen and (max-width: 960px) {
+      .standings-grid { grid-template-columns: 1fr; }
+    }
+    @media screen and (max-width: 768px) {
+      .main-layout { flex-direction: column; }
+      .sidebar-left { flex: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <h1>d棒球維基百科</h1>
+    <p>人物・球隊・賽事・紀錄 — 全面紀錄棒球的虛構與想像</p>
+  </header>
+
+  <!-- 搜尋欄區塊 -->
+  <div class="search-wrapper">
+    <div class="search-input-container">
+      <input
+        type="text"
+        class="search-box"
+        id="searchInput"
+        placeholder="搜尋球員、球隊、賽事... (按 Enter 直接跳轉)"
+        oninput="handleSearch()"
+        onkeydown="handleKeyDown(event)"
+      >
+    </div>
+    <div class="search-results" id="searchResults">
+      <ul id="resultList"></ul>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="main-layout">
+      
+      <!-- 左側導覽區 -->
+      <aside class="sidebar-left">
+        <div class="wiki-card theme-blue">
+          <div class="wiki-title"><h2>🗂 核心資料導覽</h2></div>
+          <ul class="nav-links-list">
+            <li><a href="players/players_overview.html"><span>⚾</span>球員資料</a></li>
+            <li><a href="teams/teams_overview.html"><span>🛡️</span>球隊一覽</a></li>
+            <li><a href="league/league_overview.html"><span>🏆</span>職棒聯盟</a></li>
+            <li><a href="games/games_overall.html"><span>📅</span>賽事紀錄</a></li>
+            <li><a href="league/draft_overview.html"><span>📜</span>選秀大會</a></li>
+            <li><a href="stadiums/stadiums_overview.html"><span>🏟️</span>球場簡介</a></li>
+            <li><a href="awards/awards_history.html"><span>🎖️</span>年度獎項</a></li>
+            <li><a href="stats/stats_leaderboard.html"><span>📊</span>數據排行</a></li>
+            <li><a href="players/fa_market.html"><span>💼</span>自由市場</a></li>
+          </ul>
+        </div>
+
+        <div class="wiki-card theme-orange">
+          <div class="wiki-title"><h2>⭐ 精選推薦</h2></div>
+          <div class="recommend-box">
+            <p style="font-size: 0.85em; color: #9a3412; font-weight: bold; margin-bottom: 4px;">📖 深度專題</p>
+            <p style="font-size: 0.9em; line-height: 1.5;">[討論] 彰化高中到底是怎麼從社團強校變成青棒豪門的？</p>
+            <p style="margin-top: 8px; text-align: right; font-size: 0.85em;"><a href="stories/chsh_baseball.html">閱讀全文 ⮕</a></p>
+          </div>
+        </div>
+      </aside>
+
+      <!-- 右側主內容區 -->
+      <main class="content-right">
+        
+        <!-- 動態載入戰績表 -->
+        <section class="wiki-card theme-green">
+          <div class="wiki-title"><h2>📊 IBL 2052 賽季分區戰績表</h2></div>
+          <div class="standings-grid" id="standingsGrid">
+            <!-- JavaScript 會自動動態渲染此處 -->
+            <p style="color: var(--text-muted); font-size: 0.9em; padding: 10px;">戰績資料載入中...</p>
+          </div>
+        </section>
+
+        <section class="wiki-card theme-blue">
+          <div class="wiki-title"><h2>站長的話</h2></div>
+          <p style="font-size: 0.95em; color: #334155;">
+            歡迎來到架空棒球世界資料站。這裡不只是整理紀錄的地方，而是一個讓想像中的棒球世界能被完整保存的空間。無論是未來聯盟、虛構球員，或真實歷史的再詮釋，希望這個網站能成為你查資料、發想故事，甚至單純熱愛棒球時的一個據點。
+          </p>
+        </section>
+
+        <section class="wiki-card theme-red">
+          <div class="wiki-title"><h2>注意事項</h2></div>
+          <p style="font-size: 0.95em; color: #334155; line-height: 1.8;">
+            本內容為架空時代，因此絕大多數內容皆為虛構，包括球員姓名、一些球隊、選手成績 (利用遊戲進行模擬成績)、各隊強度 (包括高中、職業) 等等。球員姓名來源有三者：認識的朋友姓名 (取得版權)、名字產生器、自由創造名字，如果有與您重複的姓名，純為巧合。若你看到本篇內容後，想要置入自己的版面，請與此篇內容擁有者討論，我們很歡迎。請抱持著開心的心情觀看此篇維基百科！<br><br>
+            如果你想加入我們，把你自己投入到架空世界中，歡迎點擊：<a href="mailto:nishikawaryusei10@gmail.com?subject=【架空棒球維基】資料補充/投稿&body=你好，我想投稿/諮詢關於架空聯盟的內容：" style="color: #2563eb; font-weight: bold; text-decoration: underline;">聯絡我們</a>
+          </p>
+        </section>
+
+        <section class="wiki-card theme-orange">
+          <div class="wiki-title"><h2>歷史和一些想說的話</h2></div>
+          <p style="font-size: 0.95em; color: #334155;">
+            這個算是我的第一個「比較正式」的作品，架空世界主要是高中時打棒球自己和朋友所創造出來的，那時候就有想說要把這樣東西實體化。一開始是用 Google Docs 來做，大概做了 2 年多吧，發現 Google Docs 的限制性實在太多，開啟變超級久。後來就想說可以來做看看網站，一開始用 Google Sites，後來學了 HTML 就覺得更有趣了。大二寒假時決定移到 GitHub 來做，現在感覺還蠻順利的，就繼續做下去吧！
+          </p>
+        </section>
+        
+        <section class="wiki-card theme-purple">
+          <div class="wiki-title"><h2>架空時間</h2></div>
+          <p style="font-size: 0.95em; margin-bottom: 8px;">這個架空的時間是在真實世界的 26 年後：</p>
+          <div class="fake-time-wrapper">
+            <div class="fake-time">
+              <span id="fake-date">2052-01-01</span>
+              <span id="fake-weekday">(Tue)</span>
+              <span id="fake-time">00:00:00</span>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <footer class="footer">
+    d棒球維基百科 © 2026 - 架空世界觀資料庫
+  </footer>
+
+  <!-- ==== 腳本區 ==== -->
+  <script>
+    /* ===================================================
+     * 1. 搜尋系統 (支援 Enter 直接跳轉 & 鍵盤上下選取)
+     * =================================================== */
+    let searchData = [];
+    let currentFocusIndex = -1;
+
+    fetch('./data.json')
+      .then(response => response.ok ? response.json() : [])
+      .then(data => { searchData = data; })
+      .catch(() => console.log("data.json 載入中..."));
+
+    const input = document.getElementById("searchInput");
+    const resultsBox = document.getElementById("searchResults");
+    const resultList = document.getElementById("resultList");
+
+    function handleSearch() {
+      const keyword = input.value.trim().toLowerCase();
+      resultList.innerHTML = "";
+      currentFocusIndex = -1;
+
+      if (!keyword) { 
+        resultsBox.style.display = "none"; 
+        return; 
+      }
+
+      const matches = searchData.filter(item => item.title.toLowerCase().includes(keyword)).slice(0, 8);
+
+      if (matches.length === 0) { 
+        resultsBox.style.display = "none"; 
+        return; 
+      }
+
+      matches.forEach((item, index) => {
+        const li = document.createElement("li");
+        li.setAttribute("data-url", item.url);
+        li.innerHTML = `<a href="${item.url}">${item.title}<small>${item.tag || '頁面'}</small></a>`;
+        resultList.appendChild(li);
+      });
+      resultsBox.style.display = "block";
+    }
+
+    // 處理 Enter 鍵與箭頭導覽
+    function handleKeyDown(e) {
+      const listItems = resultList.getElementsByTagName("li");
+      
+      if (e.key === "ArrowDown") {
+        currentFocusIndex++;
+        if (currentFocusIndex >= listItems.length) currentFocusIndex = 0;
+        addActive(listItems);
+      } else if (e.key === "ArrowUp") {
+        currentFocusIndex--;
+        if (currentFocusIndex < 0) currentFocusIndex = listItems.length - 1;
+        addActive(listItems);
+      } else if (e.key === "Enter") {
+        e.preventDefault();
+        // 如果有選中的項目，跳轉至選中項目
+        if (currentFocusIndex > -1 && listItems[currentFocusIndex]) {
+          const targetUrl = listItems[currentFocusIndex].getAttribute("data-url");
+          window.location.href = targetUrl;
+        } 
+        // 若未用鍵盤選取，但搜尋列表有結果，預設跳轉第一個
+        else if (listItems.length > 0) {
+          const targetUrl = listItems[0].getAttribute("data-url");
+          window.location.href = targetUrl;
+        }
+      }
+    }
+
+    function addActive(items) {
+      if (!items) return false;
+      for (let i = 0; i < items.length; i++) items[i].classList.remove("active");
+      if (currentFocusIndex >= 0 && currentFocusIndex < items.length) {
+        items[currentFocusIndex].classList.add("active");
+      }
+    }
+
+    document.addEventListener("click", e => {
+      if (!e.target.closest(".search-wrapper")) { resultsBox.style.display = "none"; }
+    });
+
+    /* ===================================================
+     * 2. 戰績表自動更新系統 (使用獨立 standings.json)
+     * =================================================== */
+    function loadStandings() {
+      // 讀取獨立戰績檔 standings.json
+      fetch('./standings.json')
+        .then(res => res.json())
+        .then(data => {
+          const container = document.getElementById('standingsGrid');
+          container.innerHTML = ''; // 清空
+
+          data.divisions.forEach(div => {
+            let rowsHtml = '';
+            div.teams.forEach((team, idx) => {
+              const rankClass = idx === 0 ? 'rank-num r-1' : 'rank-num';
+              rowsHtml += `
+                <tr>
+                  <td><span class="${rankClass}">${idx + 1}</span></td>
+                  <td class="team-name">${team.name}</td>
+                  <td>${team.win}</td>
+                  <td>${team.loss}</td>
+                  <td>${team.draw}</td>
+                  <td>${team.pct}</td>
+                </tr>
+              `;
+            });
+
+            const divBox = document.createElement('div');
+            divBox.className = 'division-box';
+            divBox.innerHTML = `
+              <h3>${div.icon || '⚾'} ${div.name}</h3>
+              <table class="standings-table">
+                <thead>
+                  <tr>
+                    <th style="width:10%">排名</th>
+                    <th style="text-align:left">球隊</th>
+                    <th style="width:12%">勝</th>
+                    <th style="width:12%">敗</th>
+                    <th style="width:12%">和</th>
+                    <th style="width:20%">勝率</th>
+                  </tr>
+                </thead>
+                <tbody>${rowsHtml}</tbody>
+              </table>
+            `;
+            container.appendChild(divBox);
+          });
+        })
+        .catch(err => {
+          console.error("無法動態載入戰績表，請確定已新增 standings.json", err);
+        });
+    }
+
+    // 初始載入戰績表
+    loadStandings();
+
+    /* ===================================================
+     * 3. 虛擬時間計算器
+     * =================================================== */
+    const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    function updateFakeTime() {
+      const now = new Date();
+      const utc8 = new Date(now.getTime() + (8 * 60 + now.getTimezoneOffset()) * 60000);
+      const fakeDate = new Date(utc8); fakeDate.setFullYear(2052);
+      
+      const year = fakeDate.getFullYear();
+      const month = String(fakeDate.getMonth() + 1).padStart(2, '0');
+      const day = String(fakeDate.getDate()).padStart(2, '0');
+      const hours = String(fakeDate.getHours()).padStart(2, '0');
+      const minutes = String(fakeDate.getMinutes()).padStart(2, '0');
+      const seconds = String(fakeDate.getSeconds()).padStart(2, '0');
+      const weekday = weekdays[fakeDate.getDay()];
+
+      document.getElementById('fake-date').textContent = `${year}-${month}-${day}`;
+      document.getElementById('fake-weekday').textContent = `(${weekday})`;
+      document.getElementById('fake-time').textContent = `${hours}:${minutes}:${seconds}`;
+    }
+    setInterval(updateFakeTime, 1000);
+    updateFakeTime();
+  </script>
+</body>
+</html>
