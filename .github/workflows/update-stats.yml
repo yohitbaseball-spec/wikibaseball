@@ -1,7 +1,9 @@
 name: 自動從 Google 試算表更新球員成績
 
 on:
+  # 支援在 GitHub 頁面點擊按鈕手動觸發更新
   workflow_dispatch:
+  # 每次修改 workflow 或專案檔案 push 時自動觸發
   push:
     branches: [ "main", "master" ]
     paths:
@@ -14,10 +16,10 @@ jobs:
       contents: write
     steps:
       - name: 檢出專案程式碼
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: 設定 Python 環境
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
@@ -39,6 +41,7 @@ jobs:
               print('❌ 未設定 GOOGLE_SHEET_ID Secrets！')
               exit(1)
 
+          # 直接匯出 Google 試算表為 CSV
           url = f'https://docs.google.com/spreadsheets/d/{sheet_id}/export?format=csv'
           print('正在線上讀取 Google 試算表...')
 
@@ -48,33 +51,47 @@ jobs:
               print(f'❌ 讀取 Google 試算表失敗: {e}')
               exit(1)
 
+          # 清理欄位名稱空白
           df.columns = df.columns.str.strip()
 
+          # 格式化打擊率/上壘率/長打率/OPS 函數 (例如 0.286 -> .286, 0.000 -> .000)
           def fmt_rate(val):
               if pd.isna(val) or val == 0:
                   return '.000'
               s = f'{val:.3f}'
               return s[1:] if s.startswith('0.') else s
 
-          grouped = df.groupby('player_id')
+          # 判斷分組依據欄位 (優先使用 player_name，若無則使用 player_id)
+          group_col = 'player_name' if 'player_name' in df.columns else 'player_id'
+          if group_col not in df.columns:
+              print('❌ 試算表中未找到 player_name 或 player_id 欄位！')
+              exit(1)
+
+          grouped = df.groupby(group_col)
 
           for player_name, group in grouped:
               player_name = str(player_name).strip()
+              if not player_name or player_name == 'nan':
+                  continue
+
               group = group.copy()
 
+              # 確保數值型別正確，空值補 0
               num_cols = ['year', 'G', 'PA', 'AB', 'H', '2B', '3B', 'HR', 'RBI', 'R', 'SB', 'SO', 'BB', 'SAC', 'SF']
               for col in num_cols:
                   if col in group.columns:
                       group[col] = pd.to_numeric(group[col], errors='coerce').fillna(0)
 
+              # 計算進階打擊數據 (1B, TB, AVG, OBP, SLG, OPS)
               group['1B'] = group['H'] - group['2B'] - group['3B'] - group['HR']
               group['TB'] = group['1B'] + group['2B']*2 + group['3B']*3 + group['HR']*4
-              
+
               group['AVG'] = group['H'] / group['AB']
               group['OBP'] = (group['H'] + group['BB']) / (group['AB'] + group['BB'] + group['SF'])
               group['SLG'] = group['TB'] / group['AB']
               group['OPS'] = group['OBP'] + group['SLG']
 
+              # 產生單年數據的 HTML <tr>
               rows_html = []
               for _, r in group.iterrows():
                   row = f'''    <tr>
@@ -102,6 +119,7 @@ jobs:
       </tr>'''
                   rows_html.append(row)
 
+              # 自動計算「通算成績」
               tot_G = group['G'].sum()
               tot_PA = group['PA'].sum()
               tot_AB = group['AB'].sum()
@@ -147,10 +165,10 @@ jobs:
       </tr>'''
               rows_html.append(tot_row)
 
-              new_tbody_content = '\n' + '\n'.join(rows_html) + '\n    '
+              new_tbody_content = '\n' + '\n'.join(rows_html) + '\n  '
 
+              # 搜尋專案內對應的球員 HTML 檔案並更新
               updated_any = False
-              # 著重掃描 players 等資料夾下的 HTML
               for root, dirs, files in os.walk('.'):
                   for file in files:
                       if file.endswith('.html'):
@@ -158,6 +176,7 @@ jobs:
                           with open(filepath, 'r', encoding='utf-8') as f:
                               html_content = f.read()
 
+                          # 檢查 HTML 中是否含有該球員名字與標記
                           if player_name in html_content and '<!-- STATS_START -->' in html_content:
                               pattern = r'(<!-- STATS_START -->)(.*?)(<!-- STATS_END -->)'
                               replacement = r'\1' + new_tbody_content + r'\3'
@@ -165,14 +184,14 @@ jobs:
 
                               with open(filepath, 'w', encoding='utf-8') as f:
                                   f.write(updated_html)
-                              print(f'✅ 成功更新球員 [{player_name}] 的成績至: {filepath}')
+                              print(f'✅ 成功更新球員 [{player_name}] 的成績至檔案: {filepath}')
                               updated_any = True
 
               if not updated_any:
-                  print(f'⚠️ 未找到球員 [{player_name}] 的 HTML 檔案。')
+                  print(f'⚠️ 未找到與球員 [{player_name}] 匹配且帶有定位標記的 HTML 檔案。')
           "
 
-      - name: 提交並推送變更
+      - name: 提交並推送變更到 GitHub
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
