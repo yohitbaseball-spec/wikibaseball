@@ -30,8 +30,7 @@ jobs:
           # 以後想新增資料夾，直接在這裡加一行即可！
           # ==========================================
           SCAN_CONFIG = {
-              'players/taiwan': '台灣球員',
-              'players/japan': '日本球員',
+              'players': '台灣球員',
               'teams': '球隊',
               'stadiums': '球場'
           }
