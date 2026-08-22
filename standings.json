@@ -1,0 +1,48 @@
+{
+  "divisions": [
+    {
+      "name": "北區戰績",
+      "icon": "🏙️",
+      "teams": [
+        { "name": "樂天桃猿隊", "win": 50, "loss": 33, "draw": 1, "pct": ".602" },
+        { "name": "富邦守護者隊", "win": 46, "loss": 37, "draw": 1, "pct": ".554" },
+        { "name": "味全天龍隊", "win": 43, "loss": 41, "draw": 0, "pct": ".512" },
+        { "name": "竹科工程師隊", "win": 38, "loss": 46, "draw": 0, "pct": ".452" },
+        { "name": "全聯熊隊", "win": 33, "loss": 51, "draw": 0, "pct": ".393" }
+      ]
+    },
+    {
+      "name": "中區戰績",
+      "icon": "⛰️",
+      "teams": [
+        { "name": "中信子彈隊", "win": 55, "loss": 28, "draw": 1, "pct": ".663" },
+        { "name": "苗栗石虎隊", "win": 45, "loss": 39, "draw": 0, "pct": ".536" },
+        { "name": "北鐵狼隊", "win": 42, "loss": 42, "draw": 0, "pct": ".500" },
+        { "name": "台糖巨人隊", "win": 36, "loss": 48, "draw": 0, "pct": ".429" },
+        { "name": "南投雷霆隊", "win": 32, "loss": 52, "draw": 0, "pct": ".381" }
+      ]
+    },
+    {
+      "name": "南區戰績",
+      "icon": "🌴",
+      "teams": [
+        { "name": "統一猛獅隊", "win": 48, "loss": 35, "draw": 1, "pct": ".578" },
+        { "name": "阿里山火車隊", "win": 47, "loss": 37, "draw": 0, "pct": ".560" },
+        { "name": "台鋼巨鷹隊", "win": 41, "loss": 43, "draw": 0, "pct": ".488" },
+        { "name": "南亞炫風隊", "win": 37, "loss": 47, "draw": 0, "pct": ".440" },
+        { "name": "墾丁鯊魚隊", "win": 31, "loss": 53, "draw": 0, "pct": ".369" }
+      ]
+    },
+    {
+      "name": "東區戰績",
+      "icon": "🌊",
+      "teams": [
+        { "name": "奇醫海燕隊", "win": 49, "loss": 34, "draw": 1, "pct": ".590" },
+        { "name": "台東鋼鐵人隊", "win": 44, "loss": 39, "draw": 1, "pct": ".530" },
+        { "name": "基隆雨都隊", "win": 40, "loss": 44, "draw": 0, "pct": ".476" },
+        { "name": "花蓮眼鏡蛇隊", "win": 39, "loss": 45, "draw": 0, "pct": ".464" },
+        { "name": "中油火焰隊", "win": 26, "loss": 58, "draw": 0, "pct": ".310" }
+      ]
+    }
+  ]
+}
