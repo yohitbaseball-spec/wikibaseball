@@ -396,7 +396,6 @@
       resultsBox.style.display = "block";
     }
 
-    // 處理 Enter 鍵與箭頭導覽
     function handleKeyDown(e) {
       const listItems = resultList.getElementsByTagName("li");
       
@@ -410,12 +409,10 @@
         addActive(listItems);
       } else if (e.key === "Enter") {
         e.preventDefault();
-        // 如果有選中的項目，跳轉至選中項目
         if (currentFocusIndex > -1 && listItems[currentFocusIndex]) {
           const targetUrl = listItems[currentFocusIndex].getAttribute("data-url");
           window.location.href = targetUrl;
         } 
-        // 若未用鍵盤選取，但搜尋列表有結果，預設跳轉第一個
         else if (listItems.length > 0) {
           const targetUrl = listItems[0].getAttribute("data-url");
           window.location.href = targetUrl;
@@ -436,24 +433,28 @@
     });
 
     /* ===================================================
-     * 2. 戰績表自動更新系統 (使用獨立 standings.json)
+     * 2. 戰績表自動更新系統 (含已賽場次 G 計算與渲染)
      * =================================================== */
     function loadStandings() {
-      // 讀取獨立戰績檔 standings.json
       fetch('./standings.json')
         .then(res => res.json())
         .then(data => {
           const container = document.getElementById('standingsGrid');
-          container.innerHTML = ''; // 清空
+          container.innerHTML = '';
 
           data.divisions.forEach(div => {
             let rowsHtml = '';
             div.teams.forEach((team, idx) => {
               const rankClass = idx === 0 ? 'rank-num r-1' : 'rank-num';
+              
+              // 若沒填已賽場次，系統自動加總 (勝 + 敗 + 和)
+              const gamesPlayed = team.games !== undefined ? team.games : (team.win + team.loss + team.draw);
+
               rowsHtml += `
                 <tr>
                   <td><span class="${rankClass}">${idx + 1}</span></td>
                   <td class="team-name">${team.name}</td>
+                  <td>${gamesPlayed}</td>
                   <td>${team.win}</td>
                   <td>${team.loss}</td>
                   <td>${team.draw}</td>
@@ -469,12 +470,13 @@
               <table class="standings-table">
                 <thead>
                   <tr>
-                    <th style="width:10%">排名</th>
+                    <th style="width:8%">排名</th>
                     <th style="text-align:left">球隊</th>
-                    <th style="width:12%">勝</th>
-                    <th style="width:12%">敗</th>
-                    <th style="width:12%">和</th>
-                    <th style="width:20%">勝率</th>
+                    <th style="width:10%">G</th>
+                    <th style="width:10%">勝</th>
+                    <th style="width:10%">敗</th>
+                    <th style="width:10%">和</th>
+                    <th style="width:16%">勝率</th>
                   </tr>
                 </thead>
                 <tbody>${rowsHtml}</tbody>
@@ -488,7 +490,6 @@
         });
     }
 
-    // 初始載入戰績表
     loadStandings();
 
     /* ===================================================
