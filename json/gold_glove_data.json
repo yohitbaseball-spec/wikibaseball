@@ -47,14 +47,14 @@
       "1B": { "name": "李政宇", "country": "TW" },
       "2B": { "name": "林佳恩", "country": "TW" },
       "3B": { "name": "林澤安", "country": "TW" },
-      "SS": { "name": "余宥達", "country": "TW" },
+      "SS": { "name": "許景成", "country": "TW" },
       "OF1": { "name": "羅以翔", "country": "TW" },
       "OF2": { "name": "金在勳", "country": "KR" },
       "OF3": { "name": "郭哲恩", "country": "TW" },
       "UTL": { "name": "阿華田∙米烙", "country": "TW" },
       "teams": {
         "P": "新世紀恐龍", "C": "全達鴨", "1B": "全達鴨", "2B": "新北幻境英雄", "3B": "南投雷霆", 
-        "SS": "北鐵狼", "OF1": "阿里山小火車", "OF2": "花蓮眼鏡蛇", "OF3": "酷購樂猿", "UTL": "北鐵狼"
+        "SS": "南投雷霆", "OF1": "阿里山小火車", "OF2": "花蓮眼鏡蛇", "OF3": "酷購樂猿", "UTL": "北鐵狼"
       }
     }
     
