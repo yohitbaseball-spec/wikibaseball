@@ -30,29 +30,23 @@ def outs_to_ip_str(outs):
     else: return f"{i}.{f}"
 
 def parse_val_and_style(raw_val):
-    """
-    透過英文小寫字母判斷樣式：
-    r = 紅字粗體 (red)
-    b = 一般粗體 (bold)
-    """
     s = str(raw_val).strip()
     if not s or s == '-' or s.lower() == 'nan':
         return 0.0, ''
 
+    # 1. 判斷要不要變色 (只要有 r、R 或 '紅' 就抓)
     style_type = ''
-    if 'r' in s.lower():
+    if 'r' in s.lower() or '紅' in s:
         style_type = 'red'
     elif 'b' in s.lower():
         style_type = 'bold'
 
-    # 提取純數字 (包含負號與小數點)
-    match = re.search(r'[-+]?\d*\.?\d+', s)
-    if match:
-        try:
-            num = float(match.group())
-        except ValueError:
-            num = 0.0
-    else:
+    # 2. 剝離文字，只保留數字與小數點 (絕不歸零)
+    clean_num_str = ''.join([c for c in s if c.isdigit() or c == '.'])
+    
+    try:
+        num = float(clean_num_str) if clean_num_str else 0.0
+    except ValueError:
         num = 0.0
 
     return num, style_type
