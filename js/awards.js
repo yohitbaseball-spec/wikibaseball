@@ -12,7 +12,7 @@ const COUNTRY_FOLDER_MAP = {
 async function initAwardsData() {
   try {
     // 💡 嘗試抓取 JSON，如果抓不到請檢查控制台 (F12) 報錯
-    const response = await fetch('../.json/gold_glove_data.json');
+    const response = await fetch('../json/gold_glove_data.json');
     if (!response.ok) {
       throw new Error(`找不到 JSON 檔案 (Status: ${response.status})`);
     }
