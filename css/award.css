@@ -72,14 +72,13 @@ a:hover {
   font-size: 2.2rem;
   color: var(--text-main);
   font-weight: 700;
-  border-left: 6px solid var(--award-primary);
-  padding-left: 14px;
+  padding-left: 0px;
 }
 .header .sub {
   font-size: 0.95rem;
   color: var(--text-muted);
   margin-top: 6px;
-  padding-left: 20px;
+  padding-left: 0px;
 }
 
 /* ===== 52 年世代與年份選單 ===== */
