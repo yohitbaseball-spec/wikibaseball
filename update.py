@@ -1,5 +1,6 @@
 import os
 import pandas as pd
+from urllib.parse import quote
 
 # 取得環境變數中的 SHEET_ID
 SHEET_ID = os.environ.get("SHEET_ID")
@@ -59,13 +60,11 @@ def parse_val(raw_val):
 
 def fmt_stat(raw_val, calc_num, precision=0):
     """
-    做法 2 核心判斷：
     - 若試算表有手動輸入內容 (特別是帶有 * 或 **)，優先顯示試算表填寫的格式化內容。
     - 若試算表該格留空，則使用程式自動計算出的 calc_num 進行輸出。
     """
     raw_str = str(raw_val).strip()
     
-    # 狀況 A：使用者有手動輸入（例如填了 .380* 或 1.85**）
     if raw_str != "":
         num, _ = parse_val(raw_str)
         if precision == 3:
@@ -81,8 +80,6 @@ def fmt_stat(raw_val, calc_num, precision=0):
             return f'<b>{formatted_num}</b>'
         else:
             return formatted_num
-
-    # 狀況 B：使用者留空，完全由 Python 自動計算輸出
     else:
         if precision == 3:
             return f"{calc_num:.3f}"
@@ -92,11 +89,11 @@ def fmt_stat(raw_val, calc_num, precision=0):
             return f"{int(calc_num)}" if calc_num.is_integer() else f"{calc_num}"
 
 def fetch_sheet_data(sheet_name):
-    """從 Google Sheet 讀取指定分頁資料"""
-    url = f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/gviz/tq?tqx=out:csv&sheet={sheet_name}"
+    """從 Google Sheet 讀取指定分頁資料 (已處理中文 URL 編碼)"""
+    encoded_sheet_name = quote(sheet_name)
+    url = f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/gviz/tq?tqx=out:csv&sheet={encoded_sheet_name}"
     try:
-        # 強制讀取為字串，保留星號 *
-        df = pd.read_csv(url, dtype=str)
+        df = pd.read_csv(url, dtype=str, encoding='utf-8')
         df.columns = df.columns.str.strip()
         return df.fillna('')
     except Exception as e:
@@ -104,7 +101,7 @@ def fetch_sheet_data(sheet_name):
         return None
 
 def process_batting_stats():
-    """處理打者成績 (做法 2：自動計算與手動星號覆蓋)"""
+    """處理打者成績"""
     df = fetch_sheet_data("打擊成績")
     if df is None or df.empty or 'player_id' not in df.columns:
         return {}
@@ -113,20 +110,17 @@ def process_batting_stats():
     for pid, group in df.groupby('player_id'):
         rows_html = ""
         for _, row in group.iterrows():
-            # 抓取基礎數據純數字用於計算
             ab, _ = parse_val(row.get('AB', '0'))
             h, _ = parse_val(row.get('H', '0'))
             bb, _ = parse_val(row.get('BB', '0'))
             sf, _ = parse_val(row.get('SF', '0'))
             tb, _ = parse_val(row.get('TB', '0'))
 
-            # 自動計算進階指標
             avg_calc = (h / ab) if ab > 0 else 0.0
             obp_calc = ((h + bb) / (ab + bb + sf)) if (ab + bb + sf) > 0 else 0.0
             slg_calc = (tb / ab) if ab > 0 else 0.0
             ops_calc = obp_calc + slg_calc
 
-            # 格式化輸出各欄位 (若試算表有星號會自動套用)
             avg_str = fmt_stat(row.get('AVG', ''), avg_calc, 3)
             obp_str = fmt_stat(row.get('OBP', ''), obp_calc, 3)
             slg_str = fmt_stat(row.get('SLG', ''), slg_calc, 3)
@@ -160,7 +154,7 @@ def process_batting_stats():
     return batting_by_player
 
 def process_pitching_stats():
-    """處理投手成績 (做法 2：自動計算與手動星號覆蓋)"""
+    """處理投手成績"""
     df = fetch_sheet_data("投手成績")
     if df is None or df.empty or 'player_id' not in df.columns:
         return {}
@@ -178,13 +172,11 @@ def process_pitching_stats():
             bh, _ = parse_val(row.get('BH', '0'))
             er, _ = parse_val(row.get('ER', '0'))
 
-            # 自動計算 OAVG, ERA, WHIP
             ab_against = bf - bb
             oavg_calc = (bh / ab_against) if ab_against > 0 else 0.0
             era_calc = (er * 9.0) / ip_actual if ip_actual > 0 else 0.0
             whip_calc = (bb + bh) / ip_actual if ip_actual > 0 else 0.0
 
-            # 格式化輸出進階指標
             oavg_str = fmt_stat(row.get('OAVG', ''), oavg_calc, 3)
             era_str = fmt_stat(row.get('ERA', ''), era_calc, 2)
             whip_str = fmt_stat(row.get('WHIP', ''), whip_calc, 2)
@@ -228,7 +220,6 @@ def update_html_files():
 
                 updated = False
 
-                # 1. 打擊成績匹配
                 for pid, html_rows in batting_data.items():
                     if pid in content and "<!-- STATS_START -->" in content:
                         start_tag = "<!-- STATS_START -->"
@@ -239,7 +230,6 @@ def update_html_files():
                             content = content[:idx1] + "\n" + html_rows + "        " + content[idx2:]
                             updated = True
 
-                # 2. 投手成績匹配
                 for pid, html_rows in pitching_data.items():
                     if pid in content and "<!-- PITCHER_STATS_START -->" in content:
                         start_tag = "<!-- PITCHER_STATS_START -->"
