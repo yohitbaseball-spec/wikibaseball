@@ -2,7 +2,6 @@ import os
 import pandas as pd
 from urllib.parse import quote
 
-# 取得環境變數中的 SHEET_ID
 SHEET_ID = os.environ.get("SHEET_ID")
 
 if not SHEET_ID:
@@ -10,104 +9,71 @@ if not SHEET_ID:
     exit(1)
 
 def ip_to_outs(ip):
-    """將 baseball 局數 (例如 5.2) 轉換為總出局數 (Outs)"""
     try:
         clean_ip = str(ip).replace('*', '').strip()
         ip_float = float(clean_ip)
         i = int(ip_float)
         f = round(ip_float - i, 1)
         outs = i * 3
-        if f == 0.1:
-            outs += 1
-        elif f == 0.2:
-            outs += 2
+        if f == 0.1: outs += 1
+        elif f == 0.2: outs += 2
         return outs
     except:
         return 0
 
 def parse_val(raw_val):
-    """
-    解析試算表儲存格內容，並判斷是否需要加上黑粗體或紅粗體：
-    - 末尾帶 ** -> 紅色粗體 (聯盟紀錄)
-    - 末尾帶 *  -> 黑色粗體 (該季聯盟最高)
-    - 一般數值  -> 正常呈現
-    返回: (純數值_float, HTML格式化字串)
-    """
     s = str(raw_val).strip()
-    
     if s.endswith('**'):
         clean_s = s[:-2].strip()
-        try:
-            num = float(clean_s)
-        except:
-            num = 0.0
+        try: num = float(clean_s)
+        except: num = 0.0
         return num, f'<b style="color: red;">{clean_s}</b>'
-    
     elif s.endswith('*'):
         clean_s = s[:-1].strip()
-        try:
-            num = float(clean_s)
-        except:
-            num = 0.0
+        try: num = float(clean_s)
+        except: num = 0.0
         return num, f'<b>{clean_s}</b>'
-    
     else:
-        try:
-            num = float(s)
-        except:
-            num = 0.0
+        try: num = float(s)
+        except: num = 0.0
         return num, s
 
 def fmt_stat(raw_val, calc_num, precision=0):
-    """
-    - 若試算表有手動輸入內容 (特別是帶有 * 或 **)，優先顯示試算表填寫的格式化內容。
-    - 若試算表該格留空，則使用程式自動計算出的 calc_num 進行輸出。
-    """
     raw_str = str(raw_val).strip()
-    
     if raw_str != "":
         num, _ = parse_val(raw_str)
-        if precision == 3:
-            formatted_num = f"{num:.3f}"
-        elif precision == 2:
-            formatted_num = f"{num:.2f}"
-        else:
-            formatted_num = f"{int(num)}" if num.is_integer() else f"{num}"
-            
-        if raw_str.endswith('**'):
-            return f'<b style="color: red;">{formatted_num}</b>'
-        elif raw_str.endswith('*'):
-            return f'<b>{formatted_num}</b>'
-        else:
-            return formatted_num
+        if precision == 3: formatted_num = f"{num:.3f}"
+        elif precision == 2: formatted_num = f"{num:.2f}"
+        else: formatted_num = f"{int(num)}" if num.is_integer() else f"{num}"
+        if raw_str.endswith('**'): return f'<b style="color: red;">{formatted_num}</b>'
+        elif raw_str.endswith('*'): return f'<b>{formatted_num}</b>'
+        else: return formatted_num
     else:
-        if precision == 3:
-            return f"{calc_num:.3f}"
-        elif precision == 2:
-            return f"{calc_num:.2f}"
-        else:
-            return f"{int(calc_num)}" if calc_num.is_integer() else f"{calc_num}"
+        if precision == 3: return f"{calc_num:.3f}"
+        elif precision == 2: return f"{calc_num:.2f}"
+        else: return f"{int(calc_num)}" if calc_num.is_integer() else f"{calc_num}"
 
 def fetch_sheet_data(sheet_name):
-    """從 Google Sheet 讀取指定分頁資料 (已處理中文 URL 編碼)"""
     encoded_sheet_name = quote(sheet_name)
     url = f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/gviz/tq?tqx=out:csv&sheet={encoded_sheet_name}"
     try:
         df = pd.read_csv(url, dtype=str, encoding='utf-8')
         df.columns = df.columns.str.strip()
+        print(f"📊 成功讀取 [{sheet_name}]，共有 {len(df)} 筆資料。包含欄位: {list(df.columns)}")
         return df.fillna('')
     except Exception as e:
         print(f"⚠️ 無法讀取分頁 [{sheet_name}]: {e}")
         return None
 
 def process_batting_stats():
-    """處理打者成績"""
     df = fetch_sheet_data("打擊成績")
     if df is None or df.empty or 'player_id' not in df.columns:
+        print("⚠️ [打擊成績] 無資料或缺少 player_id 欄位")
         return {}
 
     batting_by_player = {}
     for pid, group in df.groupby('player_id'):
+        clean_pid = str(pid).strip()
         rows_html = ""
         for _, row in group.iterrows():
             ab, _ = parse_val(row.get('AB', '0'))
@@ -150,17 +116,18 @@ def process_batting_stats():
             <td>{slg_str}</td>
             <td>{ops_str}</td>
           </tr>\n"""
-        batting_by_player[str(pid).strip()] = rows_html
+        batting_by_player[clean_pid] = rows_html
     return batting_by_player
 
 def process_pitching_stats():
-    """處理投手成績"""
     df = fetch_sheet_data("投手成績")
     if df is None or df.empty or 'player_id' not in df.columns:
+        print("⚠️ [投手成績] 無資料或缺少 player_id 欄位")
         return {}
 
     pitching_by_player = {}
     for pid, group in df.groupby('player_id'):
+        clean_pid = str(pid).strip()
         rows_html = ""
         for _, row in group.iterrows():
             ip_val = row.get('IP', '0')
@@ -204,16 +171,23 @@ def process_pitching_stats():
             <td>{era_str}</td>
             <td>{whip_str}</td>
           </tr>\n"""
-        pitching_by_player[str(pid).strip()] = rows_html
+        pitching_by_player[clean_pid] = rows_html
     return pitching_by_player
 
 def update_html_files():
     batting_data = process_batting_stats()
     pitching_data = process_pitching_stats()
 
+    print(f"🔍 讀取到的打者列表: {list(batting_data.keys())}")
+    print(f"🔍 讀取到的投手列表: {list(pitching_data.keys())}")
+
+    updated_count = 0
+    html_files_found = 0
+
     for root, _, files in os.walk('.'):
         for file in files:
             if file.endswith('.html'):
+                html_files_found += 1
                 filepath = os.path.join(root, file)
                 with open(filepath, 'r', encoding='utf-8') as f:
                     content = f.read()
@@ -221,29 +195,38 @@ def update_html_files():
                 updated = False
 
                 for pid, html_rows in batting_data.items():
-                    if pid in content and "<!-- STATS_START -->" in content:
-                        start_tag = "<!-- STATS_START -->"
-                        end_tag = "<!-- STATS_END -->"
-                        idx1 = content.find(start_tag) + len(start_tag)
-                        idx2 = content.find(end_tag)
-                        if idx1 != -1 and idx2 != -1 and idx1 < idx2:
-                            content = content[:idx1] + "\n" + html_rows + "        " + content[idx2:]
-                            updated = True
+                    if pid in content:
+                        if "<!-- STATS_START -->" in content and "<!-- STATS_END -->" in content:
+                            start_tag = "<!-- STATS_START -->"
+                            end_tag = "<!-- STATS_END -->"
+                            idx1 = content.find(start_tag) + len(start_tag)
+                            idx2 = content.find(end_tag)
+                            if idx1 != -1 and idx2 != -1 and idx1 < idx2:
+                                content = content[:idx1] + "\n" + html_rows + "        " + content[idx2:]
+                                updated = True
+                        else:
+                            print(f"⚠️ 找到球員 [{pid}] 於 {filepath}，但缺少打者標記 <!-- STATS_START --> 或 <!-- STATS_END -->")
 
                 for pid, html_rows in pitching_data.items():
-                    if pid in content and "<!-- PITCHER_STATS_START -->" in content:
-                        start_tag = "<!-- PITCHER_STATS_START -->"
-                        end_tag = "<!-- PITCHER_STATS_END -->"
-                        idx1 = content.find(start_tag) + len(start_tag)
-                        idx2 = content.find(end_tag)
-                        if idx1 != -1 and idx2 != -1 and idx1 < idx2:
-                            content = content[:idx1] + "\n" + html_rows + "        " + content[idx2:]
-                            updated = True
+                    if pid in content:
+                        if "<!-- PITCHER_STATS_START -->" in content and "<!-- PITCHER_STATS_END -->" in content:
+                            start_tag = "<!-- PITCHER_STATS_START -->"
+                            end_tag = "<!-- PITCHER_STATS_END -->"
+                            idx1 = content.find(start_tag) + len(start_tag)
+                            idx2 = content.find(end_tag)
+                            if idx1 != -1 and idx2 != -1 and idx1 < idx2:
+                                content = content[:idx1] + "\n" + html_rows + "        " + content[idx2:]
+                                updated = True
+                        else:
+                            print(f"⚠️ 找到球員 [{pid}] 於 {filepath}，但缺少投手標記 <!-- PITCHER_STATS_START --> 或 <!-- PITCHER_STATS_END -->")
 
                 if updated:
                     with open(filepath, 'w', encoding='utf-8') as f:
                         f.write(content)
                     print(f"✅ 已成功更新球員網頁: {filepath}")
+                    updated_count += 1
+
+    print(f"📌 掃描完成：共找到 {html_files_found} 個 HTML 檔案，成功更新 {updated_count} 個檔案。")
 
 if __name__ == "__main__":
     update_html_files()
