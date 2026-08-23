@@ -391,8 +391,20 @@ table.stats1 th {
   .navbox-group {
     grid-template-columns: 1fr; /* 改為單欄上下疊加 */
   }
-  
-  .navbox-header {
+
+/* 當前頁面標示：加粗、深金底線、底色高亮 */
+.navbox-content .current {
+  display: inline-block;          /* 確保 box 結構完整，讓 border 可以正確繪製 */
+  color: var(--award-primary-dark);
+  font-weight: 800;
+  border-bottom: 2px solid var(--award-primary-dark);
+  padding: 2px 6px;               /* 增加內邊距，把底線推開一點 */
+  background-color: var(--award-second); /* 加上微弱淡金底色，大幅提升辨識度 */
+  border-radius: 3px 3px 0 0;     /* 頂部微圓角，更精緻 */
+  cursor: default;                /* 非連結手勢 */
+}
+ 
+.navbox-header {
     border-right: none;
     border-bottom: 1px solid var(--border-color);
     padding: 8px 12px;
@@ -404,13 +416,6 @@ table.stats1 th {
     gap: 8px 12px;
   }
 
-   .navbox-content .current {
-  color: var(--award-primary-dark);
-  font-weight: 800;
-  border-bottom: 2px solid var(--award-primary-dark);
-  cursor: default; /* 保持預設游標，明確告知不可點擊 */
-  padding-bottom: 1px;
-}
    
 }
 
