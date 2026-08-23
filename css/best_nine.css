@@ -457,12 +457,14 @@
     padding: 10px 12px;
     gap: 8px 12px;
   }
-}
 
-.navbox-content .current {
+    .navbox-content .current {
   color: var(--award-primary-dark);
   font-weight: 800;
   border-bottom: 2px solid var(--award-primary-dark);
   cursor: default; /* 保持預設游標，明確告知不可點擊 */
   padding-bottom: 1px;
 }
+    
+}
+
