@@ -30,22 +30,16 @@ def outs_to_ip_str(outs):
     else: return f"{i}.{f}"
 
 def parse_val_and_star(raw_val):
-    """
-    將包含星號的字串拆解為純數字與星號類型
-    支援半形 * 與全形 ＊
-    """
     s = str(raw_val).strip()
     if not s or s == '-' or s.lower() == 'nan':
         return 0.0, ''
 
-    # 判斷星號種類 (支援全形與半形)
     star_type = ''
     if '**' in s or '＊＊' in s:
         star_type = '**'
     elif '*' in s or '＊' in s:
         star_type = '*'
 
-    # 剔除所有星號與空格，留下純數字字串
     clean_str = re.sub(r'[*＊\s]', '', s)
 
     try:
@@ -56,9 +50,6 @@ def parse_val_and_star(raw_val):
     return num, star_type
 
 def format_cell(num, star_type, precision=0):
-    """
-    根據數字與星號渲染 HTML 標籤
-    """
     if precision == 3:
         formatted_num = f"{num:.3f}"
     elif precision == 2:
@@ -79,7 +70,6 @@ def fetch_sheet_data(sheet_name):
     encoded_sheet_name = quote(sheet_name)
     url = f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/gviz/tq?tqx=out:csv&sheet={encoded_sheet_name}"
     try:
-        # dtype=str 確保 100% 讀取原始字串，不被 pandas 自動轉型破壞
         df = pd.read_csv(url, dtype=str, keep_default_na=False, encoding='utf-8')
         df.columns = df.columns.str.strip()
         return df
@@ -170,7 +160,7 @@ def process_batting_stats():
             <td>{ops_final}</td>
           </tr>\n"""
 
-        # 通算行
+        # 通算行（無粗體）
         if len(group) > 0:
             tot_avg = (tot_h / tot_ab) if tot_ab > 0 else 0.0
             tot_obp = ((tot_h + tot_bb) / (tot_ab + tot_bb + tot_sf)) if (tot_ab + tot_bb + tot_sf) > 0 else 0.0
@@ -178,27 +168,27 @@ def process_batting_stats():
             tot_ops = tot_obp + tot_slg
 
             rows_html += f"""          <tr>
-            <td><b>通算</b></td>
+            <td>通算</td>
             <td>-</td>
-            <td><b>{int(tot_g)}</b></td>
-            <td><b>{int(tot_pa)}</b></td>
-            <td><b>{int(tot_ab)}</b></td>
-            <td><b>{int(tot_h)}</b></td>
-            <td><b>{int(tot_2b)}</b></td>
-            <td><b>{int(tot_3b)}</b></td>
-            <td><b>{int(tot_hr)}</b></td>
-            <td><b>{int(tot_rbi)}</b></td>
-            <td><b>{int(tot_r)}</b></td>
-            <td><b>{int(tot_sb)}</b></td>
-            <td><b>{int(tot_tb)}</b></td>
-            <td><b>{int(tot_so)}</b></td>
-            <td><b>{int(tot_bb)}</b></td>
-            <td><b>{int(tot_sac)}</b></td>
-            <td><b>{int(tot_sf)}</b></td>
-            <td><b>{tot_avg:.3f}</b></td>
-            <td><b>{tot_obp:.3f}</b></td>
-            <td><b>{tot_slg:.3f}</b></td>
-            <td><b>{tot_ops:.3f}</b></td>
+            <td>{int(tot_g)}</td>
+            <td>{int(tot_pa)}</td>
+            <td>{int(tot_ab)}</td>
+            <td>{int(tot_h)}</td>
+            <td>{int(tot_2b)}</td>
+            <td>{int(tot_3b)}</td>
+            <td>{int(tot_hr)}</td>
+            <td>{int(tot_rbi)}</td>
+            <td>{int(tot_r)}</td>
+            <td>{int(tot_sb)}</td>
+            <td>{int(tot_tb)}</td>
+            <td>{int(tot_so)}</td>
+            <td>{int(tot_bb)}</td>
+            <td>{int(tot_sac)}</td>
+            <td>{int(tot_sf)}</td>
+            <td>{tot_avg:.3f}</td>
+            <td>{tot_obp:.3f}</td>
+            <td>{tot_slg:.3f}</td>
+            <td>{tot_ops:.3f}</td>
           </tr>\n"""
 
         batting_by_player[str(pid).strip()] = rows_html
@@ -282,6 +272,7 @@ def process_pitching_stats():
             <td>{whip_final}</td>
           </tr>\n"""
 
+        # 通算行（無粗體）
         if len(group) > 0:
             tot_ip_actual = tot_outs / 3.0
             tot_ab_against = tot_bf - tot_bb
@@ -290,26 +281,26 @@ def process_pitching_stats():
             tot_whip = (tot_bb + tot_bh) / tot_ip_actual if tot_ip_actual > 0 else 0.0
 
             rows_html += f"""          <tr>
-            <td><b>通算</b></td>
+            <td>通算</td>
             <td>-</td>
-            <td><b>{int(tot_g)}</b></td>
-            <td><b>{int(tot_gs)}</b></td>
-            <td><b>{int(tot_w)}</b></td>
-            <td><b>{int(tot_l)}</b></td>
-            <td><b>{int(tot_hld)}</b></td>
-            <td><b>{int(tot_sv)}</b></td>
-            <td><b>{outs_to_ip_str(tot_outs)}</b></td>
-            <td><b>{int(tot_qs)}</b></td>
-            <td><b>{int(tot_bf)}</b></td>
-            <td><b>{int(tot_bh)}</b></td>
-            <td><b>{int(tot_bhr)}</b></td>
-            <td><b>{tot_oavg:.3f}</b></td>
-            <td><b>{int(tot_so)}</b></td>
-            <td><b>{int(tot_bb)}</b></td>
-            <td><b>{int(tot_r)}</b></td>
-            <td><b>{int(tot_er)}</b></td>
-            <td><b>{tot_era:.2f}</b></td>
-            <td><b>{tot_whip:.2f}</b></td>
+            <td>{int(tot_g)}</td>
+            <td>{int(tot_gs)}</td>
+            <td>{int(tot_w)}</td>
+            <td>{int(tot_l)}</td>
+            <td>{int(tot_hld)}</td>
+            <td>{int(tot_sv)}</td>
+            <td>{outs_to_ip_str(tot_outs)}</td>
+            <td>{int(tot_qs)}</td>
+            <td>{int(tot_bf)}</td>
+            <td>{int(tot_bh)}</td>
+            <td>{int(tot_bhr)}</td>
+            <td>{tot_oavg:.3f}</td>
+            <td>{int(tot_so)}</td>
+            <td>{int(tot_bb)}</td>
+            <td>{int(tot_r)}</td>
+            <td>{int(tot_er)}</td>
+            <td>{tot_era:.2f}</td>
+            <td>{tot_whip:.2f}</td>
           </tr>\n"""
 
         pitching_by_player[str(pid).strip()] = rows_html
