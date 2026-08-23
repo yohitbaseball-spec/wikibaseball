@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <title>室內棒球聯盟年度金手套獎</title>
+  <link rel="stylesheet" href="../css/award.css">
+</head>
+<body>
+
+  <div class="container">
+    <div class="topnav">
+      <a href="../index.html">首頁</a> /
+      <a href="../players.html">台灣球員</a> /
+      <a href="../teams.html">球隊</a> /
+      室內棒球聯盟年度金手套獎
+    </div>
+
+    <div class="header">
+      <h1>室內棒球聯盟年度金手套獎</h1>
+      <div class="sub">GG賞</div>
+    </div>
+
+    <!-- 世代選擇器 (10年為單位) -->
+    <div class="decade-selector">
+      <button class="decade-btn active" onclick="selectDecade('2050s')">2050s</button>
+      <button class="decade-btn" onclick="selectDecade('2040s')">2040s</button>
+      <button class="decade-btn" onclick="selectDecade('2030s')">2030s</button>
+      <button class="decade-btn" onclick="selectDecade('2020s')">2020s</button>
+      <button class="decade-btn" onclick="selectDecade('2010s')">2010s</button>
+      <button class="decade-btn" onclick="selectDecade('2000s')">2000s</button>
+    </div>
+
+    <!-- 年份選擇按鈕 -->
+    <div class="year-buttons" id="yearButtons"></div>
+
+    <!-- 10 守位棒球場 -->
+    <div class="field-container">
+      <div class="field-diamond"></div>
+      <div class="field-infield-grass"></div>
+
+      <div class="player-pin pos-P"><span class="pos-tag">P</span><span id="pin-P">-</span></div>
+      <div class="player-pin pos-C"><span class="pos-tag">C</span><span id="pin-C">-</span></div>
+      <div class="player-pin pos-1B"><span class="pos-tag">1B</span><span id="pin-1B">-</span></div>
+      <div class="player-pin pos-2B"><span class="pos-tag">2B</span><span id="pin-2B">-</span></div>
+      <div class="player-pin pos-3B"><span class="pos-tag">3B</span><span id="pin-3B">-</span></div>
+      <div class="player-pin pos-SS"><span class="pos-tag">SS</span><span id="pin-SS">-</span></div>
+      <div class="player-pin pos-OF1"><span class="pos-tag">OF</span><span id="pin-OF1">-</span></div>
+      <div class="player-pin pos-OF2"><span class="pos-tag">OF</span><span id="pin-OF2">-</span></div>
+      <div class="player-pin pos-OF3"><span class="pos-tag">OF</span><span id="pin-OF3">-</span></div>
+      <div class="player-pin pos-UTL"><span class="pos-tag">UTL</span><span id="pin-UTL">-</span></div>
+    </div>
+
+    <!-- 獲獎名單表格 -->
+    <table class="stats">
+      <thead>
+        <tr>
+          <th style="width: 20%;">守備位置</th>
+          <th style="width: 40%;">獲獎球員</th>
+          <th style="width: 40%;">所屬球隊</th>
+        </tr>
+      </thead>
+      <tbody id="awardTableBody"></tbody>
+    </table>
+  </div>
+
+ <script src="../js/awards.js"></script>
+  
+</body>
+</html>
