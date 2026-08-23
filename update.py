@@ -45,6 +45,7 @@ def fmt_stat(raw_val, calc_num, precision=0):
         if precision == 3: formatted_num = f"{num:.3f}"
         elif precision == 2: formatted_num = f"{num:.2f}"
         else: formatted_num = f"{int(num)}" if num.is_integer() else f"{num}"
+            
         if raw_str.endswith('**'): return f'<b style="color: red;">{formatted_num}</b>'
         elif raw_str.endswith('*'): return f'<b>{formatted_num}</b>'
         else: return formatted_num
@@ -59,7 +60,6 @@ def fetch_sheet_data(sheet_name):
     try:
         df = pd.read_csv(url, dtype=str, encoding='utf-8')
         df.columns = df.columns.str.strip()
-        print(f"📊 成功讀取 [{sheet_name}]，共有 {len(df)} 筆資料。包含欄位: {list(df.columns)}")
         return df.fillna('')
     except Exception as e:
         print(f"⚠️ 無法讀取分頁 [{sheet_name}]: {e}")
@@ -68,12 +68,10 @@ def fetch_sheet_data(sheet_name):
 def process_batting_stats():
     df = fetch_sheet_data("打擊成績")
     if df is None or df.empty or 'player_id' not in df.columns:
-        print("⚠️ [打擊成績] 無資料或缺少 player_id 欄位")
         return {}
 
     batting_by_player = {}
     for pid, group in df.groupby('player_id'):
-        clean_pid = str(pid).strip()
         rows_html = ""
         for _, row in group.iterrows():
             ab, _ = parse_val(row.get('AB', '0'))
@@ -92,8 +90,8 @@ def process_batting_stats():
             slg_str = fmt_stat(row.get('SLG', ''), slg_calc, 3)
             ops_str = fmt_stat(row.get('OPS', ''), ops_calc, 3)
 
+            # 嚴格對齊表頭：年度 | 球隊 | G | PA | AB | H | 2B | 3B | HR | RBI | R | SB | TB | SO | BB | SAC | SF | AVG | OBP | SLG | OPS
             rows_html += f"""          <tr>
-            <td>{parse_val(row.get('player_id', ''))[1]}</td>
             <td>{parse_val(row.get('year', ''))[1]}</td>
             <td>{parse_val(row.get('team', ''))[1]}</td>
             <td>{fmt_stat(row.get('G', ''), 0)}</td>
@@ -116,18 +114,16 @@ def process_batting_stats():
             <td>{slg_str}</td>
             <td>{ops_str}</td>
           </tr>\n"""
-        batting_by_player[clean_pid] = rows_html
+        batting_by_player[str(pid).strip()] = rows_html
     return batting_by_player
 
 def process_pitching_stats():
     df = fetch_sheet_data("投手成績")
     if df is None or df.empty or 'player_id' not in df.columns:
-        print("⚠️ [投手成績] 無資料或缺少 player_id 欄位")
         return {}
 
     pitching_by_player = {}
     for pid, group in df.groupby('player_id'):
-        clean_pid = str(pid).strip()
         rows_html = ""
         for _, row in group.iterrows():
             ip_val = row.get('IP', '0')
@@ -149,7 +145,6 @@ def process_pitching_stats():
             whip_str = fmt_stat(row.get('WHIP', ''), whip_calc, 2)
 
             rows_html += f"""          <tr>
-            <td>{parse_val(row.get('player_id', ''))[1]}</td>
             <td>{parse_val(row.get('year', ''))[1]}</td>
             <td>{parse_val(row.get('team', ''))[1]}</td>
             <td>{fmt_stat(row.get('G', ''), 0)}</td>
@@ -171,23 +166,16 @@ def process_pitching_stats():
             <td>{era_str}</td>
             <td>{whip_str}</td>
           </tr>\n"""
-        pitching_by_player[clean_pid] = rows_html
+        pitching_by_player[str(pid).strip()] = rows_html
     return pitching_by_player
 
 def update_html_files():
     batting_data = process_batting_stats()
     pitching_data = process_pitching_stats()
 
-    print(f"🔍 讀取到的打者列表: {list(batting_data.keys())}")
-    print(f"🔍 讀取到的投手列表: {list(pitching_data.keys())}")
-
-    updated_count = 0
-    html_files_found = 0
-
     for root, _, files in os.walk('.'):
         for file in files:
             if file.endswith('.html'):
-                html_files_found += 1
                 filepath = os.path.join(root, file)
                 with open(filepath, 'r', encoding='utf-8') as f:
                     content = f.read()
@@ -195,38 +183,29 @@ def update_html_files():
                 updated = False
 
                 for pid, html_rows in batting_data.items():
-                    if pid in content:
-                        if "<!-- STATS_START -->" in content and "<!-- STATS_END -->" in content:
-                            start_tag = "<!-- STATS_START -->"
-                            end_tag = "<!-- STATS_END -->"
-                            idx1 = content.find(start_tag) + len(start_tag)
-                            idx2 = content.find(end_tag)
-                            if idx1 != -1 and idx2 != -1 and idx1 < idx2:
-                                content = content[:idx1] + "\n" + html_rows + "        " + content[idx2:]
-                                updated = True
-                        else:
-                            print(f"⚠️ 找到球員 [{pid}] 於 {filepath}，但缺少打者標記 <!-- STATS_START --> 或 <!-- STATS_END -->")
+                    if pid in content and "<!-- STATS_START -->" in content:
+                        start_tag = "<!-- STATS_START -->"
+                        end_tag = "<!-- STATS_END -->"
+                        idx1 = content.find(start_tag) + len(start_tag)
+                        idx2 = content.find(end_tag)
+                        if idx1 != -1 and idx2 != -1 and idx1 < idx2:
+                            content = content[:idx1] + "\n" + html_rows + "        " + content[idx2:]
+                            updated = True
 
                 for pid, html_rows in pitching_data.items():
-                    if pid in content:
-                        if "<!-- PITCHER_STATS_START -->" in content and "<!-- PITCHER_STATS_END -->" in content:
-                            start_tag = "<!-- PITCHER_STATS_START -->"
-                            end_tag = "<!-- PITCHER_STATS_END -->"
-                            idx1 = content.find(start_tag) + len(start_tag)
-                            idx2 = content.find(end_tag)
-                            if idx1 != -1 and idx2 != -1 and idx1 < idx2:
-                                content = content[:idx1] + "\n" + html_rows + "        " + content[idx2:]
-                                updated = True
-                        else:
-                            print(f"⚠️ 找到球員 [{pid}] 於 {filepath}，但缺少投手標記 <!-- PITCHER_STATS_START --> 或 <!-- PITCHER_STATS_END -->")
+                    if pid in content and "<!-- PITCHER_STATS_START -->" in content:
+                        start_tag = "<!-- PITCHER_STATS_START -->"
+                        end_tag = "<!-- PITCHER_STATS_END -->"
+                        idx1 = content.find(start_tag) + len(start_tag)
+                        idx2 = content.find(end_tag)
+                        if idx1 != -1 and idx2 != -1 and idx1 < idx2:
+                            content = content[:idx1] + "\n" + html_rows + "        " + content[idx2:]
+                            updated = True
 
                 if updated:
                     with open(filepath, 'w', encoding='utf-8') as f:
                         f.write(content)
                     print(f"✅ 已成功更新球員網頁: {filepath}")
-                    updated_count += 1
-
-    print(f"📌 掃描完成：共找到 {html_files_found} 個 HTML 檔案，成功更新 {updated_count} 個檔案。")
 
 if __name__ == "__main__":
     update_html_files()
