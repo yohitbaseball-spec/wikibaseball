@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>室內棒球聯盟年度最佳陣容獎</title>
+  <link rel="stylesheet" href="../css/best_nine.css">
+</head>
+<body>
+
+  <div class="container">
+    <!-- 導覽頁面 -->
+    <div class="topnav">
+      <a href="../index.html">首頁</a> /
+      <a href="../players.html">台灣球員</a> /
+      <a href="../teams.html">球隊</a> /
+      室內棒球聯盟年度最佳陣容獎
+    </div>
+
+    <!-- 頁首標題 -->
+    <div class="header">
+      <h1>室內棒球聯盟年度最佳陣容獎</h1>
+      <div class="sub">Best Nine & All-Star Team</div>
+    </div>
+
+    <!-- 獎項介紹區塊 (無卡片、無左豎線、純黑說明字) -->
+    <section class="award-intro">
+      <h2>關於年度最佳陣容獎</h2>
+      <p>
+        年度最佳陣容獎旨在表彰該賽季在各守備位置上綜合打擊與守備表現最傑出的球員。獎項分為「第一隊」與「第二隊」，代表著聯盟頂尖明星的最高榮譽象徵。
+      </p>
+    </section>
+
+    <!-- 控制區塊：第一隊/第二隊切換 + 改良版年度選擇器 -->
+    <div class="control-panel">
+      
+      <!-- 第一隊 / 第二隊 切換鈕 -->
+      <div class="team-toggle-wrapper">
+        <div class="team-toggle">
+          <button class="team-btn active" id="btnTeam1" onclick="switchTeam('1st')">🏆 第一隊 (First Team)</button>
+          <button class="team-btn" id="btnTeam2" onclick="switchTeam('2nd')">🥈 第二隊 (Second Team)</button>
+        </div>
+        <div class="current-selection-badge">
+          <span id="selectedYearDisplay">2054 年</span> · <span id="selectedTeamDisplay">第一隊獲獎名單</span>
+        </div>
+      </div>
+
+      <!-- 新版整合型年度切換器 -->
+      <div class="year-selector-container">
+        <!-- 上層：世代膠囊標籤 -->
+        <div class="decade-bar">
+          <button class="decade-pill active" onclick="selectDecade('2050s')">2050s</button>
+          <button class="decade-pill" onclick="selectDecade('2040s')">2040s</button>
+          <button class="decade-pill" onclick="selectDecade('2030s')">2030s</button>
+          <button class="decade-pill" onclick="selectDecade('2020s')">2020s</button>
+        </div>
+        <!-- 下層：年份滑動軌道 + 下拉下拉選單 -->
+        <div class="year-bar-wrapper">
+          <select class="quick-year-select" id="yearSelectDropdown" onchange="onYearDropdownChange(this.value)">
+            <!-- 由 JS 動態生成選項 -->
+          </select>
+          <div class="year-buttons-scroll" id="yearButtons">
+            <!-- 由 JS 動態生成年份按鈕 -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 10 守位棒球場配置 -->
+    <div class="field-container">
+      <div class="field-diamond"></div>
+      <div class="field-infield-grass"></div>
+
+      <div class="player-pin pos-P"><span class="pos-tag">P</span><span id="pin-P">-</span></div>
+      <div class="player-pin pos-C"><span class="pos-tag">C</span><span id="pin-C">-</span></div>
+      <div class="player-pin pos-1B"><span class="pos-tag">1B</span><span id="pin-1B">-</span></div>
+      <div class="player-pin pos-2B"><span class="pos-tag">2B</span><span id="pin-2B">-</span></div>
+      <div class="player-pin pos-3B"><span class="pos-tag">3B</span><span id="pin-3B">-</span></div>
+      <div class="player-pin pos-SS"><span class="pos-tag">SS</span><span id="pin-SS">-</span></div>
+      <div class="player-pin pos-OF1"><span class="pos-tag">OF</span><span id="pin-OF1">-</span></div>
+      <div class="player-pin pos-OF2"><span class="pos-tag">OF</span><span id="pin-OF2">-</span></div>
+      <div class="player-pin pos-OF3"><span class="pos-tag">OF</span><span id="pin-OF3">-</span></div>
+      <div class="player-pin pos-DH"><span class="pos-tag">DH</span><span id="pin-DH">-</span></div>
+    </div>
+
+    <!-- 獲獎名單表格 -->
+    <table class="stats">
+      <thead>
+        <tr>
+          <th style="width: 20%;">位置</th>
+          <th style="width: 40%;">獲獎球員</th>
+          <th style="width: 40%;">所屬球隊</th>
+        </tr>
+      </thead>
+      <tbody id="awardTableBody">
+        <!-- JS 動態渲染 -->
+      </tbody>
+    </table>
+  </div>
+
+  <script src="../js/best_nine.js"></script>
+  
+</body>
+</html>
