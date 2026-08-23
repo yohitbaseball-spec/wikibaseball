@@ -4,8 +4,6 @@ on:
   workflow_dispatch:
   push:
     branches: [ "main", "master" ]
-    paths:
-      - '.github/workflows/update-stats.yml'
 
 jobs:
   update-stats:
