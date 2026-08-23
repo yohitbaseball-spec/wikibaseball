@@ -359,3 +359,102 @@
         align-items: flex-start;
       }
     }
+
+
+   /* ===== 頁尾歷年獎項導覽框 (Navbox) ===== */
+.award-navbox {
+  margin-top: 60px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  overflow: hidden;
+  font-size: 0.88rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* 主標題：深金底白字，極具高級質感 */
+.navbox-title {
+  background: var(--award-primary-dark);
+  color: #ffffff;
+  font-weight: 700;
+  text-align: center;
+  padding: 10px 15px;
+  letter-spacing: 0.5px;
+}
+
+/* 網格與組別設計 */
+.navbox-grid {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+}
+
+.navbox-group {
+  display: grid;
+  grid-template-columns: 140px 1fr; /* 左側類別標題固定寬度，右側連結自適應 */
+  border-top: 1px solid var(--border-color);
+}
+
+.navbox-group:first-child {
+  border-top: none;
+}
+
+/* 左側分類 Header：淡淺色背景 */
+.navbox-header {
+  background: var(--award-second);
+  color: var(--text-main);
+  font-weight: 700;
+  padding: 12px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-right: 1px solid var(--border-color);
+}
+
+/* 右側連結 Content：柔和間距與自動換行 */
+.navbox-content {
+  padding: 10px 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  align-items: center;
+  line-height: 1.8;
+}
+
+/* 連結 hover 與 active 狀態 */
+.navbox-content a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.navbox-content a:hover {
+  color: var(--award-primary);
+  text-decoration: underline;
+}
+
+/* 當前頁面的高亮顯示 */
+.navbox-content a.active {
+  color: var(--award-primary-dark);
+  font-weight: 700;
+  border-bottom: 2px solid var(--award-primary-dark);
+}
+
+/* 手機版 RWD 適應 */
+@media (max-width: 640px) {
+  .navbox-group {
+    grid-template-columns: 1fr; /* 改為單欄上下疊加 */
+  }
+  
+  .navbox-header {
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    padding: 8px 12px;
+    background: #f1f5f9;
+  }
+
+  .navbox-content {
+    padding: 10px 12px;
+    gap: 8px 12px;
+  }
+}
