@@ -239,6 +239,23 @@ table.stats tbody tr:nth-child(even) td {
   background: var(--award-second) !important;
 }
 
+/* ===== 球員連結與球場標籤調整 ===== */
+/* 表格內的球員連結直接繼承全域 <a> 顏色與樣式 */
+.player-link {
+  font-weight: 600;
+}
+
+/* 球場 PIN 內的連結維持黑字，hover 時顯示底線 */
+.player-pin .player-link {
+  color: var(--text-main);
+  text-decoration: none;
+}
+
+.player-pin .player-link:hover {
+  color: var(--award-primary-dark);
+  text-decoration: underline;
+}
+
 @media (max-width: 768px) {
   table.stats {
     display: block;
