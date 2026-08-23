@@ -1,0 +1,361 @@
+    /* ==========================================
+       歷年獎項專屬全域 CSS (最佳陣容高級深色調)
+       ========================================== */
+    :root {
+      --award-primary: #b8860b;      /* 主色：暗金 */
+      --award-primary-dark: #8b6508; /* 深金 */
+      --award-accent: #d4af37;       /* 亮金高亮 */
+      --award-second: #faf8f2;       /* 表格隔行配色 */
+      
+      --text-main: #111827;          /* 主要文字 (黑色/極深灰) */
+      --text-muted: #4b5563;          /* 次要文字 */
+      --bg-body: #f8fafc;            /* 頁面背景 */
+      --bg-card: #ffffff;            /* 容器背景 */
+      --border-color: #e2e8f0;        /* 邊線 */
+      
+      --field-grass: #388e3c;        /* 質感棒球場草皮 */
+      --field-dirt: #d7ccc8;         /* 內野紅土 */
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Helvetica Neue", Arial, "Noto Sans TC", sans-serif;
+      background: var(--bg-body);
+      color: var(--text-main);
+      line-height: 1.7;
+    }
+
+    a {
+      color: var(--award-primary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    a:hover {
+      color: var(--award-primary-dark);
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px 20px 80px 20px;
+    }
+
+    /* ===== 頂部導覽列 ===== */
+    .topnav {
+      display: flex;
+      gap: 10px;
+      padding: 14px 0;
+      border-bottom: 2px solid var(--border-color);
+      margin-bottom: 20px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .topnav a {
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .topnav a:hover {
+      color: var(--award-primary);
+    }
+
+    /* ===== 頁首標題 ===== */
+    .header {
+      margin-bottom: 20px;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 2.2rem;
+      color: var(--text-main);
+      font-weight: 700;
+    }
+    .header .sub {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* ===== 獎項介紹區塊 (非卡片式、無左豎線) ===== */
+    .award-intro {
+      margin-bottom: 25px;
+      padding-bottom: 18px;
+      border-bottom: 1px dashed var(--border-color);
+    }
+
+    .award-intro h2 {
+      margin: 0 0 8px 0;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--award-primary-dark);
+      padding-left: 0;
+      border-left: none;
+    }
+
+    .award-intro p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: var(--text-main);
+      line-height: 1.65;
+    }
+
+    /* ===== 控制區塊容器 (第一隊/第二隊 & 年度選擇) ===== */
+    .control-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 25px;
+      background: transparent;
+    }
+
+    /* 第一隊 / 第二隊 切換鈕 (Segmented Toggle) */
+    .team-toggle-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .team-toggle {
+      display: inline-flex;
+      background: #e2e8f0;
+      padding: 4px;
+      border-radius: 8px;
+      gap: 4px;
+    }
+
+    .team-btn {
+      border: none;
+      background: transparent;
+      padding: 8px 24px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .team-btn.active {
+      background: var(--award-primary-dark);
+      color: #ffffff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    .current-selection-badge {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--award-primary-dark);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* ===== 改良版年度切換器 (Redesigned Year Selector) ===== */
+    .year-selector-container {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      padding: 12px 0;
+    }
+
+    .decade-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .decade-pill {
+      background: transparent;
+      border: none;
+      padding: 4px 12px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-radius: 20px;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .decade-pill:hover {
+      color: var(--award-primary);
+      background: #edf2f7;
+    }
+
+    .decade-pill.active {
+      background: var(--award-primary);
+      color: #ffffff;
+    }
+
+    .year-bar-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .quick-year-select {
+      padding: 5px 10px;
+      font-size: 0.85rem;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      background: #fff;
+      color: var(--text-main);
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .year-buttons-scroll {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding: 2px 0;
+      scrollbar-width: thin;
+    }
+
+    .year-btn {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      padding: 4px 12px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      color: var(--text-main);
+      border-radius: 4px;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .year-btn:hover {
+      background: var(--award-second);
+      border-color: var(--award-primary);
+    }
+
+    .year-btn.active {
+      background: var(--award-primary-dark);
+      color: #ffffff;
+      border-color: var(--award-primary-dark);
+      font-weight: bold;
+    }
+
+    /* ===== 棒球場 10 守位配置 ===== */
+    .field-container {
+      position: relative;
+      width: 100%;
+      max-width: 500px;
+      height: 420px;
+      margin: 0 auto 35px auto;
+      background-color: var(--field-grass);
+      border: 3px solid var(--award-primary-dark);
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    }
+
+    .field-diamond {
+      position: absolute;
+      bottom: 35px;
+      left: 50%;
+      width: 170px;
+      height: 170px;
+      background-color: var(--field-dirt);
+      transform: translateX(-50%) rotate(45deg);
+    }
+
+    .field-infield-grass {
+      position: absolute;
+      bottom: 53px;
+      left: 50%;
+      width: 105px;
+      height: 105px;
+      background-color: var(--field-grass);
+      transform: translateX(-50%) rotate(45deg);
+    }
+
+    /* 10 守位標籤 */
+    .player-pin {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid var(--text-main);
+      padding: 3px 8px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      white-space: nowrap;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      border-radius: 3px;
+    }
+
+    .pos-tag {
+      color: var(--award-primary-dark);
+      margin-right: 4px;
+      font-weight: 800;
+    }
+
+    /* 座標定位（DH/UTL 位於一壘界外區） */
+    .pos-P   { bottom: 25%; left: 50%; }
+    .pos-C   { bottom: 5%;  left: 50%; }
+    .pos-1B  { bottom: 35%; left: 75%; }
+    .pos-2B  { bottom: 50%; left: 63%; }
+    .pos-3B  { bottom: 35%; left: 25%; }
+    .pos-SS  { bottom: 50%; left: 37%; }
+    .pos-OF1 { bottom: 75%; left: 25%; }
+    .pos-OF2 { bottom: 82%; left: 50%; }
+    .pos-OF3 { bottom: 75%; left: 75%; }
+    .pos-DH  { bottom: 18%; left: 88%; }
+
+    /* ===== 成績/獲獎表格 ===== */
+    table.stats {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      font-size: 0.9rem;
+    }
+
+    table.stats th,
+    table.stats td {
+      padding: 10px 8px;
+      text-align: center;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    table.stats th {
+      background: var(--award-primary-dark) !important;
+      color: #ffffff !important;
+      font-weight: 600;
+    }
+
+    table.stats tbody tr:nth-child(even) td {
+      background: var(--award-second) !important;
+    }
+
+    .player-pin .player-link {
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    .player-pin .player-link:hover {
+      color: var(--award-primary-dark);
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      table.stats {
+        display: block;
+        overflow-x: auto;
+      }
+      .team-toggle-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
