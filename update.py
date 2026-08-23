@@ -1,4 +1,5 @@
 import os
+import re
 import pandas as pd
 from urllib.parse import quote
 
@@ -10,7 +11,8 @@ if not SHEET_ID:
 
 def ip_to_outs(ip):
     try:
-        clean_ip = str(ip).replace('*', '').strip()
+        clean_ip = re.sub(r'[^\d.]', '', str(ip))
+        if not clean_ip: return 0
         ip_float = float(clean_ip)
         i = int(ip_float)
         f = round(ip_float - i, 1)
@@ -29,32 +31,35 @@ def outs_to_ip_str(outs):
 
 def parse_num_and_star(raw_val):
     """
-    解析字串，回傳 (純數字 float, 星號標記種類)
-    star_type: '' (無星號), '*' (單星號), '**' (雙星號)
+    強健解析函數：利用正則表達式拆解數字與星號
+    避免隱藏字元導致數值歸零
     """
     s = str(raw_val).strip()
     if not s or s == '-':
         return 0.0, ''
-    
+
+    # 判斷星號種類
     star_type = ''
-    clean_s = s
-    if s.endswith('**'):
+    if '**' in s:
         star_type = '**'
-        clean_s = s[:-2].strip()
-    elif s.endswith('*'):
+    elif '*' in s:
         star_type = '*'
-        clean_s = s[:-1].strip()
-        
-    try:
-        num = float(clean_s)
-    except:
+
+    # 精準擷取數字部分 (包含負號和小數點)
+    match = re.search(r'[-+]?\d*\.?\d+', s)
+    if match:
+        try:
+            num = float(match.group())
+        except:
+            num = 0.0
+    else:
         num = 0.0
-        
+
     return num, star_type
 
 def format_cell(num, star_type, precision=0):
     """
-    將數值與星號標記轉為 HTML 格式
+    根據數字與星號種類格式化 HTML 輸出
     """
     if precision == 3:
         formatted_num = f"{num:.3f}"
@@ -90,7 +95,6 @@ def process_batting_stats():
     for pid, group in df.groupby('player_id'):
         rows_html = ""
         
-        # 通算累計變數 (純數字加總)
         tot_g = tot_pa = tot_ab = tot_h = tot_2b = tot_3b = tot_hr = 0.0
         tot_rbi = tot_r = tot_sb = tot_tb = tot_so = tot_bb = tot_sac = tot_sf = 0.0
 
@@ -121,13 +125,12 @@ def process_batting_stats():
                 tb = h + b2 + (2 * b3) + (3 * hr)
                 tb_star = ''
 
-            # 累加通算數字
+            # 通算數字累加
             tot_g += g; tot_pa += pa; tot_ab += ab; tot_h += h
             tot_2b += b2; tot_3b += b3; tot_hr += hr; tot_rbi += rbi
             tot_r += r; tot_sb += sb; tot_tb += tb; tot_so += so
             tot_bb += bb; tot_sac += sac; tot_sf += sf
 
-            # 計算當季數據
             avg_calc = (h / ab) if ab > 0 else 0.0
             obp_calc = ((h + bb) / (ab + bb + sf)) if (ab + bb + sf) > 0 else 0.0
             slg_calc = (tb / ab) if ab > 0 else 0.0
@@ -167,7 +170,7 @@ def process_batting_stats():
             <td>{ops_final}</td>
           </tr>\n"""
 
-        # 自動生成通算成績
+        # 通算行
         if len(group) > 0:
             tot_avg = (tot_h / tot_ab) if tot_ab > 0 else 0.0
             tot_obp = ((tot_h + tot_bb) / (tot_ab + tot_bb + tot_sf)) if (tot_ab + tot_bb + tot_sf) > 0 else 0.0
