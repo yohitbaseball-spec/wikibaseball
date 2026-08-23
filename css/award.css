@@ -284,3 +284,25 @@ table.stats tbody tr:nth-child(even) td {
     overflow-x: auto;
   }
 }
+
+table.stats1 {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  font-size: 0.76em;
+}
+
+table.stats1 th,
+table.stats1 td {
+  padding: 6px 8px;
+  text-align: center;
+  border: 1px solid #ddd; /* 改這裡 */
+}
+
+table.stats1 th {
+  background: #b8860b;
+  color: #FFFFFF;
+  font-weight: 600;
+}
