@@ -11,12 +11,10 @@ const COUNTRY_FOLDER_MAP = {
 
 async function initAwardsData() {
   try {
-    // 💡 修正 fetch 路徑：這是相對於 HTML 檔案的位置
-    // 如果 gold_glove.html 在子資料夾內，請確保路徑正確指向 .json 資料夾
+    // 💡 嘗試抓取 JSON，如果抓不到請檢查控制台 (F12) 報錯
     const response = await fetch('../.json/gold_glove_data.json');
-    
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      throw new Error(`找不到 JSON 檔案 (Status: ${response.status})`);
     }
 
     const data = await response.json();
@@ -24,7 +22,7 @@ async function initAwardsData() {
     awardsData = data.awards || {};
     decadesData = data.decades || {};
 
-    // 取得 JSON 裡的第一個年代 (例如 '2050s')
+    // 預設選擇第一個年代（即 2050s）
     const firstDecade = Object.keys(decadesData)[0] || '2050s';
     selectDecade(firstDecade);
   } catch (error) {
@@ -42,8 +40,9 @@ function getPlayerLink(playerObj) {
 }
 
 function selectDecade(decade) {
+  // 切換年代按鈕 active 狀態
   document.querySelectorAll('.decade-btn').forEach(b => {
-    b.classList.toggle('active', b.innerText === decade);
+    b.classList.toggle('active', b.innerText.trim() === decade);
   });
 
   const yearContainer = document.getElementById('yearButtons');
@@ -58,12 +57,14 @@ function selectDecade(decade) {
     yearContainer.appendChild(btn);
   });
 
+  // 自動渲染該年代的第一個年份
   if (yrs.length > 0) renderYear(yrs[0]);
 }
 
 function renderYear(year) {
+  // 切換年份按鈕 active 狀態
   document.querySelectorAll('.year-btn').forEach(b => {
-    b.classList.toggle('active', b.innerText === year);
+    b.classList.toggle('active', b.innerText.trim() === year);
   });
 
   const data = awardsData[year] || {};
