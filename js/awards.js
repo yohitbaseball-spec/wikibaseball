@@ -11,14 +11,21 @@ const COUNTRY_FOLDER_MAP = {
 
 async function initAwardsData() {
   try {
-    // 💡 從 js/ 跳出上一層 (../) 後，進入 .json/ 資料夾讀取 JSON 檔
+    // 💡 修正 fetch 路徑：這是相對於 HTML 檔案的位置
+    // 如果 gold_glove.html 在子資料夾內，請確保路徑正確指向 .json 資料夾
     const response = await fetch('../.json/gold_glove_data.json');
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
     const data = await response.json();
     
     awardsData = data.awards || {};
     decadesData = data.decades || {};
 
-    const firstDecade = Object.keys(decadesData)[0] || '2020s';
+    // 取得 JSON 裡的第一個年代 (例如 '2050s')
+    const firstDecade = Object.keys(decadesData)[0] || '2050s';
     selectDecade(firstDecade);
   } catch (error) {
     console.error('無法載入金手套資料:', error);
