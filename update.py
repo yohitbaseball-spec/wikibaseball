@@ -29,42 +29,42 @@ def outs_to_ip_str(outs):
     if f == 0: return f"{i}"
     else: return f"{i}.{f}"
 
-def parse_num_and_star(raw_val):
+def parse_val_and_star(raw_val):
     """
-    強健解析函數：利用正則表達式拆解數字與星號
-    避免隱藏字元導致數值歸零
+    將包含星號的字串拆解為純數字與星號類型
+    支援半形 * 與全形 ＊
     """
     s = str(raw_val).strip()
-    if not s or s == '-':
+    if not s or s == '-' or s.lower() == 'nan':
         return 0.0, ''
 
-    # 判斷星號種類
+    # 判斷星號種類 (支援全形與半形)
     star_type = ''
-    if '**' in s:
+    if '**' in s or '＊＊' in s:
         star_type = '**'
-    elif '*' in s:
+    elif '*' in s or '＊' in s:
         star_type = '*'
 
-    # 精準擷取數字部分 (包含負號和小數點)
-    match = re.search(r'[-+]?\d*\.?\d+', s)
-    if match:
-        try:
-            num = float(match.group())
-        except:
-            num = 0.0
-    else:
+    # 剔除所有星號與空格，留下純數字字串
+    clean_str = re.sub(r'[*＊\s]', '', s)
+
+    try:
+        num = float(clean_str)
+    except ValueError:
         num = 0.0
 
     return num, star_type
 
 def format_cell(num, star_type, precision=0):
     """
-    根據數字與星號種類格式化 HTML 輸出
+    根據數字與星號渲染 HTML 標籤
     """
     if precision == 3:
         formatted_num = f"{num:.3f}"
     elif precision == 2:
         formatted_num = f"{num:.2f}"
+    elif precision == 1:
+        formatted_num = f"{num:.1f}" if num % 1 != 0 else f"{int(num)}"
     else:
         formatted_num = f"{int(num)}" if float(num).is_integer() else f"{num}"
 
@@ -79,9 +79,10 @@ def fetch_sheet_data(sheet_name):
     encoded_sheet_name = quote(sheet_name)
     url = f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/gviz/tq?tqx=out:csv&sheet={encoded_sheet_name}"
     try:
-        df = pd.read_csv(url, dtype=str, encoding='utf-8')
+        # dtype=str 確保 100% 讀取原始字串，不被 pandas 自動轉型破壞
+        df = pd.read_csv(url, dtype=str, keep_default_na=False, encoding='utf-8')
         df.columns = df.columns.str.strip()
-        return df.fillna('')
+        return df
     except Exception as e:
         print(f"⚠️ 無法讀取分頁 [{sheet_name}]: {e}")
         return None
@@ -99,33 +100,32 @@ def process_batting_stats():
         tot_rbi = tot_r = tot_sb = tot_tb = tot_so = tot_bb = tot_sac = tot_sf = 0.0
 
         for _, row in group.iterrows():
-            year_val, y_star = parse_num_and_star(row.get('year', ''))
+            year_val, y_star = parse_val_and_star(row.get('year', ''))
             year_str = format_cell(year_val, y_star, 0) if str(row.get('year', '')).strip() != '' else ''
             team_str = str(row.get('team', '')).strip()
 
-            g, g_star = parse_num_and_star(row.get('G', '0'))
-            pa, pa_star = parse_num_and_star(row.get('PA', '0'))
-            ab, ab_star = parse_num_and_star(row.get('AB', '0'))
-            h, h_star = parse_num_and_star(row.get('H', '0'))
-            b2, b2_star = parse_num_and_star(row.get('2B', '0'))
-            b3, b3_star = parse_num_and_star(row.get('3B', '0'))
-            hr, hr_star = parse_num_and_star(row.get('HR', '0'))
-            rbi, rbi_star = parse_num_and_star(row.get('RBI', '0'))
-            r, r_star = parse_num_and_star(row.get('R', '0'))
-            sb, sb_star = parse_num_and_star(row.get('SB', '0'))
-            so, so_star = parse_num_and_star(row.get('SO', '0'))
-            bb, bb_star = parse_num_and_star(row.get('BB', '0'))
-            sac, sac_star = parse_num_and_star(row.get('SAC', '0'))
-            sf, sf_star = parse_num_and_star(row.get('SF', '0'))
+            g, g_star = parse_val_and_star(row.get('G', '0'))
+            pa, pa_star = parse_val_and_star(row.get('PA', '0'))
+            ab, ab_star = parse_val_and_star(row.get('AB', '0'))
+            h, h_star = parse_val_and_star(row.get('H', '0'))
+            b2, b2_star = parse_val_and_star(row.get('2B', '0'))
+            b3, b3_star = parse_val_and_star(row.get('3B', '0'))
+            hr, hr_star = parse_val_and_star(row.get('HR', '0'))
+            rbi, rbi_star = parse_val_and_star(row.get('RBI', '0'))
+            r, r_star = parse_val_and_star(row.get('R', '0'))
+            sb, sb_star = parse_val_and_star(row.get('SB', '0'))
+            so, so_star = parse_val_and_star(row.get('SO', '0'))
+            bb, bb_star = parse_val_and_star(row.get('BB', '0'))
+            sac, sac_star = parse_val_and_star(row.get('SAC', '0'))
+            sf, sf_star = parse_val_and_star(row.get('SF', '0'))
 
             raw_tb = str(row.get('TB', '')).strip()
             if raw_tb != "":
-                tb, tb_star = parse_num_and_star(raw_tb)
+                tb, tb_star = parse_val_and_star(raw_tb)
             else:
                 tb = h + b2 + (2 * b3) + (3 * hr)
                 tb_star = ''
 
-            # 通算數字累加
             tot_g += g; tot_pa += pa; tot_ab += ab; tot_h += h
             tot_2b += b2; tot_3b += b3; tot_hr += hr; tot_rbi += rbi
             tot_r += r; tot_sb += sb; tot_tb += tb; tot_so += so
@@ -136,10 +136,10 @@ def process_batting_stats():
             slg_calc = (tb / ab) if ab > 0 else 0.0
             ops_calc = obp_calc + slg_calc
 
-            avg_val, avg_star = parse_num_and_star(row.get('AVG', ''))
-            obp_val, obp_star = parse_num_and_star(row.get('OBP', ''))
-            slg_val, slg_star = parse_num_and_star(row.get('SLG', ''))
-            ops_val, ops_star = parse_num_and_star(row.get('OPS', ''))
+            avg_val, avg_star = parse_val_and_star(row.get('AVG', ''))
+            obp_val, obp_star = parse_val_and_star(row.get('OBP', ''))
+            slg_val, slg_star = parse_val_and_star(row.get('SLG', ''))
+            ops_val, ops_star = parse_val_and_star(row.get('OPS', ''))
 
             avg_final = format_cell(avg_val if str(row.get('AVG', '')).strip() != '' else avg_calc, avg_star, 3)
             obp_final = format_cell(obp_val if str(row.get('OBP', '')).strip() != '' else obp_calc, obp_star, 3)
@@ -217,29 +217,29 @@ def process_pitching_stats():
         tot_bf = tot_bh = tot_bhr = tot_so = tot_bb = tot_r = tot_er = 0.0
 
         for _, row in group.iterrows():
-            year_val, y_star = parse_num_and_star(row.get('year', ''))
+            year_val, y_star = parse_val_and_star(row.get('year', ''))
             year_str = format_cell(year_val, y_star, 0) if str(row.get('year', '')).strip() != '' else ''
             team_str = str(row.get('team', '')).strip()
 
             ip_val_raw = row.get('IP', '0')
-            ip_num, ip_star = parse_num_and_star(ip_val_raw)
+            ip_num, ip_star = parse_val_and_star(ip_val_raw)
             outs = ip_to_outs(ip_val_raw)
             ip_actual = outs / 3.0
 
-            g, g_star = parse_num_and_star(row.get('G', '0'))
-            gs, gs_star = parse_num_and_star(row.get('GS', '0'))
-            w, w_star = parse_num_and_star(row.get('W', '0'))
-            l, l_star = parse_num_and_star(row.get('L', '0'))
-            hld, hld_star = parse_num_and_star(row.get('HLD', '0'))
-            sv, sv_star = parse_num_and_star(row.get('SV', '0'))
-            qs, qs_star = parse_num_and_star(row.get('QS', '0'))
-            bf, bf_star = parse_num_and_star(row.get('BF', '0'))
-            bh, bh_star = parse_num_and_star(row.get('BH', '0'))
-            bhr, bhr_star = parse_num_and_star(row.get('BHR', '0'))
-            so, so_star = parse_num_and_star(row.get('SO', '0'))
-            bb, bb_star = parse_num_and_star(row.get('BB', '0'))
-            r, r_star = parse_num_and_star(row.get('R', '0'))
-            er, er_star = parse_num_and_star(row.get('ER', '0'))
+            g, g_star = parse_val_and_star(row.get('G', '0'))
+            gs, gs_star = parse_val_and_star(row.get('GS', '0'))
+            w, w_star = parse_val_and_star(row.get('W', '0'))
+            l, l_star = parse_val_and_star(row.get('L', '0'))
+            hld, hld_star = parse_val_and_star(row.get('HLD', '0'))
+            sv, sv_star = parse_val_and_star(row.get('SV', '0'))
+            qs, qs_star = parse_val_and_star(row.get('QS', '0'))
+            bf, bf_star = parse_val_and_star(row.get('BF', '0'))
+            bh, bh_star = parse_val_and_star(row.get('BH', '0'))
+            bhr, bhr_star = parse_val_and_star(row.get('BHR', '0'))
+            so, so_star = parse_val_and_star(row.get('SO', '0'))
+            bb, bb_star = parse_val_and_star(row.get('BB', '0'))
+            r, r_star = parse_val_and_star(row.get('R', '0'))
+            er, er_star = parse_val_and_star(row.get('ER', '0'))
 
             tot_g += g; tot_gs += gs; tot_w += w; tot_l += l
             tot_hld += hld; tot_sv += sv; tot_outs += outs; tot_qs += qs
@@ -251,9 +251,9 @@ def process_pitching_stats():
             era_calc = (er * 9.0) / ip_actual if ip_actual > 0 else 0.0
             whip_calc = (bb + bh) / ip_actual if ip_actual > 0 else 0.0
 
-            oavg_val, oavg_star = parse_num_and_star(row.get('OAVG', ''))
-            era_val, era_star = parse_num_and_star(row.get('ERA', ''))
-            whip_val, whip_star = parse_num_and_star(row.get('WHIP', ''))
+            oavg_val, oavg_star = parse_val_and_star(row.get('OAVG', ''))
+            era_val, era_star = parse_val_and_star(row.get('ERA', ''))
+            whip_val, whip_star = parse_val_and_star(row.get('WHIP', ''))
 
             oavg_final = format_cell(oavg_val if str(row.get('OAVG', '')).strip() != '' else oavg_calc, oavg_star, 3)
             era_final = format_cell(era_val if str(row.get('ERA', '')).strip() != '' else era_calc, era_star, 2)
@@ -268,7 +268,7 @@ def process_pitching_stats():
             <td>{format_cell(l, l_star)}</td>
             <td>{format_cell(hld, hld_star)}</td>
             <td>{format_cell(sv, sv_star)}</td>
-            <td>{format_cell(ip_num, ip_star, 1 if ip_num % 1 != 0 else 0)}</td>
+            <td>{format_cell(ip_num, ip_star, 1)}</td>
             <td>{format_cell(qs, qs_star)}</td>
             <td>{format_cell(bf, bf_star)}</td>
             <td>{format_cell(bh, bh_star)}</td>
