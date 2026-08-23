@@ -11,10 +11,9 @@ const COUNTRY_FOLDER_MAP = {
 
 async function initAwardsData() {
   try {
-    // 💡 嘗試抓取 JSON，如果抓不到請檢查控制台 (F12) 報錯
     const response = await fetch('../json/gold_glove_data.json');
     if (!response.ok) {
-      throw new Error(`找不到 JSON 檔案 (Status: ${response.status})`);
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
 
     const data = await response.json();
@@ -22,24 +21,17 @@ async function initAwardsData() {
     awardsData = data.awards || {};
     decadesData = data.decades || {};
 
-    // 預設選擇第一個年代（即 2050s）
+    // 取得 JSON 裡的第一個年代 (例如 '2050s')
     const firstDecade = Object.keys(decadesData)[0] || '2050s';
-    selectDecade(firstDecade);
+    
+    // 初始化選擇第一個年代，並傳入 true 代表要自動選最大年份
+    selectDecade(firstDecade, true);
   } catch (error) {
     console.error('無法載入金手套資料:', error);
   }
 }
 
-function getPlayerLink(playerObj) {
-  if (!playerObj || typeof playerObj !== 'object') {
-    return playerObj || '-';
-  }
-
-  const folder = COUNTRY_FOLDER_MAP[playerObj.country] || "../players/";
-  return `<a href="${folder}${playerObj.name}.html" class="player-link">${playerObj.name}</a>`;
-}
-
-function selectDecade(decade) {
+function selectDecade(decade, autoPickLatest = false) {
   // 切換年代按鈕 active 狀態
   document.querySelectorAll('.decade-btn').forEach(b => {
     b.classList.toggle('active', b.innerText.trim() === decade);
@@ -57,8 +49,25 @@ function selectDecade(decade) {
     yearContainer.appendChild(btn);
   });
 
-  // 自動渲染該年代的第一個年份
-  if (yrs.length > 0) renderYear(yrs[0]);
+  if (yrs.length > 0) {
+    if (autoPickLatest) {
+      // 💡 尋找該年代中的最大年份 (數字由大到小排序後取第一個)
+      const sortedYrs = [...yrs].sort((a, b) => Number(b) - Number(a));
+      renderYear(sortedYrs[0]);
+    } else {
+      // 手動點選年代按鈕時，預設顯示第一個年份
+      renderYear(yrs[0]);
+    }
+  }
+}
+
+function getPlayerLink(playerObj) {
+  if (!playerObj || typeof playerObj !== 'object') {
+    return playerObj || '-';
+  }
+
+  const folder = COUNTRY_FOLDER_MAP[playerObj.country] || "../players/";
+  return `<a href="${folder}${playerObj.name}.html" class="player-link">${playerObj.name}</a>`;
 }
 
 function renderYear(year) {
