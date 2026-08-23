@@ -255,6 +255,29 @@ table.stats tbody tr:nth-child(even) td {
   text-decoration: underline;
 }
 
+/* ===== 獎項介紹區塊 ===== */
+.award-intro {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px dashed var(--border-color); /* 用簡潔虛線分割，避免卡片感 */
+}
+
+.award-intro h2 {
+  margin: 0 0 10px 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--award-primary-dark); /* 標題採用暗金風格，呼應主題 */
+  padding-left: 0;                   /* 確保無視預設豎線 padding */
+  border-left: none;                 /* 強制消除左側豎線 */
+}
+
+.award-intro p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--text-main);           /* 使用純黑色/主要文字色 (#111827) */
+  line-height: 1.7;
+}
+
 @media (max-width: 768px) {
   table.stats {
     display: block;
