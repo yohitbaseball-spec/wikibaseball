@@ -1,0 +1,42 @@
+{
+  "decades": {
+    "2050s": ["2051", "2050"]
+  },
+  "awards": {
+    "2051": {
+      "1st": {
+        "P": { "name": "林尚軒", "country": "TW" },
+        "C": { "name": "廖冠任", "country": "TW" },
+        "1B": { "name": "李政宇", "country": "TW" },
+        "2B": { "name": "林佳恩", "country": "TW" },
+        "3B": { "name": "宋昌紘", "country": "TW" },
+        "SS": { "name": "余宥達", "country": "TW" },
+        "OF1": { "name": "Leonel Reyes", "country": "DO" },
+        "OF2": { "name": "楊庭安", "country": "TW" },
+        "OF3": { "name": "蘇靖恆", "country": "TW" },
+        "DH": { "name": "徐子凡", "country": "TW" },
+        "teams": {
+          "P": "微秒彗星", "C": "北鐵狼", "1B": "全達鴨", "2B": "新北幻影英雄", "3B": "北鐵狼",
+          "SS": "北鐵狼", "OF1": "台東鋼鐵人", "OF2": "黃金谷俠盜", "OF3": "高雄未來之鷹", "DH": "新世紀恐龍"
+        }
+      },
+      "2nd": {
+        "P": { "name": "金廣鉉", "country": "KR" },
+        "C": { "name": "戴培峰", "country": "TW" },
+        "1B": { "name": "陳俊秀", "country": "TW" },
+        "2B": { "name": "岳東華", "country": "TW" },
+        "3B": { "name": "劉基鴻", "country": "TW" },
+        "SS": { "name": "張政禹", "country": "TW" },
+        "OF1": { "name": "詹子賢", "country": "TW" },
+        "OF2": { "name": "蘇智傑", "country": "TW" },
+        "OF3": { "name": "陳晨威", "country": "TW" },
+        "DH": { "name": "胡金龍", "country": "TW" },
+        "teams": {
+          "P": "飛龍隊", "C": "悍將隊", "1B": "象隊", "2B": "象隊", "3B": "龍隊",
+          "SS": "龍隊", "OF1": "象隊", "OF2": "獅隊", "OF3": "猿隊", "DH": "獅隊"
+        }
+      }
+    }
+  }
+
+}
