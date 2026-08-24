@@ -450,6 +450,28 @@
     grid-template-columns: 1fr; /* 改為單欄上下疊加 */
   }
 
+table.stats1 {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  font-size: 0.80em;
+}
+
+table.stats1 th,
+table.stats1 td {
+  padding: 6px 8px;
+  text-align: center;
+  border: 1px solid #ddd; /* 改這裡 */
+}
+
+table.stats1 th {
+  background: var(--award-primary);
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
 /* 當前頁面標示：加粗、深金底線、底色高亮 */
 .navbox-content .current {
   display: inline-block;          /* 確保 box 結構完整，讓 border 可以正確繪製 */
