@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>歷年年度個人獎項總覽</title>
+  <link rel="stylesheet" href="../css/overallaward.css">
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- 頂部導覽列 -->
+    <div class="topnav">
+      <a href="../index.html">首頁</a> /
+      <b>歷年榮譽與個人獎項總覽</b>
+    </div>
+
+    <!-- 頁首標題 -->
+    <div class="header">
+      <h1>歷年榮譽與個人獎項總覽</h1>
+      <div class="sub">League Awards & Honors Overview</div>
+    </div>
+
+    <!-- 聯盟 / 賽事選擇頁籤 (全解鎖開放) -->
+    <div class="league-tabs">
+      <button class="league-tab active" onclick="switchLeague('ibl', this)">室內棒球聯盟 (IBL)</button>
+      <button class="league-tab" onclick="switchLeague('mlb', this)">美職 MLB</button>
+      <button class="league-tab" onclick="switchLeague('npb', this)">日職 NPB</button>
+      <button class="league-tab" onclick="switchLeague('kbo', this)">韓職 KBO</button>
+    </div>
+
+    <!-- ==========================================
+         1. IBL 室內棒球聯盟 (預設顯示)
+         ========================================== -->
+    <div id="league-ibl" class="league-content active">
+      
+      <!-- 介紹區塊 -->
+      <section class="award-intro">
+        <h2>關於 IBL 聯盟歷年獎項</h2>
+        <p>室內棒球聯盟（IBL）設有多項年度個人榮譽與團隊數據獎項，旨在表彰該年度例行賽中於個人技術、團隊貢獻及守備價值上展現極致巔峰的傑出球員與教練。點擊下方各獎項名稱可查看該獎項歷年獲獎名單、資格限制與詳細選拔標準。</p>
+      </section>
+
+      <!-- 投手獎項 -->
+      <section class="award-section">
+        <h2>投手個人獎項</h2>
+        <p class="section-desc">表彰年度數據最為出色之先發、中繼與後援投手。</p>
+        
+        <table class="award-grid-table">
+          <tbody>
+            <tr>
+              <th>數據三冠王獎項</th>
+              <td>
+                <div class="award-link-group">
+                  <a href="室內棒球聯盟年度勝投王.html">勝投王</a>
+                  <a href="室內棒球聯盟年度防禦率王.html">防禦率王</a>
+                  <a href="室內棒球聯盟年度三振王.html">三振王</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th>牛棚與榮譽獎項</th>
+              <td>
+                <div class="award-link-group">
+                  <a href="室內棒球聯盟年度中繼王.html">中繼王</a>
+                  <a href="室內棒球聯盟年度救援王.html">救援王</a>
+                  <a href="室內棒球聯盟年度史華特獎.html">史華特獎 (最高榮譽投手)</a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- 野手獎項 -->
+      <section class="award-section">
+        <h2>野手與打擊獎項</h2>
+        <p class="section-desc">衡量打擊實力、壘包推進與整體攻擊影響力之榮譽。</p>
+
+        <table class="award-grid-table">
+          <tbody>
+            <tr>
+              <th>傳統打擊獎項</th>
+              <td>
+                <div class="award-link-group">
+                  <a href="室內棒球聯盟年度打擊王.html">打擊王</a>
+                  <a href="室內棒球聯盟年度打點王.html">打點王</a>
+                  <a href="室內棒球聯盟年度全壘打王.html">全壘打王</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th>跑壘與最佳攻擊</th>
+              <td>
+                <div class="award-link-group">
+                  <a href="室內棒球聯盟年度安打王.html">安打王</a>
+                  <a href="室內棒球聯盟年度盜壘王.html">盜壘王</a>
+                  <a href="室內棒球聯盟年度銀棒獎.html">銀棒獎 (最佳打擊九人)</a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- 綜合與特殊獎項 -->
+      <section class="award-section">
+        <h2>綜合、守備與年度大獎</h2>
+        <p class="section-desc">包含全方位防守價值評比、最佳陣容及年度最高個人榮譽。</p>
+
+        <table class="award-grid-table">
+          <tbody>
+            <tr>
+              <th>團隊陣容與守備</th>
+              <td>
+                <div class="award-link-group">
+                  <a href="室內棒球聯盟年度金手套獎.html">金手套獎</a>
+                  <a href="室內棒球聯盟年度最佳陣容.html">年度最佳陣容</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th>最高榮譽與特別獎</th>
+              <td>
+                <div class="award-link-group">
+                  <a href="室內棒球聯盟年度年度MVP.html">年度 MVP</a>
+                  <a href="室內棒球聯盟年度新人王.html">新人王</a>
+                  <a href="室內棒球聯盟年度最佳進步獎.html">最佳進步獎</a>
+                  <a href="室內棒球聯盟年度東山再起獎.html">東山再起獎</a>
+                  <a href="室內棒球聯盟年度單月MVP.html">單月 MVP</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th>教練與特別貢獻</th>
+              <td>
+                <div class="award-link-group">
+                  <a href="室內棒球聯盟年度年度最佳總教練.html">年度最佳總教練</a>
+                  <a href="室內棒球聯盟年度特別貢獻獎.html">特別貢獻獎</a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+    </div>
+
+    <!-- ==========================================
+         2. 美職 MLB 內容區塊
+         ========================================== -->
+    <div id="league-mlb" class="league-content">
+      <section class="award-intro">
+        <h2>關於 美國職棒大聯盟 (MLB) 歷年獎項</h2>
+        <p>美國職棒大聯盟（Major League Baseball）為全球職業棒球最高殿堂，分為美國聯盟（AL）與國家聯盟（NL）。其年度獎項由全美棒球記者協會（BBWAA）及各官方贊助單位票選產生，代表著棒球領域的全球最高榮譽。</p>
+      </section>
+
+      <section class="award-section">
+        <h2>投手專屬最高榮譽</h2>
+        <p class="section-desc">表彰兩聯盟年度表現最傑出之投手與牛棚戰力。</p>
+        <table class="award-grid-table">
+          <tbody>
+            <tr>
+              <th>投手最高榮譽</th>
+              <td>
+                <div class="award-link-group">
+                  <a href="#">賽揚獎 (Cy Young Award)</a>
+                  <a href="#">羅伯托·克萊門特獎</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th>牛棚救援榮譽</th>
+              <td>
+                <div class="award-link-group">
+                  <a href="#">美聯年度最佳後援 (Mariano Rivera Award)</a>
+                  <a href="#">國聯年度最佳後援 (Trevor Hoffman Award)</a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="award-section">
+        <h2>野手攻擊與防守大獎</h2>
+        <p class="section-desc">包含最頂尖打擊輸出、全方位守備與工具人榮譽。</p>
+        <table class="award-grid-table">
+          <tbody>
+            <tr>
+              <th>打擊與攻擊榮譽</th>
+              <td>
+                <div class="award-link-group">
+                  <a href="#">銀棒獎 (Silver Slugger)</a>
+                  <a href="#">漢克·阿倫獎 (Hank Aaron Award)</a>
+                  <a href="#">埃德加·馬丁尼茲獎 (最佳指定打擊)</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th>防守卓越榮譽</th>
+              <td>
+                <div class="award-link-group">
+                  <a href="#">羅林斯金手套獎 (Gold Glove)</a>
+                  <a href="#">白金手套獎 (Platinum Glove)</a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="award-section">
+        <h2>年度綜合與總教練大獎</h2>
+        <p class="section-desc">由全美棒球記者協會（BBWAA）票選之權威大獎。</p>
+        <table class="award-grid-table">
+          <tbody>
+            <tr>
+              <th>年度大獎</th>
+              <td>
+                <div class="award-link-group">
+                  <a href="#">年度最有價值球員 (MVP)</a>
+                  <a href="#">年度最佳新人 (Jackie Robinson Rookie of the Year)</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th>教練與東山再起</th>
+              <td>
+                <div class="award-link-group">
+                  <a href="#">年度最佳總教練 (Manager of the Year)</a>
+                  <a href="#">年度東山再起獎 (Comeback Player of the Year)</a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+
+    <!-- ==========================================
+         3. 日職 NPB 內容區塊
+         ========================================== -->
+    <div id="league-npb" class="league-content">
+      <section class="award-intro">
+        <h2>關於 日本職棒 (NPB) 歷年獎項</h2>
+        <p>日本棒球機構（NPB）包含太平洋聯盟與中央聯盟。日職獎項不僅包含傳統數據王座，更設有象徵投手最高榮譽的「澤村賞」，以及極具職人守備精神的「金手套賞（Golden Glove）」。</p>
+      </section>
+
+      <section class="award-section">
+        <h2>投手最高榮譽與數據頭銜</h2>
+        <p class="section-desc">日本職棒對於投手技術與耐力極限之最高肯定。</p>
+        <table class="award-grid-table">
+          <tbody>
+            <tr>
+              <th>特別榮譽投手獎</th>
+              <td>
+                <div class="award-link-group">
+                  <a href="#">澤村榮治賞 (澤村賞)</a>
+                  <a href="#">正力松太郎賞 (特別貢獻)</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th>投手數據王座</th>
+              <td>
+                <div class="award-link-group">
+                  <a href="#">最優秀防禦率</a>
+                  <a href="#">勝頭投手 (勝投王)</a>
+                  <a href="#">最多奪三振</a>
+                  <a href="#">最多三振中繼投手</a>
+                  <a href="#">最多救援投手</a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="award-section">
+        <h2>野手最佳九人與守備榮譽</h2>
+        <p class="section-desc">評選兩聯盟各守備位置最佳打者與守備職人。</p>
+        <table class="award-grid-table">
+          <tbody>
+            <tr>
+              <th>打擊與最佳九人</th>
+              <td>
+                <div class="award-link-group">
+                  <a href="#">首位打者 (打擊王)</a>
+                  <a href="#">本壘打王 (全壘打王)</a>
+                  <a href="#">打點王</a>
+                  <a href="#">最高出壘率</a>
+                  <a href="#">最佳九人 (Best Nine)</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th>防守最高榮譽</th>
+              <td>
+                <div class="award-link-group">
+                  <a href="#">三井黃金手套賞 (Mitsui Golden Glove)</a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="award-section">
+        <h2>年度 MVP 與新人王</h2>
+        <p class="section-desc">代表單季極致影響力與最璀璨之新星。</p>
+        <table class="award-grid-table">
+          <tbody>
+            <tr>
+              <th>年度大獎</th>
+              <td>
+                <div class="award-link-group">
+                  <a href="#">最優秀選手 (MVP)</a>
+                  <a href="#">最優秀新人 (新人王)</a>
+                  <a href="#">カムバック賞 (東山再起獎)</a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+
+    <!-- ==========================================
+         4. 韓職 KBO 內容區塊
+         ========================================== -->
+    <div id="league-kbo" class="league-content">
+      <section class="award-intro">
+        <h2>關於 韓國職棒 (KBO) 歷年獎項</h2>
+        <p>韓國棒球委員會（KBO League）為韓國頂級職業棒球聯賽。KBO 的「金手套獎（Golden Glove）」極具特色，係將打擊能力與守備表現合併評比，為各守備位置年度最佳球員之綜合大獎。</p>
+      </section>
+
+      <section class="award-section">
+        <h2>KBO 綜合金手套與個人數據王</h2>
+        <p class="section-desc">表彰單季個人數據達到巔峰之投手與野手。</p>
+        <table class="award-grid-table">
+          <tbody>
+            <tr>
+              <th>綜合最高榮譽</th>
+              <td>
+                <div class="award-link-group">
+                  <a href="#">KBO 金手套獎 (Golden Glove - 攻守綜合)</a>
+                  <a href="#">KBO 防守獎 (Defense Award - 純守備)</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th>投手數據王座</th>
+              <td>
+                <div class="award-link-group">
+                  <a href="#">防禦率王</a>
+                  <a href="#">勝投王</a>
+                  <a href="#">奪三振王</a>
+                  <a href="#">救援勝王</a>
+                  <a href="#">中繼成功王</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th>打擊數據王座</th>
+              <td>
+                <div class="award-link-group">
+                  <a href="#">打擊率王</a>
+                  <a href="#">全壘打王</a>
+                  <a href="#">打點王</a>
+                  <a href="#">安打王</a>
+                  <a href="#">盜壘王</a>
+                  <a href="#">上壘率王</a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="award-section">
+        <h2>年度 MVP 與新人王</h2>
+        <p class="section-desc">KBO 媒體記者投票產生的年度最高榮譽。</p>
+        <table class="award-grid-table">
+          <tbody>
+            <tr>
+              <th>年度最高榮譽</th>
+              <td>
+                <div class="award-link-group">
+                  <a href="#">KBO 年度 MVP</a>
+                  <a href="#">KBO 年度新人王</a>
+                  <a href="#">年度最佳總教練</a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+
+  </div>
+
+  <!-- JavaScript 切換邏輯 -->
+  <script src="../js/overallaward.js"></script>
+  
+</body>
+</html>
