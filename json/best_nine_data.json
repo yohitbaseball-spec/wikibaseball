@@ -21,19 +21,19 @@
         }
       },
       "2nd": {
-        "P": { "name": "金廣鉉", "country": "KR" },
+        "P": { "name": "楊振賢", "country": "TW" },
         "C": { "name": "戴培峰", "country": "TW" },
         "1B": { "name": "陳俊秀", "country": "TW" },
-        "2B": { "name": "岳東華", "country": "TW" },
-        "3B": { "name": "劉基鴻", "country": "TW" },
-        "SS": { "name": "張政禹", "country": "TW" },
-        "OF1": { "name": "詹子賢", "country": "TW" },
-        "OF2": { "name": "蘇智傑", "country": "TW" },
-        "OF3": { "name": "陳晨威", "country": "TW" },
-        "DH": { "name": "胡金龍", "country": "TW" },
+        "2B": { "name": "張致謙", "country": "TW" },
+        "3B": { "name": "劉瑋程", "country": "TW" },
+        "SS": { "name": "林傑峻", "country": "TW" },
+        "OF1": { "name": "羅以翔", "country": "TW" },
+        "OF2": { "name": "張益勳", "country": "TW" },
+        "OF3": { "name": "鍾詩晟", "country": "TW" },
+        "DH": { "name": "王鈞霆", "country": "TW" },
         "teams": {
-          "P": "飛龍隊", "C": "悍將隊", "1B": "象隊", "2B": "象隊", "3B": "龍隊",
-          "SS": "龍隊", "OF1": "象隊", "OF2": "獅隊", "OF3": "猿隊", "DH": "獅隊"
+          "P": "南投雷霆", "C": "悍將隊", "1B": "象隊", "2B": "大福熊", "3B": "新世紀恐龍",
+          "SS": "新北幻影英雄", "OF1": "阿里山小火車", "OF2": "北鐵狼", "OF3": "微秒彗星", "DH": "北鐵狼"
         }
       }
     }
