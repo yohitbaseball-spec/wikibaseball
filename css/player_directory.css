@@ -1,0 +1,60 @@
+/* ===== 多維度篩選面板 ===== */
+.filter-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px dashed var(--border-color);
+}
+
+.filter-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.88rem;
+}
+
+.filter-label {
+  font-weight: 700;
+  color: var(--award-primary-dark);
+  white-space: nowrap;
+  padding-top: 4px;
+  min-width: 70px;
+}
+
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.filter-btn {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  padding: 3px 10px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+  color: var(--award-primary);
+  border-color: var(--award-primary);
+}
+
+.filter-btn.active {
+  background: var(--award-primary-dark);
+  color: #ffffff;
+  border-color: var(--award-primary-dark);
+  font-weight: bold;
+}
+
+/* 索引軌道可橫向滾動 */
+.index-bar {
+  max-height: 80px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
