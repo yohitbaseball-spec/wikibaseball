@@ -2,10 +2,10 @@
        歷年獎項專屬全域 CSS (最佳陣容高級深色調)
        ========================================== */
     :root {
-      --award-primary: #b8860b;      /* 主色：暗金 */
-      --award-primary-dark: #8b6508; /* 深金 */
-      --award-accent: #d4af37;       /* 亮金高亮 */
-      --award-second: #faf8f2;       /* 表格隔行配色 */
+        --award-primary: #46A3FF;      /* 主色：藍色 */
+        --award-primary-dark: #1D6FD6; /* 深藍 */
+        --award-accent: #6BB7FF;       /* 淺藍 */
+        --award-second: #F0F8FF;       /* 表格隔行配色 */
       
       --text-main: #111827;          /* 主要文字 (黑色/極深灰) */
       --text-muted: #4b5563;          /* 次要文字 */
@@ -90,9 +90,13 @@
       margin: 0 0 8px 0;
       font-size: 1.25rem;
       font-weight: 700;
-      color: var(--award-primary-dark);
+      color: #000000;
       padding-left: 0;
       border-left: none;
+
+      border-bottom: 1px solid #000000;
+      padding-bottom: 5px;
+      position: relative;
     }
 
     .award-intro p {
