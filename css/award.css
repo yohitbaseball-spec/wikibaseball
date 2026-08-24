@@ -2,10 +2,10 @@
    歷年獎項專屬全域 CSS (金手套高級深色調)
    ========================================== */
 :root {
-  --award-primary: #b8860b;      /* 主色：暗金 */
-  --award-primary-dark: #8b6508; /* 深金 */
-  --award-accent: #d4af37;       /* 亮金高亮 */
-  --award-second: #faf8f2;       /* 表格隔行配色 */
+  --award-primary: #46A3FF;      /* 主色：藍色 */
+  --award-primary-dark: #1D6FD6; /* 深藍 */
+  --award-accent: #6BB7FF;       /* 淺藍 */
+  --award-second: #F0F8FF;       /* 表格隔行配色 */
   
   --text-main: #111827;          /* 主要文字 */
   --text-muted: #4b5563;         /* 次要文字 */
@@ -266,9 +266,14 @@ table.stats tbody tr:nth-child(even) td {
   margin: 0 0 10px 0;
   font-size: 1.35rem;
   font-weight: 700;
-  color: var(--award-primary-dark); /* 標題採用暗金風格，呼應主題 */
+  color: #000000; /* 標題採用暗金風格，呼應主題 */
   padding-left: 0;                   /* 確保無視預設豎線 padding */
   border-left: none;                 /* 強制消除左側豎線 */
+
+  border-bottom: 1px solid #000000;
+  padding-bottom: 5px;
+  position: relative;
+   
 }
 
 .award-intro p {
@@ -302,7 +307,7 @@ table.stats1 td {
 }
 
 table.stats1 th {
-  background: #b8860b;
+  background: var(--award-primary);
   color: #FFFFFF;
   font-weight: 600;
 }
