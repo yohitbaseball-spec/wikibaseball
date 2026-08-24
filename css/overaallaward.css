@@ -1,0 +1,341 @@
+    /* ==========================================
+       歷年獎項專屬全域 CSS (金手套高級深色調)
+       ========================================== */
+    :root {
+      --award-primary: #46A3FF;      /* 主色：藍色 */
+      --award-primary-dark: #1D6FD6; /* 深藍 */
+      --award-accent: #6BB7FF;       /* 淺藍 */
+      --award-second: #F0F8FF;       /* 表格隔行配色 */
+      
+      --text-main: #111827;          /* 主要文字 */
+      --text-muted: #4b5563;         /* 次要文字 */
+      --bg-body: #f8fafc;            /* 頁面背景 */
+      --bg-card: #ffffff;            /* 容器背景 */
+      --border-color: #e2e8f0;       /* 邊線 */
+      
+      --field-grass: #4caf50;        /* 深質感棒球場草皮 */
+      --field-dirt: #DEB8AA;         /* 內野紅土 */
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Helvetica Neue", Arial, "Noto Sans TC", sans-serif;
+      background: var(--bg-body);
+      color: var(--text-main);
+      line-height: 1.7;
+    }
+
+    a {
+      color: var(--award-primary-dark);
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    a:hover {
+      color: var(--award-primary);
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px 20px 80px 20px;
+    }
+
+    /* ===== 頂部導覽列 ===== */
+    .topnav {
+      display: flex;
+      gap: 10px;
+      padding: 14px 0;
+      border-bottom: 2px solid var(--border-color);
+      margin-bottom: 25px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .topnav a {
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .topnav a:hover {
+      color: var(--award-primary);
+    }
+
+    /* ===== 頁首標題 ===== */
+    .header {
+      margin-bottom: 25px;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 2.2rem;
+      color: var(--text-main);
+      font-weight: 700;
+      padding-left: 0px;
+    }
+    .header .sub {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+      padding-left: 0px;
+    }
+
+    /* ===== 聯盟 / 賽事頁籤選單 ===== */
+    .league-tabs {
+      display: flex;
+      gap: 6px;
+      border-bottom: 2px solid var(--award-primary-dark);
+      margin-bottom: 30px;
+      overflow-x: auto;
+    }
+
+    .league-tab {
+      background: #edf2f7;
+      border: 1px solid var(--border-color);
+      border-bottom: none;
+      padding: 10px 22px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      border-radius: 4px 4px 0 0;
+      transition: all 0.2s;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .league-tab:hover {
+      background: #e2e8f0;
+    }
+
+    .league-tab.active {
+      background: var(--award-primary-dark);
+      color: #ffffff;
+      border-color: var(--award-primary-dark);
+    }
+
+    /* ===== 內容區塊控制 ===== */
+    .league-content {
+      display: none;
+    }
+    .league-content.active {
+      display: block;
+    }
+
+    /* ===== 獎項介紹區塊 (虛線分割，無卡片感) ===== */
+    .award-intro {
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 1px dashed var(--border-color);
+    }
+
+    .award-intro h2 {
+      margin: 0 0 10px 0;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #000000;
+      padding-left: 0;
+      border-left: none;
+      border-bottom: 1px solid #000000;
+      padding-bottom: 5px;
+      position: relative;
+    }
+
+    .award-intro p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: var(--text-main);
+      line-height: 1.7;
+    }
+
+    /* ===== 獎項分類 Section 區塊 ===== */
+    .award-section {
+      margin-bottom: 40px;
+      padding-bottom: 25px;
+      border-bottom: 1px dashed var(--border-color);
+    }
+
+    .award-section:last-of-type {
+      border-bottom: none;
+    }
+
+    .award-section h2 {
+      margin: 0 0 12px 0;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text-main);
+      border-bottom: 2px solid var(--award-primary-dark);
+      padding-bottom: 6px;
+    }
+
+    .award-section p.section-desc {
+      margin: 0 0 16px 0;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+
+    /* ===== 獎項列表表格 ===== */
+    .award-grid-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    .award-grid-table th,
+    .award-grid-table td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .award-grid-table th {
+      background: var(--award-second);
+      color: var(--award-primary-dark);
+      font-weight: 700;
+      width: 28%;
+    }
+
+    .award-grid-table td {
+      color: var(--text-main);
+    }
+
+    .award-grid-table tr:last-child th,
+    .award-grid-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .award-link-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 20px;
+      line-height: 1.8;
+    }
+
+    .award-link-group a {
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .award-link-group a::after {
+      content: "›";
+      margin-left: 4px;
+      font-size: 1rem;
+      color: var(--award-primary);
+      transition: transform 0.2s;
+    }
+
+    .award-link-group a:hover::after {
+      transform: translateX(3px);
+    }
+
+    /* ===== 頁尾歷年獎項導覽框 (Navbox) ===== */
+    .award-navbox {
+      margin-top: 60px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      overflow: hidden;
+      font-size: 0.88rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    .navbox-title {
+      background: var(--award-primary-dark);
+      color: #ffffff;
+      font-weight: 700;
+      text-align: center;
+      padding: 10px 15px;
+      letter-spacing: 0.5px;
+    }
+
+    .navbox-grid {
+      display: flex;
+      flex-direction: column;
+      background: #ffffff;
+    }
+
+    .navbox-group {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .navbox-group:first-child {
+      border-top: none;
+    }
+
+    .navbox-header {
+      background: var(--award-second);
+      color: var(--text-main);
+      font-weight: 700;
+      padding: 12px 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-right: 1px solid var(--border-color);
+    }
+
+    .navbox-content {
+      padding: 10px 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 16px;
+      align-items: center;
+      line-height: 1.8;
+    }
+
+    .navbox-content a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .navbox-content a:hover {
+      color: var(--award-primary);
+      text-decoration: underline;
+    }
+
+    /* RWD 手機版適應 */
+    @media (max-width: 640px) {
+      .award-grid-table th,
+      .award-grid-table td {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .award-grid-table th {
+        border-bottom: none;
+        background: #f1f5f9;
+        padding-bottom: 6px;
+      }
+
+      .award-grid-table td {
+        padding-top: 6px;
+      }
+
+      .navbox-group {
+        grid-template-columns: 1fr;
+      }
+
+      .navbox-header {
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        padding: 8px 12px;
+        background: #f1f5f9;
+      }
+
+      .navbox-content {
+        padding: 10px 12px;
+        gap: 8px 12px;
+      }
+    }
