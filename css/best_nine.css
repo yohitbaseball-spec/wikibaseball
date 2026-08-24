@@ -449,6 +449,17 @@
   .navbox-group {
     grid-template-columns: 1fr; /* 改為單欄上下疊加 */
   }
+}
+
+@media (max-width: 768px) {
+  table.stats1 {
+    display: block;          /* 轉換為區塊元素以支援 overflow */
+    width: 100%;             /* 限制最大寬度 */
+    overflow-x: auto;        /* 內容超出時自動顯示橫向滾動條 */
+    white-space: nowrap;     /* 防止文字自動折行（可依需求決定是否保留） */
+    -webkit-overflow-scrolling: touch; /* 讓 iOS 滑動更順暢 */
+  }
+}
 
 table.stats1 {
   width: 100%;
