@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>室內棒球聯盟 IBL - 聯盟簡介</title>
+  <link rel="icon" href="../images/IBLLOGO.png" sizes="192x192" type="image/png">
+  <style>
+      /* ==========================================================================
+   室內棒球聯盟 (IBL) 全域 CSS (藍色系高質感明亮風) - league.css
+   ========================================================================== */
+
+:root {
+  --award-primary: #46A3FF;      /* 主色：藍色 */
+  --award-primary-dark: #1D6FD6; /* 深藍 */
+  --award-accent: #6BB7FF;       /* 淺藍 */
+  --award-second: #F0F8FF;       /* 表格隔行配色 / 亮色襯底 */
+  
+  --text-main: #111827;          /* 主要文字 */
+  --text-muted: #4b5563;         /* 次要文字 */
+  --bg-body: #f8fafc;            /* 頁面背景 */
+  --bg-card: #ffffff;            /* 容器背景 */
+  --border-color: #e2e8f0;       /* 邊線 */
+  
+  --field-grass: #4caf50;        /* 棒球場草皮 */
+  --field-dirt: #DEB8AA;         /* 內野紅土 */
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* 基礎重置與排版 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "Noto Sans TC", sans-serif;
+  background: var(--bg-body);
+  color: var(--text-main);
+  line-height: 1.7;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px 20px 80px 20px;
+}
+
+/* 連結通用樣式 */
+a {
+  color: var(--award-primary-dark);
+  text-decoration: none;
+  transition: color 0.2s, text-decoration 0.2s;
+}
+
+a:hover {
+  color: var(--award-primary);
+  text-decoration: underline;
+}
+
+/* ===== 頂部導覽列 ===== */
+.topnav {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 2px solid var(--border-color);
+  margin-bottom: 20px;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.topnav a {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.topnav a:hover {
+  color: var(--award-primary-dark);
+}
+
+.topnav b {
+  color: var(--award-primary-dark);
+  font-weight: 700;
+}
+
+/* ===== 頁首標題 ===== */
+.header {
+  margin-bottom: 25px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 2.2rem;
+  color: var(--text-main);
+  font-weight: 700;
+}
+
+.header .sub {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* ===== 通用區塊卡片 ===== */
+.section {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 22px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+}
+
+.section h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-main);
+  border-bottom: 2px solid var(--award-primary);
+  padding-bottom: 6px;
+  margin-bottom: 16px;
+}
+
+.section h3 {
+  font-size: 1.08rem;
+  color: var(--award-primary-dark);
+  margin: 14px 0 8px 0;
+}
+
+.section p {
+  margin-bottom: 12px;
+  font-size: 0.96rem;
+  color: var(--text-main);
+  text-align: justify;
+}
+
+.intro-lead {
+  font-size: 1.02rem;
+}
+
+.history-block, .rule-block {
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px dashed var(--border-color);
+}
+
+.history-block:last-child, .rule-block:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.inline-more-link {
+  display: inline-block;
+  font-size: 0.85rem;
+  margin-left: 6px;
+  color: var(--award-primary-dark);
+  background: var(--award-second);
+  padding: 1px 8px;
+  border-radius: 3px;
+  border: 1px solid var(--award-accent);
+}
+
+/* ===== 頁面快速導覽區塊 ===== */
+.page-nav {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--award-primary-dark);
+  padding: 12px 18px;
+  margin-bottom: 24px;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+}
+
+.page-nav-title {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.page-nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.page-nav-links a {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* ===== 雙欄網格佈局 ===== */
+.main-layout {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 20px;
+}
+
+@media (max-width: 868px) {
+  .main-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== 右側邊欄 Infobox ===== */
+.sidebar-area {
+  width: 100%;
+}
+
+.infobox {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 16px;
+  position: sticky;
+  top: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.infobox-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  text-align: center;
+  background: var(--award-primary-dark);
+  color: #ffffff;
+  padding: 8px;
+  border-radius: 4px 4px 0 0;
+  margin: -16px -16px 14px -16px;
+}
+
+.profile div {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.88rem;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.profile div span {
+  color: var(--text-muted);
+}
+
+.infobox-section-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--award-primary-dark);
+  margin-top: 14px;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.infobox-content-item {
+  font-size: 0.9rem;
+  padding-left: 2px;
+}
+
+/* ===== 表格專屬樣式 ===== */
+table.stats1, table.stats6, table.pro-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+  font-size: 0.88rem;
+  background: var(--bg-card);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+table.stats1 th, table.stats1 td,
+table.stats6 th, table.stats6 td,
+table.pro-table th, table.pro-table td {
+  padding: 8px 10px;
+  text-align: center;
+  border: 1px solid var(--border-color);
+}
+
+table.stats1 th, table.stats6 th, table.pro-table th {
+  background: var(--award-primary-dark) !important;
+  color: #ffffff !important;
+  font-weight: 600;
+}
+
+table.stats1 tbody tr:nth-child(even) td,
+table.stats6 tbody tr:nth-child(even) td,
+table.pro-table tbody tr:nth-child(even) td {
+  background: var(--award-second);
+}
+
+.table-header-main {
+  background: var(--award-primary-dark) !important;
+  color: #ffffff !important;
+  font-size: 1.02rem;
+  padding: 10px !important;
+}
+
+.division-header th {
+  background: var(--award-primary) !important;
+  color: #ffffff !important;
+}
+
+.table-footer-links {
+  background: var(--award-second);
+  font-size: 0.85rem;
+  line-height: 2;
+  border-top: 2px solid var(--border-color);
+}
+
+.team-text-only {
+  color: var(--text-muted);
+}
+
+.region-cell {
+  background: #f1f5f9;
+  font-weight: bold;
+  color: var(--award-primary-dark);
+  vertical-align: middle;
+}
+
+.table-note {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+/* ===== 折疊收合 (Details) ===== */
+.decade-box {
+  margin-top: 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--bg-card);
+}
+
+.decade-summary {
+  padding: 12px 16px;
+  font-weight: 700;
+  color: var(--award-primary-dark);
+  cursor: pointer;
+  user-select: none;
+  background: var(--award-second);
+  transition: background 0.2s;
+}
+
+.decade-summary:hover {
+  background: #e6f2ff;
+}
+
+.decade-box[open] .decade-summary {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.decade-box .pro-table {
+  margin: 0;
+  box-shadow: none;
+  border: none;
+}
+
+/* ===== 新聞清單 ===== */
+.news-list {
+  list-style: none;
+  padding: 0;
+}
+
+.news-list li {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.95rem;
+}
+
+.news-list li:last-child {
+  border-bottom: none;
+}
+
+.news-date {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-left: 6px;
+}
+
+/* 響應式適應 */
+@media (max-width: 768px) {
+  table.stats1, table.stats6, table.pro-table {
+    display: block;
+    overflow-x: auto;
+  }
+}
+
+/* ===== 20隊彩色球隊速查表專屬樣式 (固定尺寸版) ===== */
+table.stats-teams {
+  width: 100%;
+  table-layout: fixed; /* 強制 4 欄均分寬度，不隨文字長度改變 */
+  border-collapse: collapse;
+  margin: 10px 0;
+  font-size: 0.9rem;
+  font-weight: bold;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+/* 均分欄寬 25% */
+table.stats-teams col {
+  width: 25%;
+}
+
+table.stats-teams th,
+table.stats-teams td {
+  padding: 0; /* 清空預設 padding，由內部容器接管 */
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid #ffffff; /* 白邊框分割 */
+}
+
+/* 表格頭部高度與比例 */
+table.stats-teams .table-header-main {
+  height: 38px;
+  background: #e0e0e0 !important;
+  color: #111827 !important;
+  font-size: 1rem;
+  font-weight: bold;
+  border-bottom: 1px solid #ccc;
+}
+
+table.stats-teams .division-header th {
+  height: 32px;
+  background: #eeeeee !important;
+  color: #111827 !important;
+  font-size: 0.92rem;
+}
+
+/* 核心：固定每隊格子的長寬高度 */
+table.stats-teams tbody td {
+  height: 42px; /* 固定每一隊的高度 */
+}
+
+/* 表格內的超連結文字與純文字：垂直置中、超出長度自動省略 */
+table.stats-teams td a,
+table.stats-teams td .team-text-only {
+  color: inherit;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 0 4px;
+  box-sizing: border-box;
+  white-space: nowrap; /* 不斷行 */
+  overflow: hidden;
+  text-overflow: ellipsis; /* 文字過長時顯示 ... */
+}
+
+table.stats-teams td a:hover {
+  text-decoration: underline;
+}
+
+/* 底部連結列 (米白底藍字) */
+table.stats-teams .table-footer-links {
+  height: auto;
+  padding: 10px;
+  background: #fffdf5 !important;
+  color: #1d6fd6;
+  font-size: 0.85rem;
+  font-weight: normal;
+  line-height: 1.8;
+}
+
+table.stats-teams .table-footer-links a {
+  color: #1d6fd6;
+  display: inline;
+  padding: 0;
+}
+
+/* --------------------------------------------------
+   20 支球隊色彩設定 (對照圖片配色)
+   -------------------------------------------------- */
+
+/* 北區 (Column 1) */
+.team-dinosaur     { background-color: #ff0055; color: #ffffff; } /* 新世紀恐龍隊 (桃紅) */
+.team-hero         { background-color: #0000ff; color: #ffffff; } /* 新北幻境英雄隊 (純藍) */
+.team-bear         { background-color: #33ffff; color: #111827; } /* 大福熊隊 (青藍) */
+.team-engineer     { background-color: #80ff80; color: #111827; } /* 竹科工程師隊 (亮綠) */
+.team-monkey       { background-color: #4a0d0d; color: #ffffff; } /* 酷購樂猿隊 (深暗紅) */
+
+/* 中區 (Column 2) */
+.team-leopard-cat  { background-color: #e6c280; color: #ffffff; } /* 苗栗石虎隊 (膚金) */
+.team-comet        { background-color: #ffff00; color: #111827; } /* 微秒彗星隊 (黃) */
+.team-wolf         { background-color: #cccccc; color: #ffffff; } /* 北鐵狼隊 (灰) */
+.team-thunder      { background-color: #ff00ff; color: #ffffff; } /* 南投雷霆隊 (洋紅) */
+.team-giant        { background-color: #008040; color: #ffffff; } /* 台糖巨人隊 (墨綠) */
+
+/* 南區 (Column 3) */
+.team-duck         { background-color: #ff5500; color: #111827; } /* 全達鴨隊 (橘) */
+.team-eagle        { background-color: #008055; color: #ffff00; } /* 高雄未來之鷹隊 (綠底黃字) */
+.team-train        { background-color: #d94100; color: #ffffff; } /* 阿里山小火車隊 (紅橘) */
+.team-star-navigator{ background-color: #e60000; color: #ffffff; }/* NX星航者隊 (紅) */
+.team-shark        { background-color: #aa55ff; color: #ffffff; } /* 墾丁鯊魚隊 (紫) */
+
+/* 東區 (Column 4) */
+.team-rain-city    { background-color: #2b808a; color: #ffffff; } /* 基隆雨都隊 (藍綠) */
+.team-ironman      { background-color: #750000; color: 	#FFDC35; } /* 台東鋼鐵人隊 (淺藍) */
+.team-cobra        { background-color: #482c73; color: #ffff00; } /* 花蓮眼鏡蛇隊 (深紫底黃字) */
+.team-petrel       { background-color: #3399ff; color: #ffffff; } /* 奇醫海燕隊 (天藍) */
+.team-orca         { background-color: #003380; color: #ffffff; } /* 藍海虎鯨隊 (深藍) */
+
+  </style>
+</head>
+<body>
+
+<div class="container">
+  
+  <!-- 頂部導覽列 -->
+  <nav class="topnav">
+    <a href="../index.html">首頁</a> /
+    <b>室內棒球聯盟</b>
+  </nav>
+
+  <!-- 頁首標題區 -->
+  <header class="header">
+    <h1>室內棒球聯盟</h1>
+    <div class="sub">Indoor Professional Baseball League (IBL)</div>
+  </header>
+
+  <!-- 快速查詢表格 (球隊對戰/區域表) -->
+  <!-- 快速查詢表格 (球隊對戰/區域表) -->
+  <section class="section">
+    <table class="stats-teams">
+      <thead>
+        <tr>
+          <th colspan="4" class="table-header-main">IBL 室內棒球聯盟 IBL</th>
+        </tr>
+        <tr class="division-header">
+          <th>北區</th>
+          <th>中區</th>
+          <th>南區</th>
+          <th>東區</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="team-dinosaur"><a href="../teams/新世紀恐龍隊.html">新世紀恐龍隊</a></td>
+          <td class="team-leopard-cat"><a href="../teams/苗栗石虎.html">苗栗石虎隊</a></td>
+          <td class="team-duck"><a href="../teams/全達鴨隊.html">全達鴨隊</a></td>
+          <td class="team-rain-city"><span class="team-text-only">基隆雨都隊</span></td>
+        </tr>
+        <tr>
+          <td class="team-hero"><a href="../teams/新北幻境英雄隊.html">新北幻境英雄隊</a></td>
+          <td class="team-comet"><a href="../teams/微秒彗星隊.html">微秒彗星隊</a></td>
+          <td class="team-eagle"><a href="../teams/高雄未來之鷹隊.html">高雄未來之鷹隊</a></td>
+          <td class="team-ironman"><a href="../teams/台東鋼鐵人.html">台東鋼鐵人隊</a></td>
+        </tr>
+        <tr>
+          <td class="team-bear"><a href="../teams/大福熊.html">大福熊隊</a></td>
+          <td class="team-wolf"><a href="../teams/北鐵狼.html">北鐵狼隊</a></td>
+          <td class="team-train"><a href="../teams/阿里山小火車.html">阿里山小火車隊</a></td>
+          <td class="team-cobra"><a href="../teams/花蓮眼鏡蛇.html">花蓮眼鏡蛇隊</a></td>
+        </tr>
+        <tr>
+          <td class="team-engineer"><span class="team-text-only">竹科工程師隊</span></td>
+          <td class="team-thunder"><a href="../teams/南投雷霆.html">南投雷霆隊</a></td>
+          <td class="team-star-navigator"><a href="../teams/NX星航者隊.html">NX星航者隊</a></td>
+          <td class="team-petrel"><a href="../teams/奇醫海燕隊.html">奇醫海燕隊</a></td>
+        </tr>
+        <tr>
+          <td class="team-monkey"><a href="../teams/酷購樂猿隊.html">酷購樂猿隊</a></td>
+          <td class="team-giant"><span class="team-text-only">台糖巨人隊</span></td>
+          <td class="team-shark"><a href="../teams/墾丁鯊魚隊.html">墾丁鯊魚隊</a></td>
+          <td class="team-orca"><a href="../teams/藍海虎鯨隊.html">藍海虎鯨隊</a></td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4" class="table-footer-links">
+            <a href="#">歷年獎項</a> | 
+            <a href="#">聯盟紀錄</a> | 
+            <a href="../state/成績總覽入口.html">例行賽成績總覽入口</a> | 
+            <a href="#">明星賽</a> | 
+            <a href="#">季後賽</a> | 
+            <a href="#">台灣大賽</a> | 
+            <a href="#">室內棒球聯盟二軍</a> | 
+            <a href="../teams/國軍鳳凰隊.html">國軍鳳凰隊</a> | 
+            <a href="#">旅外球員</a>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </section>
+
+  <!-- 頁面章節快速導航 -->
+  <nav class="page-nav">
+    <div class="page-nav-title">頁面快速導覽</div>
+    <div class="page-nav-links">
+      <a href="#history">▶ 聯盟發展史</a>
+      <a href="#rules">▶ 賽制說明</a>
+      <a href="#hhh">▶ 聯盟制度</a>
+      <a href="#teams">▶ 現役球隊</a>
+      <a href="#ddd">▶ 行政架構與歷任會長</a>
+      <a href="#news">▶ 聯盟動態與新聞</a>
+    </div>
+  </nav>
+
+  <!-- 主版面雙欄網格 -->
+  <div class="main-layout">
+    
+    <!-- 左側主要內容區 -->
+    <main class="content-area">
+      
+      <!-- 聯盟開篇簡介 -->
+      <section class="section">
+        <p class="intro-lead">
+          <b>室內棒球聯盟</b>（英語：<b>Indoor Professional Baseball League，縮寫：IBL</b>）是台灣最高層級的職業棒球聯盟，也是該世界線中台灣唯一的職業棒球組織。聯盟成立於2000年，由地方政府、企業與棒球組織共同推動成立，初期以城市代表制為核心，後逐步發展為企業化經營的現代職業聯盟。
+        </p>
+        <p>截至2052年，室內棒球聯盟共有20支一軍球隊，分為北、中、南、東四個分區，每隊進行150場例行賽。聯盟採單一聯盟架構，季後賽由各區球隊競爭晉級資格，最終爭奪年度總冠軍。</p>
+        <p>雖然名稱包含「室內」二字，但該名稱源自聯盟成立初期推動全天候棒球環境的理念，並不代表所有比賽皆於室內球場舉行。</p>
+        <p>室內棒球聯盟長期以「城市榮耀」為核心文化，強調地方認同與球團競爭。自成立以來，聯盟歷經多次擴編、企業化改革、兩聯盟制度實驗與分區制度改革，逐漸成為台灣棒球文化的重要象徵。</p>
+      </section>
+
+      <!-- 聯盟發展歷史 -->
+      <section class="section" id="history">
+        <h2>聯盟發展史</h2>
+        
+        <div class="history-block">
+          <h3>業餘棒球聯盟時代（1970～1992年）</h3>
+          <p>1970年代的台灣，棒球逐漸成為最受歡迎的運動之一。受到國際賽事與地方棒球文化影響，各地開始成立大量棒球隊伍，包含地方企業隊、大學棒球隊、社會人球隊，以及由各縣市組成的城市代表隊。當時台灣雖然尚未建立職業棒球制度，但棒球活動已形成一定規模。許多地方企業投入資源支持球隊，大學與社會人球隊也成為優秀球員的重要舞台。</p>
+          <p>1970年代後期開始，台灣業餘棒球聯盟逐漸形成雛形，各地球隊透過年度賽事交流，建立起早期台灣棒球競技體系。然而，由於當時棒球仍屬業餘運動，球員缺乏穩定收入與長期發展保障。許多具備天賦的選手，在高中、大學階段後因升學、工作與家庭因素離開棒球，使台灣棒球人才大量流失。</p>
+        </div>
+
+        <div class="history-block">
+          <h3>全民棒球熱潮與職業化需求（1980～1992年）</h3>
+          <p>1980年代，台灣迎來棒球文化的重要發展期。紅葉少棒、金龍少棒等代表性隊伍在國際賽事中的優異表現，使棒球成為全台共同關注的運動。各地開始興建棒球場，地方社團與學校棒球隊快速增加，棒球逐漸成為台灣的重要文化象徵。</p>
+          <p>然而，隨著棒球人口增加，原有的業餘制度逐漸無法滿足需求。大量優秀球員缺乏職業舞台，企業隊與社會人球隊也難以提供穩定發展環境。因此，建立一個完整職業棒球聯盟的想法開始受到重視。</p>
+        </div>
+
+        <div class="history-block">
+          <h3>職業棒球構想與聯盟籌備（1993～1999年）</h3>
+          <p>1993年，時任中華棒協理事長郭景文提出「城市棒球制」構想，希望參考日本職棒與美國職棒聯盟模式，建立以城市為核心、企業資源支持的職業棒球體系。1990年代後期，隨著台灣經濟發展、企業投入增加，以及政府推動全民運動政策，成立全國性職業棒球聯盟的條件逐漸成熟。</p>
+          <p>1999年，台北市、新北市、桃園市、台中市、高雄市、台南市、台東縣、新竹市八地政府代表，與多家企業共同於台北大巨蛋簽署合作協議，正式召開「台灣職業棒球成立大會」。會議中確立新職業聯盟名稱：室內棒球聯盟（Indoor Professional Baseball League, IBL）並正式建立以城市為核心的職業棒球制度。</p>
+        </div>
+
+        <div class="history-block">
+          <h3>室內棒球聯盟正式成立（2000年）</h3>
+          <p>2000年3月，室內棒球聯盟首個賽季正式開打。開幕戰於台北大巨蛋舉行，由：台北天龍隊對戰桃園航空隊，吸引超過三萬名球迷進場，創下當時台灣職業棒球觀賽紀錄。這場比賽象徵台灣棒球正式進入職業化新時代。從此，棒球不再只是學校、企業與地方社團的競技活動，而成為連結城市、企業與球迷文化的重要職業運動。「城市榮耀」也成為室內棒球聯盟最核心的精神。</p>
+        </div>
+
+        <div class="history-block">
+          <h3>聯盟擴編與企業化時代（2005～2021年）</h3>
+          <p>隨著室內棒球聯盟成立後，職業棒球文化逐漸深入台灣各地，地方政府與企業開始積極尋求加入聯盟的機會。2005年8月，時任聯盟會長郭景文宣布正式開放各縣市及企業申請加盟，並提出「一縣市一球隊」構想，希望透過地方代表隊制度，建立城市與球迷之間的連結。此次擴編中，多支地方代表隊加入聯盟，使球隊數量由創始時期的8隊增加至14隊，因此被後世稱為：「第一次球隊擴編事件」。也象徵室內棒球聯盟從少數城市聯賽，正式邁向全國性職業聯盟。然而，這個時期的球團經營模式仍以「城市代表＋企業贊助」為主，地方政府仍在球隊營運中扮演重要角色。</p>
+        </div>
+
+        <div class="history-block">
+          <h3>城市代表制轉型與企業化改革（2010－2019年）</h3>
+          <p>2010年代，室內棒球聯盟逐漸進入成熟階段。雖然多數球隊仍以城市名稱參賽，但隨著職業運動規模擴力，單純依靠地方政府支持的經營模式逐漸面臨挑戰。部分球隊開始出現財務壓力增加、商業開發不足、球員培養資源不均。因此，2019年聯盟開始推動全面企業化改革，各地方政府重新檢討球團經營模式後，決議逐步將球團經營權交由企業負責。</p>
+          <p>改革後城市仍保留球隊所在地與地方認同而企業負責球團營運、品牌推廣與商業開發，這項改革被認為是室內棒球聯盟從「城市代表隊」走向「現代職業球團」的重要里程碑。</p>
+        </div>
+
+        <div class="history-block">
+          <h3>第二次球隊擴編（2021年）</h3>
+          <p>企業化改革後，室內棒球聯盟迎來新一波發展。2021年，多家大型企業與地方組織向聯盟提出加盟申請，其中包含崩壞娛樂集團、全聯企業、其他地方政府與企業合作團隊，聯盟正式啟動第二階段擴編計畫，此次擴編被稱為：「第二次球隊擴編事件」。</p>
+        </div>
+
+        <div class="history-block">
+          <h3>職業球員服役問題浮現（2021－2023年）</h3>
+          <p>隨著室內棒球聯盟企業化改革完成，職業棒球進入高度競爭時代，然而，球員服役問題逐漸成為聯盟發展的重要議題。當時台灣役期制度規定，符合資格之男性公民須依法服行義務役。對於職業棒球選手而言，服役期間往往造成球技狀態下降、長時間離開職業訓練環境等問題。尤其對正值黃金發展期的年輕球員而言，如何兼顧國民義務與職業生涯，成為室內棒球聯盟長期面臨的問題。</p>
+          <p>為解決職業球員服役期間訓練中斷問題，室內棒球聯盟開始與政府相關單位展開協商。時任聯盟會長陳慶昇，與運動部、國防部進行多次討論，提出建立「職業運動服役制度」的構想。最終各方達成共識：在不影響國防訓練與軍事紀律的前提下，由國防部成立一支正式棒球隊，讓服役期間的職業球員能維持競技狀態。2024年10月，國防部正式宣布成立國軍服役隊，並加入室內棒球聯盟，該隊成為聯盟第19支球隊。</p>
+          <p>國軍服役隊加入後，聯盟球隊數變為19隊，使例行賽安排受到影響，因此，聯盟與政府重新協商，決定開放新的加盟名額。最終，由宜蘭地方力量組成的：宜蘭三星蔥隊，正式加入室內棒球聯盟，也成為聯盟第20支球。</p>
+        </div>
+
+        <div class="history-block">
+          <h3>兩聯盟制嘗試（2027－2032年）</h3>
+          <p>2027年，室內棒球聯盟正式達到20支球隊規模，聯盟高層於2027年召開「體制改革特別會議」，首次正式提出參考美國職棒與日本職棒制度的「兩聯盟制構想」。</p>
+          <p>2027年末，宜蘭三星蔥隊因地方政府財政壓力與球團經營困難，宣布停止營運。由於宜蘭三星蔥隊已經成為東部棒球文化的重要代表，聯盟並未選擇直接解散球隊，而是積極尋找新的經營方。最終台糖公司接手宜蘭三星蔥隊球團資產與球員陣容。球團重新整合後成立台糖巨人隊，並繼續參與室內棒球聯盟。</p>
+          <p>2028年球季開始，室內棒球聯盟正式拆分為北方聯盟、南方聯盟，例行賽制度調整為每隊140場、約15%為跨聯盟交流賽，季後賽則是兩聯盟各自產生冠軍後進行台灣大賽。改革期間，聯盟推出多項新制度，包括明星賽改成北方聯盟明星隊 vs 南方聯盟明星隊，獎項分區評選，包括最佳九人、最有價值球員等都分別於兩聯盟評選。</p>
+          <p>雖然兩聯盟制度初期成功提升話題性，但經過五年運作後，聯盟逐漸發現其核心問題。與美國職棒與日本職棒不同，室內棒球聯盟的成立基礎並非聯盟間競爭，而是「城市代表制」，兩聯盟制度按照地理區域劃分後，使許多傳統對戰減少，削弱地方球迷期待。此外，球迷對「兩聯盟冠軍」的認同度始終有限。由於IBL長期被視為代表全台灣最高層級棒球的單一聯盟，許多人認為：「沒有所有球隊參與的冠軍，就不能代表真正的台灣第一。」</p>
+          <p>最終，聯盟於2032年決議「自2034起，恢復單一聯盟制度。」媒體稱此次改革稱為「兩聯盟五年實驗」，雖然失敗，但也促使聯盟重新確認自身定位。</p>
+        </div>
+
+        <div class="history-block">
+          <h3>球團退出與苗栗石虎隊加盟（2033年）</h3>
+          <p>2033年，原崩壞自由隊因母企業經營方向調整，宣布重新評估職業運動投資計畫，近年球團長期虧損增加、商業收入未達預期等，使球團逐漸失去維持一軍規模的能力。聯盟與球團多次協商，希望透過企業轉讓、資金重整或更換經營團隊等方式維持球隊運作，但最終未能達成共識。2033年球季結束後，崩壞自由隊正式退出室內棒球聯盟一軍體系。</p>
+          <p>同時，苗栗地區長期投入地方棒球發展，並提出加盟申請。聯盟評估過後通過加盟審查，苗栗石虎隊正式成為室內棒球聯盟新成員。聯盟也藉此完成球隊結構調整，使20隊規模得以延續。</p>
+        </div>
+
+        <div class="history-block">
+          <h3>四分區制度改革（2034－2035年）</h3>
+          <p>兩聯盟制度結束後，室內棒球聯盟重新回到單一聯盟架構。因此聯盟召開制度改革會議，決議建立新的四分區制度，分配球隊、調整分區對戰比例、季後賽資格制度以及例行賽賽程。此制度在2035年球季正式實施。</p>
+        </div>
+
+        <div class="history-block">
+          <h3>國軍鳳凰隊轉型與中油火焰隊加盟（2047－2052年）</h3>
+          <p>自2024年成立以來，國軍鳳凰隊在室內棒球聯盟中扮演特殊角色，由於球隊組成方式特殊，主要由各職業球隊派遣服役球員組成，因此每年陣力大幅變動、長期養成計畫難以執行，加上無法參與年度選秀、無法自由補強外籍球員等制度因素，導致球隊競爭力逐漸下降。2047年，國軍鳳凰隊長期戰績不佳，成為聯盟主要弱勢球隊之一。雖然球隊曾於2048年突破困境，歷史性打入季後賽，但該次季後賽資格仍被視為特殊案例。截至2050年前，2048年季後賽仍是國軍鳳凰隊隊史唯一一次季後賽紀錄。因此，聯盟內部開始討論是否維持國軍隊一軍資格以及如何兼顧服役制度與職業競爭公平性。</p>
+          <p>就在聯盟評估國軍隊未來定位時，台灣中油股份有限公司正式表達進軍職業棒球的意願。中油長期贊助國內各項運動，且擁有雄厚的資金與品牌影響力。2048年初，聯盟正式收到中油遞交的加盟申請書，內容包含完整營運計畫、主場興建構想。經過近一年審查與協商，聯盟於2049年2月正式通過加盟資格，中油火焰隊正式成立。</p>
+          <p>2049年至2051年間，聯盟針對國軍球隊未來定位進行多次討論。最終，IBL認為國軍鳳凰隊成立目的並非成為永久職業球團，而是提供服役球員競技環境，因此，自2052年球季開始國軍鳳凰隊退出一軍競爭體系並轉型為二軍服役訓練球隊。</p>
+        </div>
+      </section>
+
+      <!-- 賽制說明 -->
+      <section class="section" id="rules">
+        <h2>賽制說明</h2>
+        <p><b>熱身賽：</b>於每年三月中舉行，官辦熱身賽一隊大概進行10場比賽。</p>
+        <p><b>例行賽：</b>同分區4隊各對戰15場，而不同分區的15隊則各對戰6場，總計150場例行賽。
+          <a href="#" class="inline-more-link" target="_blank">室內棒球聯盟歷年例行賽賽制</a>
+        </p>
+        <p><b>明星賽：</b>在每年的7月中到7月底舉行，分為海洋聯隊（南區、東區）和山林聯隊（北區、中區）。
+          <a href="#" class="inline-more-link" target="_blank">室內棒球聯盟明星賽</a>
+        </p>
+        <p><b>季後賽：</b>各分區第一名以及外卡前四（不分區排名前四）晉級季後賽，季後賽分為分區系列賽、分區淘汰賽、台灣大賽。
+          <a href="#" class="inline-more-link" target="_blank">室內棒球聯盟歷年季後賽賽制</a>
+        </p>
+      </section>
+
+      <!-- 聯盟制度 -->
+      <section class="section" id="hhh">
+        <h2>聯盟制度</h2>
+        
+        <div class="rule-block">
+          <h3>年度會議</h3>
+          <p>室內棒球聯盟年度會議是室內棒球聯盟（IBL）用於決定聯盟制度、競賽規則、球團管理與長期發展方向的正式決策機制。年度會議由聯盟會長主持，參與者包含聯盟秘書處、各球團代表、競賽部門與相關委員會成員。聯盟每年固定召開兩次會議，分別為春季會議與冬季會議。</p>
+          <p>春季會議通常於新球季開始前召開，主要負責確認即將實施的賽季規章與相關制度；而冬季會議通常於球季結束後召開，主要針對前一年度聯盟運作進行檢討，並規劃未來發展方向。
+            <a href="#" class="inline-more-link" target="_blank">室內棒球聯盟年度會議</a>
+          </p>
+        </div>
+
+        <div class="rule-block">
+          <h3>自由球員制度</h3>
+          <p>室內棒球聯盟自由球員制度，是保障職業球員在累積一定年資後，能夠選擇其他球團簽約的重要制度。球員必須符合一軍登錄年資滿六年，每球季需一軍登錄滿125天，始計為完整一年資格。若球員單季未達125天，仍可累積部分登錄天數。</p>
+          <p>自由球員分成一般自由球員（6年）、完全自由球員（9年），兩者差異為前者有原球團補償制度，後者沒有任何補償限制。
+            <a href="../rule/室內棒球聯盟自由球員制度.html" class="inline-more-link" target="_blank">室內棒球聯盟自由球員制度</a>
+          </p>
+        </div>
+
+        <div class="rule-block">
+          <h3>入札制度與海外FA制度</h3>
+          <p>室內棒球聯盟入札制度，是允許海外職業球團取得IBL球員談判權的制度。IBL球員符合以下條件之一，可由原球團提出入札：一軍年資滿6年或球員與球團達成共識（年資需滿3年）。而海外FA是給予長期效力IBL球員，自主挑戰海外聯盟的權利，球員一軍年資需要滿9年，且不需要原球團同意。
+            <a href="../rule/室內棒球聯盟入札與海外自由球員制度.html" class="inline-more-link" target="_blank">室內棒球聯盟入札制度與海外FA制度</a>
+          </p>
+        </div>
+
+        <div class="rule-block">
+          <h3>交易制度</h3>
+          <p>交易制度是球團間進行球員流動與戰力調整的正式機制。有球員交易、選秀權交易、現金交易等等，球團可以自行運用，不過部分球員合約可能包含交易否決權、特定球隊限制條款，球隊必須遵守。交易大限的日期為每年的7/31日。國軍鳳凰隊球員不適用一般交易制度。
+            <a href="#" class="inline-more-link" target="_blank">室內棒球聯盟交易制度</a>
+          </p>
+        </div>
+
+        <div class="rule-block">
+          <h3>新人選秀</h3>
+          <p>室內棒球聯盟新人選秀用於補充各球團新人球員的制度，主要對象為符合資格之高中、大學、業餘與其他棒球培育體系球員。為了配合台灣的學制，新人選秀通常於7月中旬舉行，是球員進入職業棒球體系的主要途徑之一。</p>
+          <p>與多數職業運動聯盟採用戰績順位不同，採用選秀順位抽籤制度，以降低弱隊長期壟斷高順位選手的情況，並維持聯盟整體競爭平衡。雖然一般而言，戰績較差之球隊擁有較高的中選機率，但最終順位由抽籤結果決定。
+            <a href="#" class="inline-more-link" target="_blank">室內棒球聯盟新人選秀會</a>
+          </p>
+        </div>
+
+        <div class="rule-block">
+          <h3>現役選秀</h3>
+          <p>現役選秀制度是室內棒球聯盟為促進球員流動、增加球員發展機會，以及維持各球團戰力平衡所設立的制度。與新人選秀不同，現役選秀對象為已經加入職業聯盟、但在原球團未能獲得充分發展機會的現役球員。制度設立目的在於避免具備一軍實力的球員因球團陣容競爭、位置重疊或養成方向不符而長期埋沒。球團會提供一份35人保護名單，名單內球員不列入其他球團選擇範圍。現役選秀順位通常依照前一年度球隊戰績決定，以確保戰力較弱球隊擁有優先補強機會。
+            <a href="#" class="inline-more-link" target="_blank">室內棒球聯盟現役選秀會</a>
+          </p>
+        </div>
+      </section>
+
+      <!-- 現役球隊 -->
+      <section class="section" id="teams">
+        <h2>現役球隊</h2>
+        <p>截至2052年球季，室內棒球聯盟共有20支一軍球隊，依地理位置分為北區、中區、南區與東區四個分區，每區各有5支球隊。</p>
+        
+        <table class="stats6">
+          <thead>
+            <tr>
+              <th>區域</th>
+              <th>隊名</th>
+              <th>屬地</th>
+              <th>主場</th>
+              <th>聯盟冠軍</th>
+              <th>年度第一</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td rowspan="5" class="region-cell">北區</td>
+              <td>味全天龍</td>
+              <td>臺北市</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>全聯熊</td>
+              <td>新北市</td>
+              <td>PX PARK 全聯棒球運動公園</td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>富邦守護者</td>
+              <td>新北市</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>樂天桃猿</td>
+              <td>桃園市</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>竹科工程師</td>
+              <td>新竹市</td>
+              <td>新竹量子巨蛋</td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td rowspan="5" class="region-cell">中區</td>
+              <td>苗栗石虎</td>
+              <td>苗栗縣</td>
+              <td>石虎生態棒球園區</td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>中信子彈</td>
+              <td>臺中市</td>
+              <td>臺中超巨蛋</td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>北鐵狼</td>
+              <td>彰化縣</td>
+              <td>彰化小巨蛋</td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>南投雷霆</td>
+              <td>南投縣</td>
+              <td>日月雷霆球場</td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>台糖巨人</td>
+              <td>雲林縣</td>
+              <td>斗六棒球場</td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td rowspan="5" class="region-cell">南區</td>
+              <td>阿里山小火車</td>
+              <td>嘉義縣</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>南亞炫風</td>
+              <td>高雄市</td>
+              <td>炫風風暴球場</td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>台鋼巨鷹</td>
+              <td>高雄市</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>統一猛獅</td>
+              <td>台南市</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>墾丁鯊魚</td>
+              <td>屏東縣</td>
+              <td>墾丁海洋競技場</td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td rowspan="5" class="region-cell">東區</td>
+              <td>花蓮眼鏡蛇</td>
+              <td>花蓮縣</td>
+              <td>花蓮太平洋球場</td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>中油火焰</td>
+              <td>宜蘭縣</td>
+              <td>CPC Flame Field</td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>台東鋼鐵人</td>
+              <td>台東縣</td>
+              <td>IRON-X Stadium</td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>基隆雨都</td>
+              <td>基隆市</td>
+              <td>雨都港灣球場</td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>奇醫海燕</td>
+              <td>澎湖縣</td>
+              <td>海燕生命科學球場</td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="table-note">注：二軍球隊除了現行二十支球團外，還有軍事替代役球隊國軍鳳凰隊。</p>
+      </section>
+
+      <!-- 行政職與歷史會長 -->
+      <section class="section" id="ddd">
+        <h2>行政職與歷任會長</h2>
+        <p>室內棒球聯盟設有完整行政管理體系，負責聯盟日常運作、競賽管理、球員制度、商業發展及長期規劃。聯盟最高行政負責人為聯盟會長，由副會長、秘書長及監事等職務協助管理聯盟事務。</p>
+        
+        <table class="stats6">
+          <thead>
+            <tr>
+              <th>層級</th>
+              <th>組織</th>
+              <th>姓名</th>
+              <th>主要職責</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td rowspan="4" class="region-cell">最高管理層</td>
+              <td>聯盟會長</td>
+              <td>鄭武雄</td>
+              <td>負責聯盟整體方向、重大決策、對外代表IBL</td>
+            </tr>
+            <tr>
+              <td>副會長</td>
+              <td></td>
+              <td>協助會長管理聯盟事務，負責跨部門協調</td>
+            </tr>
+            <tr>
+              <td>秘書長</td>
+              <td></td>
+              <td>負責聯盟日常行政運作、會議與規章執行</td>
+            </tr>
+            <tr>
+              <td>常務監事</td>
+              <td></td>
+              <td>監督聯盟財務、行政流程與決策合法性</td>
+            </tr>
+            <tr>
+              <td rowspan="2" class="region-cell">決策機構</td>
+              <td>聯盟理事會</td>
+              <td></td>
+              <td>審議重大制度改革、球團加盟與聯盟政策</td>
+            </tr>
+            <tr>
+              <td>領隊會議</td>
+              <td>各球團領隊</td>
+              <td>由各球團代表組成，討論球季規則與球團共同事項</td>
+            </tr>
+            <tr>
+              <td rowspan="6" class="region-cell">行政部門</td>
+              <td>競賽部</td>
+              <td></td>
+              <td>負責賽程安排、競賽規則、裁判管理</td>
+            </tr>
+            <tr>
+              <td>球員發展部</td>
+              <td></td>
+              <td>負責新人選秀、現役選秀、球員註冊與二軍制度</td>
+            </tr>
+            <tr>
+              <td>財務與商業部</td>
+              <td></td>
+              <td>負責轉播權、企業合作與聯盟收入</td>
+            </tr>
+            <tr>
+              <td>行銷公關部</td>
+              <td></td>
+              <td>負責品牌經營、球迷活動與媒體關係</td>
+            </tr>
+            <tr>
+              <td>青訓發展部</td>
+              <td></td>
+              <td>負責基層棒球、青少年培育與地方合作</td>
+            </tr>
+            <tr>
+              <td>國際事務部</td>
+              <td></td>
+              <td>負責海外交流與國際合作</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- 折疊收合：歷任會長 -->
+        <details class="decade-box">
+          <summary class="decade-summary">室內棒球聯盟歷任會長名冊（點擊展開）</summary>
+          <table class="pro-table">
+            <thead>
+              <tr>
+                <th>任次</th>
+                <th>姓名</th>
+                <th>就任日期</th>
+                <th>離任日期</th>
+                <th>備註</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>郭景文</td>
+                <td>1999年1月7日</td>
+                <td>2006年3月8日</td>
+                <td>創始會長、第一次擴編推動者</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>郭景文</td>
+                <td>2006年3月8日</td>
+                <td>2009年8月25日</td>
+                <td>連任</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td></td>
+                <td>2009年8月26日</td>
+                <td>2014年4月25日</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>林東啟</td>
+                <td>2014年4月26日</td>
+                <td>2017年5月20日</td>
+                <td>商業化轉型、開放高中生選秀</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>林東啟</td>
+                <td>2017年5月21日</td>
+                <td>2019年12月31日</td>
+                <td>推動會長制度改革、企業化前期準備</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>陳慶昇</td>
+                <td>2020年1月1日</td>
+                <td>2023年12月31日</td>
+                <td>企業化改革、第二次擴編、國軍隊成立</td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>陳慶昇</td>
+                <td>2024年1月1日</td>
+                <td>2027年12月31日</td>
+                <td>連任、兩聯盟制度</td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td></td>
+                <td>2028年1月1日</td>
+                <td>2031年12月31日</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>9</td>
+                <td></td>
+                <td>2031年1月1日</td>
+                <td>2034年12月31日</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>10</td>
+                <td>洪秉鈞</td>
+                <td>2035年1月1日</td>
+                <td>2038年12月31日</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>11</td>
+                <td>洪秉鈞</td>
+                <td>2039年1月1日</td>
+                <td>2042年12月31日</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>12</td>
+                <td></td>
+                <td>2043年1月1日</td>
+                <td>2046年12月31日</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>13</td>
+                <td></td>
+                <td>2047年1月1日</td>
+                <td>2050年12月31日</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>14</td>
+                <td>鄭武雄</td>
+                <td>2051年1月1日</td>
+                <td>—</td>
+                <td>現任</td>
+              </tr>
+            </tbody>
+          </table>
+        </details>
+      </section>
+
+      <!-- 聯盟新聞與動態 -->
+      <section class="section" id="news">
+        <h2>聯盟新聞與動態</h2>
+        <ul class="news-list">
+          <li>
+            <a href="../news/奇醫海燕企業入主與新帥加盟.html">【室內棒球聯盟】離島棒球浴火重生！奇雋醫療科技斥資入主 傳奇名帥陸廷威重返職棒掌「奇醫海燕」兵符</a>
+            <span class="news-date">（2045.11.4）</span>
+          </li>
+          <li>
+            <a href="../news/陸廷威總教練遞出辭呈.html">室內棒球聯盟 》科技海燕驚傳兵變！開港首任教頭陸廷威因「重度失眠」請辭 轉任顧問、陳昭遠2050年接掌兵符</a>
+            <span class="news-date">（2049.04.15）</span>
+          </li>
+        </ul>
+      </section>
+
+    </main>
+
+    <!-- 右側：固定/貼邊 基本資料欄 -->
+    <aside class="sidebar-area">
+      <div class="infobox">
+        <div class="infobox-title">室內棒球聯盟 IBL</div>
+        
+        <div class="profile">
+          <div><span>創始人</span>室內棒球聯盟股份有限公司</div>
+          <div><span>創隊日期</span>1999年2月23日</div>
+          <div><span>首賽季</span>2000年</div>
+          <div><span>隊伍數</span>20隊</div>
+        </div>
+
+        <div class="infobox-section-title">現任會長</div>
+        <div class="infobox-content-item">鄭武雄</div>
+
+        <div class="infobox-section-title">聯盟總部</div>
+        <div class="infobox-content-item">臺中市西屯區聯盟大道100號</div>
+
+        <div class="infobox-section-title">應屆冠軍</div>
+        <div class="infobox-content-item">
+          <a href="../teams/阿里山小火車.html">阿里山小火車隊</a>（3次）
+        </div>
+      </div>
+    </aside>
+
+  </div>
+
+</div>
+
+</body>
+</html>
