@@ -235,3 +235,78 @@ table.stats tbody tr:nth-child(even) td {
     align-self: flex-end;
   }
 }
+
+/* ===== 折疊選單 (Collapsible) 樣式 ===== */
+details.collapsible-section {
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background: #ffffff;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+/* 隱藏原生 details 三角箭頭 */
+details.collapsible-section > summary::-webkit-details-marker,
+details.collapsible-section > summary::marker {
+  display: none;
+}
+
+.collapsible-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: var(--bg-light);
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.2s;
+}
+
+.collapsible-header:hover {
+  background-color: var(--second-color);
+}
+
+.collapsible-header h2 {
+  margin: 0;
+  padding-bottom: 0;
+  border-bottom: none; /* 移除原本 h2 下方的底線以配合摺疊標題 */
+  font-size: 1.2rem;
+}
+
+.toggle-icon {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  transition: transform 0.3s ease;
+}
+
+/* 展開時將箭頭旋轉 */
+details.collapsible-section[open] .toggle-icon {
+  transform: rotate(180deg);
+}
+
+/* 折疊內部的內容區塊 */
+.collapsible-content {
+  padding: 16px;
+  border-top: 1px solid var(--border-color);
+}
+
+/* ===== 同屆隊友雙層標題表格微調 ===== */
+.teammate-table th {
+  vertical-align: middle;
+}
+
+.teammate-table tr.school-group-header td {
+  background-color: var(--bg-light) !important;
+  font-weight: 700;
+  color: var(--primary-color);
+  text-align: center;
+  padding: 6px;
+  border-top: 2px solid var(--border-color);
+  border-bottom: 2px solid var(--border-color);
+}
+
+.table-note {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 10px;
+}
