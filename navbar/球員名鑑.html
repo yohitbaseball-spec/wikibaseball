@@ -5,26 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>球員名鑑</title>
   
-  <!-- 載入全域獎項 CSS 與 專屬樣式 -->
   <link rel="stylesheet" href="../css/award.css">
   <link rel="stylesheet" href="../css/player_directory.css">
 </head>
 <body>
 
   <div class="container">
-    <!-- 頂部導覽列 -->
     <div class="topnav">
-      <a href="../index.html">首頁</a> /
-      球員資料總覽
+      <a href="../index.html">首頁</a> / 球員資料總覽
     </div>
 
-    <!-- 頁首標題 -->
     <div class="header">
       <h1>室內棒球聯盟球員名鑑</h1>
       <div class="sub">Player Directory & Historical Database</div>
     </div>
 
-    <!-- 介紹區塊 (右側延伸細線、無卡片、黑字說明) -->
     <section class="award-intro">
       <h2>球員資料總覽</h2>
       <p>
@@ -32,14 +27,11 @@
       </p>
     </section>
 
-    <!-- 多維度快速檢索控制面板 -->
     <div class="filter-panel">
-      <!-- 1. 搜尋框 -->
       <div class="search-bar-wrapper">
         <input type="text" id="searchInput" class="search-input" placeholder="搜尋球員姓名、背號、球隊或國籍（例：18、猛虎隊、日本）...">
       </div>
 
-      <!-- 2. 守備位置篩選 -->
       <div class="filter-group">
         <span class="filter-label">守備位置：</span>
         <div class="filter-buttons" id="posFilter">
@@ -51,7 +43,6 @@
         </div>
       </div>
 
-      <!-- 3. 投打習慣篩選 -->
       <div class="filter-group">
         <span class="filter-label">投打習慣：</span>
         <div class="filter-buttons" id="btFilter">
@@ -64,10 +55,14 @@
         </div>
       </div>
 
-      
-   </div>
+      <div class="filter-group">
+        <span class="filter-label">姓名索引：</span>
+        <div class="filter-buttons index-bar" id="alphaIndexBar">
+          <button class="filter-btn active" data-index="ALL">全部</button>
+        </div>
+      </div>
+    </div>
 
-    <!-- 球員名冊數據表格 -->
     <table class="stats player-directory-table">
       <thead>
         <tr>
@@ -81,13 +76,11 @@
         </tr>
       </thead>
       <tbody id="playerTableBody">
-        <!-- JavaScript 會自動掃描 GitHub 資料夾並將球員資料渲染至此 -->
       </tbody>
     </table>
 
   </div>
 
-  <!-- 載入自動化多維度檢索 JavaScript 腳本 -->
   <script src="../js/player_directory.js"></script>
 </body>
 </html>
