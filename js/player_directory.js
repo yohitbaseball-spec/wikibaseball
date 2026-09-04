@@ -1,6 +1,6 @@
 const GITHUB_USER = 'yohitbaseball-spec';
 const REPO_NAME = 'wikibaseball';
-const PLAYER_FOLDERS = ['players', 'jpplayers', 'korplayers'];
+const PLAYER_FOLDERS = ['players', 'jpplayers', 'korplayers', 'usaplayers'];
 
 let allPlayers = [];
 let currentFilter = {
