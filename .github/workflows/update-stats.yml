@@ -27,6 +27,7 @@ jobs:
       - name: 從 Google 試算表抓取數據並更新 HTML
         env:
           SHEET_ID: ${{ secrets.GOOGLE_SHEET_ID }}
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
         run: python update.py
 
       - name: 提交並推送變更到 GitHub
