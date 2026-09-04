@@ -1,22 +1,7 @@
 [
   {
-    "title": "許景成",
-    "url": "players/許景成.html",
-    "tag": "台灣球員"
-  },
-  {
     "title": "邱家濬",
     "url": "players/邱家濬.html",
-    "tag": "台灣球員"
-  },
-  {
-    "title": "鄭家宏",
-    "url": "players/鄭家宏.html",
-    "tag": "台灣球員"
-  },
-  {
-    "title": "張致謙",
-    "url": "players/張致謙.html",
     "tag": "台灣球員"
   },
   {
@@ -25,8 +10,13 @@
     "tag": "台灣球員"
   },
   {
-    "title": "劉子睿",
-    "url": "players/劉子睿.html",
+    "title": "鄭家宏",
+    "url": "players/鄭家宏.html",
+    "tag": "台灣球員"
+  },
+  {
+    "title": "許景成",
+    "url": "players/許景成.html",
     "tag": "台灣球員"
   },
   {
@@ -35,18 +25,28 @@
     "tag": "台灣球員"
   },
   {
+    "title": "張致謙",
+    "url": "players/張致謙.html",
+    "tag": "台灣球員"
+  },
+  {
+    "title": "劉子睿",
+    "url": "players/劉子睿.html",
+    "tag": "台灣球員"
+  },
+  {
     "title": "金在勳",
     "url": "korplayers/金在勳.html",
     "tag": "韓國球員"
   },
   {
-    "title": "室內棒球聯盟年度安打王",
-    "url": "awards/室內棒球聯盟年度安打王.html",
+    "title": "室內棒球聯盟年度金手套獎",
+    "url": "awards/室內棒球聯盟年度金手套.html",
     "tag": "獎項"
   },
   {
-    "title": "室內棒球聯盟年度金手套獎",
-    "url": "awards/室內棒球聯盟年度金手套.html",
+    "title": "室內棒球聯盟年度安打王",
+    "url": "awards/室內棒球聯盟年度安打王.html",
     "tag": "獎項"
   },
   {
@@ -55,13 +55,13 @@
     "tag": "獎項"
   },
   {
-    "title": "室內棒球聯盟年度最佳青棒選手獎",
-    "url": "awards/室內棒球聯盟年度最佳青棒選手獎.html",
+    "title": "室內棒球聯盟年度新人王",
+    "url": "awards/室內棒球聯盟年度新人王.html",
     "tag": "獎項"
   },
   {
-    "title": "室內棒球聯盟年度新人王",
-    "url": "awards/室內棒球聯盟年度新人王.html",
+    "title": "室內棒球聯盟年度最佳青棒選手獎",
+    "url": "awards/室內棒球聯盟年度最佳青棒選手獎.html",
     "tag": "獎項"
   }
 ]
