@@ -3,11 +3,11 @@ import re
 from urllib.parse import quote
 import requests
 
-SHEET_ID = os.environ.get("SHEET_ID")
+SHEET_ID = os.environ.get("SHEET_ID") or os.environ.get("GOOGLE_SHEET_ID")
 API_KEY = os.environ.get("GOOGLE_API_KEY")
 
 if not SHEET_ID:
-    print("❌ 錯誤：未設定 SHEET_ID")  
+    print("❌ 錯誤：未設定 SHEET_ID")
     exit(1)
 
 if not API_KEY:
@@ -126,16 +126,23 @@ def parse_cell(cell):
     return num, html_str
 
 
+def get_clean_cell_value(cell):
+    """【防呆 1】專門用來提取純 ID（無論儲存格有沒有設粗體/顏色都保證讀出正確字串）"""
+    if not cell:
+        return ""
+    return str(cell.get("formattedValue", "")).strip()
+
+
 def process_batting_stats():
     rows = fetch_sheet_data_with_styles("打擊成績")
     if not rows:
         return {}
 
-    # 按 player_id 分組
     player_groups = {}
     for row in rows:
-        pid = row.get("player_id", {}).get("formattedValue", "").strip()
-        if not pid:
+        # 使用安全的純文字擷取，防止 pid 因為加粗而變 None
+        pid = get_clean_cell_value(row.get("player_id"))
+        if not pid or pid == "-" or pid.lower() == "nan":
             continue
         player_groups.setdefault(pid, []).append(row)
 
@@ -149,7 +156,7 @@ def process_batting_stats():
 
         for row in group:
             _, year_str = parse_cell(row.get("year"))
-            team_str = row.get("team", {}).get("formattedValue", "").strip()
+            team_str = get_clean_cell_value(row.get("team"))
 
             g, g_html = parse_cell(row.get("G"))
             pa, pa_html = parse_cell(row.get("PA"))
@@ -171,7 +178,6 @@ def process_batting_stats():
                 tb = h + b2 + (2 * b3) + (3 * hr)
                 tb_html = f"{int(tb)}"
 
-            # 計算率項（若 Excel 無自訂樣式則用算出的，若有樣式以 Excel 呈現為主）
             avg_calc = (h / ab) if ab > 0 else 0.0
             obp_calc = ((h + bb) / (ab + bb + sf)) if (ab + bb + sf) > 0 else 0.0
             slg_calc = (tb / ab) if ab > 0 else 0.0
@@ -274,8 +280,8 @@ def process_pitching_stats():
 
     player_groups = {}
     for row in rows:
-        pid = row.get("player_id", {}).get("formattedValue", "").strip()
-        if not pid:
+        pid = get_clean_cell_value(row.get("player_id"))
+        if not pid or pid == "-" or pid.lower() == "nan":
             continue
         player_groups.setdefault(pid, []).append(row)
 
@@ -289,10 +295,9 @@ def process_pitching_stats():
 
         for row in group:
             _, year_str = parse_cell(row.get("year"))
-            team_str = row.get("team", {}).get("formattedValue", "").strip()
+            team_str = get_clean_cell_value(row.get("team"))
 
-            # 局數與出局數處理
-            raw_ip_val = row.get("IP", {}).get("formattedValue", "0")
+            raw_ip_val = get_clean_cell_value(row.get("IP"))
             outs = ip_to_outs(raw_ip_val)
             _, ip_html = parse_cell(row.get("IP"))
             ip_actual = outs / 3.0
@@ -414,13 +419,16 @@ def update_html_files():
         for file in files:
             if file.endswith(".html"):
                 filepath = os.path.join(root, file)
+                filename_without_ext = os.path.splitext(file)[0]  # 例如 鄭家宏
+
                 with open(filepath, "r", encoding="utf-8") as f:
                     content = f.read()
 
                 updated = False
 
+                # 【防呆 2】優先比對檔名或精準標籤，防止跨頁面誤蓋
                 for pid, html_rows in batting_data.items():
-                    if pid in content and "<!-- STATS_START -->" in content:
+                    if (pid == filename_without_ext or pid in content) and "<!-- STATS_START -->" in content:
                         start_tag = "<!-- STATS_START -->"
                         end_tag = "<!-- STATS_END -->"
                         idx1 = content.find(start_tag) + len(start_tag)
@@ -434,12 +442,10 @@ def update_html_files():
                                 + content[idx2:]
                             )
                             updated = True
+                            break  # 找到對應球員就停止該檔案的打擊搜尋，避免被其他人蓋掉
 
                 for pid, html_rows in pitching_data.items():
-                    if (
-                        pid in content
-                        and "<!-- PITCHER_STATS_START -->" in content
-                    ):
+                    if (pid == filename_without_ext or pid in content) and "<!-- PITCHER_STATS_START -->" in content:
                         start_tag = "<!-- PITCHER_STATS_START -->"
                         end_tag = "<!-- PITCHER_STATS_END -->"
                         idx1 = content.find(start_tag) + len(start_tag)
@@ -453,6 +459,7 @@ def update_html_files():
                                 + content[idx2:]
                             )
                             updated = True
+                            break
 
                 if updated:
                     with open(filepath, "w", encoding="utf-8") as f:
