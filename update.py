@@ -419,47 +419,50 @@ def update_html_files():
         for file in files:
             if file.endswith(".html"):
                 filepath = os.path.join(root, file)
-                filename_without_ext = os.path.splitext(file)[0]  # 例如 鄭家宏
+                filename_without_ext = os.path.splitext(file)[0]  # 例如 林澤村
 
                 with open(filepath, "r", encoding="utf-8") as f:
                     content = f.read()
 
                 updated = False
 
-                # 【防呆 2】優先比對檔名或精準標籤，防止跨頁面誤蓋
-                for pid, html_rows in batting_data.items():
-                    if (pid == filename_without_ext or pid in content) and "<!-- STATS_START -->" in content:
-                        start_tag = "<!-- STATS_START -->"
-                        end_tag = "<!-- STATS_END -->"
-                        idx1 = content.find(start_tag) + len(start_tag)
-                        idx2 = content.find(end_tag)
-                        if idx1 != -1 and idx2 != -1 and idx1 < idx2:
-                            content = (
-                                content[:idx1]
-                                + "\n"
-                                + html_rows
-                                + "        "
-                                + content[idx2:]
-                            )
-                            updated = True
-                            break  # 找到對應球員就停止該檔案的打擊搜尋，避免被其他人蓋掉
+                # 1. 處理打擊成績
+                if "<!-- STATS_START -->" in content:
+                    start_tag = "<!-- STATS_START -->"
+                    end_tag = "<!-- STATS_END -->"
+                    for pid, html_rows in batting_data.items():
+                        if pid == filename_without_ext or pid in content:
+                            idx1 = content.find(start_tag) + len(start_tag)
+                            idx2 = content.find(end_tag)
+                            if idx1 != -1 and idx2 != -1 and idx1 < idx2:
+                                content = (
+                                    content[:idx1]
+                                    + "\n"
+                                    + html_rows
+                                    + "        "
+                                    + content[idx2:]
+                                )
+                                updated = True
+                                break
 
-                for pid, html_rows in pitching_data.items():
-                    if (pid == filename_without_ext or pid in content) and "<!-- PITCHER_STATS_START -->" in content:
-                        start_tag = "<!-- PITCHER_STATS_START -->"
-                        end_tag = "<!-- PITCHER_STATS_END -->"
-                        idx1 = content.find(start_tag) + len(start_tag)
-                        idx2 = content.find(end_tag)
-                        if idx1 != -1 and idx2 != -1 and idx1 < idx2:
-                            content = (
-                                content[:idx1]
-                                + "\n"
-                                + html_rows
-                                + "        "
-                                + content[idx2:]
-                            )
-                            updated = True
-                            break
+                # 2. 處理投手成績 (獨立判斷，不再受打擊迴圈影響)
+                if "<!-- PITCHER_STATS_START -->" in content:
+                    start_tag = "<!-- PITCHER_STATS_START -->"
+                    end_tag = "<!-- PITCHER_STATS_END -->"
+                    for pid, html_rows in pitching_data.items():
+                        if pid == filename_without_ext or pid in content:
+                            idx1 = content.find(start_tag) + len(start_tag)
+                            idx2 = content.find(end_tag)
+                            if idx1 != -1 and idx2 != -1 and idx1 < idx2:
+                                content = (
+                                    content[:idx1]
+                                    + "\n"
+                                    + html_rows
+                                    + "        "
+                                    + content[idx2:]
+                                )
+                                updated = True
+                                break
 
                 if updated:
                     with open(filepath, "w", encoding="utf-8") as f:
