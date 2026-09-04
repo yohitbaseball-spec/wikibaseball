@@ -32,6 +32,7 @@ jobs:
           SCAN_CONFIG = {
               'players': '台灣球員',
               'korplayers': '韓國球員',
+              'usaplayers': '韓國球員',
               'awards': '獎項',
               'stadiums': '球場'
           }
