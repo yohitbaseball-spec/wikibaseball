@@ -41,7 +41,8 @@ document.addEventListener('DOMContentLoaded', async () => {
           number: doc.querySelector('meta[name="number"]')?.getAttribute('content') || '-',
           position: pos,
           posCategory: getPosCategory(pos),
-          nationality: file.folderName === 'jpplayers' ? '日本' : 
+          nationality: file.folderName === 'jpplayers' ? '日本' :
+                       file.folderName === 'usaplayers' ? '美國' :
                        file.folderName === 'korplayers' ? '韓國' : '台灣',
           batsThrows: doc.querySelector('meta[name="bats-throws"]')?.getAttribute('content') || '-',
           honors: doc.querySelector('meta[name="honors"]')?.getAttribute('content')?.split(',') || []
