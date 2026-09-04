@@ -7,7 +7,7 @@ SHEET_ID = os.environ.get("SHEET_ID")
 API_KEY = os.environ.get("GOOGLE_API_KEY")
 
 if not SHEET_ID:
-    print("❌ 錯誤：未設定 SHEET_ID") 
+    print("❌ 錯誤：未設定 SHEET_ID")  
     exit(1)
 
 if not API_KEY:
