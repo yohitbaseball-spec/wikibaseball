@@ -273,6 +273,17 @@ def process_batting_stats():
     return batting_by_player
 
 
+def outs_to_ip_str(outs):
+    """將總出局數 (Outs) 轉回 IP 格式字串 (例如 205 出局 -> 68.1)"""
+    outs = int(outs)
+    i = outs // 3
+    f = outs % 3
+    if f == 0:
+        return f"{i}"
+    else:
+        return f"{i}.{f}"
+
+
 def process_pitching_stats():
     rows = fetch_sheet_data_with_styles("投手成績")
     if not rows:
@@ -288,9 +299,7 @@ def process_pitching_stats():
     pitching_by_player = {}
     for pid, group in player_groups.items():
         rows_html = ""
-        tot_g = tot_gs = tot_w = tot_l = tot_hld = tot_sv = tot_outs = (
-            tot_qs
-        ) = 0.0
+        tot_g = tot_gs = tot_w = tot_l = tot_hld = tot_sv = tot_outs = tot_qs = 0.0
         tot_bf = tot_bh = tot_bhr = tot_so = tot_bb = tot_r = tot_er = 0.0
 
         for row in group:
@@ -346,6 +355,7 @@ def process_pitching_stats():
             era_final = era_html if era_html != "-" else f"{era_calc:.2f}"
             whip_final = whip_html if whip_html != "-" else f"{whip_calc:.2f}"
 
+            # 精準對應 20 個 <td> (包含 IP，移除 TB)
             rows_html += f"""          <tr>
             <td>{year_str}</td>
             <td>{team_str}</td>
@@ -360,11 +370,11 @@ def process_pitching_stats():
             <td>{bf_html}</td>
             <td>{bh_html}</td>
             <td>{bhr_html}</td>
-            <td>{oavg_final}</td>
             <td>{so_html}</td>
             <td>{bb_html}</td>
             <td>{r_html}</td>
             <td>{er_html}</td>
+            <td>{oavg_final}</td>
             <td>{era_final}</td>
             <td>{whip_final}</td>
           </tr>\n"""
@@ -373,15 +383,9 @@ def process_pitching_stats():
         if len(group) > 0:
             tot_ip_actual = tot_outs / 3.0
             tot_ab_against = tot_bf - tot_bb
-            tot_oavg = (
-                (tot_bh / tot_ab_against) if tot_ab_against > 0 else 0.0
-            )
-            tot_era = (
-                (tot_er * 9.0) / tot_ip_actual if tot_ip_actual > 0 else 0.0
-            )
-            tot_whip = (
-                (tot_bb + tot_bh) / tot_ip_actual if tot_ip_actual > 0 else 0.0
-            )
+            tot_oavg = (tot_bh / tot_ab_against) if tot_ab_against > 0 else 0.0
+            tot_era = (tot_er * 9.0) / tot_ip_actual if tot_ip_actual > 0 else 0.0
+            tot_whip = (tot_bb + tot_bh) / tot_ip_actual if tot_ip_actual > 0 else 0.0
 
             rows_html += f"""          <tr>
             <td>通算</td>
@@ -397,11 +401,11 @@ def process_pitching_stats():
             <td>{int(tot_bf)}</td>
             <td>{int(tot_bh)}</td>
             <td>{int(tot_bhr)}</td>
-            <td>{tot_oavg:.3f}</td>
             <td>{int(tot_so)}</td>
             <td>{int(tot_bb)}</td>
             <td>{int(tot_r)}</td>
             <td>{int(tot_er)}</td>
+            <td>{tot_oavg:.3f}</td>
             <td>{tot_era:.2f}</td>
             <td>{tot_whip:.2f}</td>
           </tr>\n"""
