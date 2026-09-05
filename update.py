@@ -430,43 +430,44 @@ def update_html_files():
 
                 updated = False
 
-                # 1. 處理打擊成績
+                # 1. 處理打擊成績 (優先精準匹配檔名)
                 if "<!-- STATS_START -->" in content:
                     start_tag = "<!-- STATS_START -->"
                     end_tag = "<!-- STATS_END -->"
-                    for pid, html_rows in batting_data.items():
-                        if pid == filename_without_ext or pid in content:
-                            idx1 = content.find(start_tag) + len(start_tag)
-                            idx2 = content.find(end_tag)
-                            if idx1 != -1 and idx2 != -1 and idx1 < idx2:
-                                content = (
-                                    content[:idx1]
-                                    + "\n"
-                                    + html_rows
-                                    + "        "
-                                    + content[idx2:]
-                                )
-                                updated = True
-                                break
+                    
+                    # 只有 pid 與【檔名】完全一致時才寫入，避免內文提到別人名子被誤套用
+                    if filename_without_ext in batting_data:
+                        html_rows = batting_data[filename_without_ext]
+                        idx1 = content.find(start_tag) + len(start_tag)
+                        idx2 = content.find(end_tag)
+                        if idx1 != -1 and idx2 != -1 and idx1 < idx2:
+                            content = (
+                                content[:idx1]
+                                + "\n"
+                                + html_rows
+                                + "        "
+                                + content[idx2:]
+                            )
+                            updated = True
 
-                # 2. 處理投手成績 (獨立判斷，不再受打擊迴圈影響)
+                # 2. 處理投手成績 (優先精準匹配檔名)
                 if "<!-- PITCHER_STATS_START -->" in content:
                     start_tag = "<!-- PITCHER_STATS_START -->"
                     end_tag = "<!-- PITCHER_STATS_END -->"
-                    for pid, html_rows in pitching_data.items():
-                        if pid == filename_without_ext or pid in content:
-                            idx1 = content.find(start_tag) + len(start_tag)
-                            idx2 = content.find(end_tag)
-                            if idx1 != -1 and idx2 != -1 and idx1 < idx2:
-                                content = (
-                                    content[:idx1]
-                                    + "\n"
-                                    + html_rows
-                                    + "        "
-                                    + content[idx2:]
-                                )
-                                updated = True
-                                break
+                    
+                    if filename_without_ext in pitching_data:
+                        html_rows = pitching_data[filename_without_ext]
+                        idx1 = content.find(start_tag) + len(start_tag)
+                        idx2 = content.find(end_tag)
+                        if idx1 != -1 and idx2 != -1 and idx1 < idx2:
+                            content = (
+                                content[:idx1]
+                                + "\n"
+                                + html_rows
+                                + "        "
+                                + content[idx2:]
+                            )
+                            updated = True
 
                 if updated:
                     with open(filepath, "w", encoding="utf-8") as f:
