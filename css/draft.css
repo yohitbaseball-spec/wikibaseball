@@ -1,0 +1,44 @@
+/* ===== 選秀結果矩陣 (100% 保持你原本的 CSS 結構) ===== */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+table.stats {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.85em;
+}
+
+table.stats th,
+table.stats td {
+  padding: 8px 10px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  white-space: nowrap;
+}
+
+table.stats th {
+  background: #2563eb;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+table.stats tbody tr:nth-child(even) td { background: #ECF5FF; }
+
+/* 固定第一欄 (輪次) */
+table.stats th:first-child,
+table.stats td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 5;
+  border-right: 2px solid #e5e7eb;
+}
+
+table.stats td:first-child { background-color: #ffffff !important; font-weight: bold; }
+table.stats tbody tr:nth-child(even) td:first-child { background-color: #ECF5FF !important; }
+table.stats th:first-child { background-color: #1d4ed8 !important; z-index: 6; }
