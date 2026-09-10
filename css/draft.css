@@ -42,3 +42,14 @@ table.stats td:first-child {
 table.stats td:first-child { background-color: #ffffff !important; font-weight: bold; }
 table.stats tbody tr:nth-child(even) td:first-child { background-color: #ECF5FF !important; }
 table.stats th:first-child { background-color: #1d4ed8 !important; z-index: 6; }
+
+/* 年份切換器 */
+.year-switcher {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px dashed var(--border-color);
+  padding-top: 15px;
+  margin-top: 20px;
+  font-size: 0.88rem;
+}
