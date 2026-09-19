@@ -12,61 +12,33 @@ let currentFilter = {
 
 document.addEventListener('DOMContentLoaded', async () => {
   try {
-    // 1. 讀取 GitHub 檔案列表
-    const folderRequests = PLAYER_FOLDERS.map(folder =>
-      fetch(`https://api.github.com/repos/${GITHUB_USER}/${REPO_NAME}/contents/${folder}`)
-        .then(res => res.ok ? res.json() : [])
-        .then(files => files.map(file => ({ ...file, folderName: folder })))
-    );
+    // 改為只發送 1 次請求讀取 data/players.json
+    const res = await fetch('../data/players.json');
+    if (!res.ok) {
+      throw new Error(`無法讀取 players.json (HTTP Status: ${res.status})`);
+    }
 
-    const nestedFiles = await Promise.all(folderRequests);
-    const htmlFiles = nestedFiles.flat().filter(file => file.name.endsWith('.html') && file.name !== 'index.html');
+    const rawData = await res.json();
 
-    // 2. 解析球員 Meta 資料
-    allPlayers = await Promise.all(htmlFiles.map(async (file) => {
-      try {
-        const res = await fetch(file.download_url);
-        if (!res.ok) return null;
-        const htmlText = await res.text();
-        const doc = new DOMParser().parseFromString(htmlText, 'text/html');
-        
-        const name = doc.querySelector('title')?.innerText.split('-')[0].trim() || file.name.replace('.html', '');
-        const pos = doc.querySelector('meta[name="position"]')?.getAttribute('content') || '-';
-
-        return {
-          url: file.path,
-          name: name,
-          initialIndex: getFirstCharIndex(name), // 精確注音/英文首字判斷
-          team: doc.querySelector('meta[name="team"]')?.getAttribute('content') || '未指定',
-          number: doc.querySelector('meta[name="number"]')?.getAttribute('content') || '-',
-          position: pos,
-          posCategory: getPosCategory(pos),
-          nationality: file.folderName === 'jpplayers' ? '日本' :
-                       file.folderName === 'usaplayers' ? '美國' :
-                       file.folderName === 'korplayers' ? '韓國' : '台灣',
-          batsThrows: doc.querySelector('meta[name="bats-throws"]')?.getAttribute('content') || '-',
-          honors: doc.querySelector('meta[name="honors"]')?.getAttribute('content')?.split(',') || []
-        };
-      } catch (e) {
-        console.error(`解析檔案失敗: ${file.name}`, e);
-        return null;
-      }
+    // 自動補充計算注音首字與守備分類
+    allPlayers = rawData.map(p => ({
+      ...p,
+      initialIndex: getFirstCharIndex(p.name),
+      posCategory: getPosCategory(p.position || '-'),
+      honors: Array.isArray(p.honors) ? p.honors : []
     }));
 
-    // 過濾無效資料
-    allPlayers = allPlayers.filter(p => p !== null);
-
-    // 3. 自動渲染注音/字母索引軌道按鈕
+    // 渲染畫面
     buildIndexBar(allPlayers);
-
-    // 4. 初始化事件監聽
     initFilterEvents();
-
-    // 5. 渲染表格
     applyFilters();
 
   } catch (error) {
     console.error('載入失敗：', error);
+    const tbody = document.getElementById('playerTableBody');
+    if (tbody) {
+      tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; color:#e74c3c; padding:30px;">數據載入失敗，請確認 data/players.json 檔案已成功建立。</td></tr>';
+    }
   }
 });
 
