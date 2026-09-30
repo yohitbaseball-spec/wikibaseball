@@ -221,6 +221,7 @@
       text-align: center;
       font-size: 12px;
       margin-bottom: 12px;
+      table-layout: fixed;
     }
 
     table.linescore th, table.linescore td {
