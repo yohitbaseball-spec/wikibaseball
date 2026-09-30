@@ -1,0 +1,127 @@
+.wiki-bracket-wrapper {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    /* 樹狀圖整體容器 */
+    .wiki-bracket-container {
+      display: flex;
+      min-width: 920px;
+      gap: 20px;
+      font-size: 13px;
+    }
+
+    /* 每一輪（一欄）結構 */
+    .wiki-column {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-width: 210px;
+    }
+
+    /* 1. 頂部階段標題：統一固定高度與齊頂對齊 */
+    .wiki-header {
+      background-color: #f8f9fa;
+      border: 1px solid #a2a9b1;
+      font-weight: bold;
+      text-align: center;
+      padding: 6px 4px;
+      font-size: 14px;
+      height: 42px; /* 固定標題高度 */
+      box-sizing: border-box;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .wiki-header small {
+      font-size: 11px;
+      font-weight: normal;
+      color: #54595d;
+    }
+
+    /* 2. 對決區塊內容：利用 flex-grow 自動將對決卡片推至居中位置 */
+    .wiki-matches-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around; /* 自動等距/居中分配 */
+      flex-grow: 1;
+    }
+
+    /* 對決卡片 (Matchup Table) */
+    .wiki-match {
+      border-collapse: collapse;
+      width: 100%;
+      background-color: #f8f9fa;
+      border: 1px solid #a2a9b1;
+      margin: 8px 0;
+    }
+
+    .wiki-match td {
+      padding: 5px 6px;
+      border: 1px solid #a2a9b1;
+    }
+
+    /* 種子號碼欄 */
+    .wiki-seed {
+      background-color: #eaecf0;
+      text-align: center;
+      width: 24px;
+      font-weight: bold;
+    }
+
+    /* 隊伍名稱欄 */
+    .wiki-team {
+      background-color: #ffffff;
+    }
+
+    /* 勝場 / 比分欄 */
+    .wiki-score {
+      background-color: #f8f9fa;
+      text-align: center;
+      width: 28px;
+      font-weight: bold;
+    }
+
+    /* 晉級獲勝隊伍高亮 */
+    .wiki-win .wiki-team {
+      font-weight: bold;
+      background-color: #eaf3ff; /* 維基經典淡藍 */
+    }
+    .wiki-win .wiki-score {
+      background-color: #d5e4f9;
+      font-weight: bold;
+    }
+
+    /* 外卡對接提示標籤 */
+    .wiki-note {
+      font-size: 11px;
+      color: #54595d;
+      text-align: center;
+      background: #f8f9fa;
+      border: 1px dashed #a2a9b1;
+      padding: 3px;
+      margin-top: 2px;
+    }
+
+    /* 總冠軍卡片 */
+    .wiki-champ-box {
+      border: 2px solid #d2a100;
+      background-color: #fef6e4;
+      text-align: center;
+      padding: 10px;
+      font-weight: bold;
+      border-radius: 4px;
+      margin-top: 10px;
+    }
+    .wiki-champ-title {
+      color: #8c6d00;
+      font-size: 12px;
+    }
+    .wiki-champ-name {
+      color: #000000;
+      font-size: 15px;
+      margin-top: 2px;
+    }
