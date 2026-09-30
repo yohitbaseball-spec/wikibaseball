@@ -215,37 +215,44 @@
     }
 
     /* 各局比分板 (Line Score Table) */
-    table.linescore {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: center;
-      font-size: 12px;
-      margin-bottom: 12px;
-      table-layout: fixed;
-    }
+    /* 各局比分板 (Line Score Table) */
+table.linescore {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+  font-size: 13px;
+  margin-bottom: 12px;
+  table-layout: fixed; /* 關鍵：開啟固定欄寬模式，讓未指定寬度的欄位自動平均分配 */
+}
 
-    table.linescore th, table.linescore td {
-      border: 1px solid #a2a9b1;
-      padding: 5px;
-    }
+table.linescore th, 
+table.linescore td {
+  border: 1px solid var(--border-color, #a2a9b1);
+  padding: 6px 2px; /* 稍微縮減左右內邊距，確保 12 個數據欄位放得下 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
-    table.linescore th {
-      background-color: #eaecf0;
-    }
+table.linescore th {
+  background-color: var(--award-second, #eaecf0);
+  font-weight: 600;
+}
 
-    table.linescore td.team-col {
-      text-align: left;
-      font-weight: bold;
-      padding-left: 8px;
-      background-color: #f8f9fa;
-      width: 120px;
-    }
+/* 1. 隊伍名稱欄位：給予固定寬度 */
+table.linescore .team-col {
+  width: 140px; /* 或使用百分比如 22% */
+  text-align: left;
+  font-weight: bold;
+  padding-left: 10px;
+  background-color: #f8f9fa;
+}
 
-    table.linescore td.stat-col {
-      font-weight: bold;
-      background-color: #f8f9fa;
-      width: 35px;
-    }
+/* 2. 統計欄 (R, H, E)：視覺上突出，但欄寬會與 1~9 局完全一致平均分配 */
+table.linescore .stat-col {
+  font-weight: bold;
+  background-color: #f8f9fa;
+}
 
     /* 個人紀錄與戰績統計欄位 (Pitching/HR info) */
    .boxscore-meta {
