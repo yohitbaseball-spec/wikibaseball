@@ -247,22 +247,34 @@
     }
 
     /* 個人紀錄與戰績統計欄位 (Pitching/HR info) */
-    .boxscore-meta {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 10px;
-      background-color: #f8f9fa;
-      padding: 10px;
-      border: 1px solid #e0e0e0;
-      font-size: 12px;
-    }
+   .boxscore-meta {
+  display: flex;
+  flex-direction: column; /* 強制垂直直列排列 */
+  gap: 8px; /* 每一列之間的間距 */
+  background-color: #f8f9fa;
+  padding: 12px 16px;
+  border: 1px solid var(--border-color, #a2a9b1);
+  border-radius: 4px;
+  font-size: 13px;
+}
 
-    .meta-item {
-      line-height: 1.6;
-    }
+.meta-item {
+  display: flex;
+  align-items: baseline;
+  line-height: 1.6;
+  border-bottom: 1px dashed #e2e8f0; /* 每行加一條微弱虛線，提升直列條理感 */
+  padding-bottom: 6px;
+}
 
-    .meta-item strong {
-      color: #202122;
-      display: inline-block;
-      width: 70px;
-    }
+.meta-item:last-child {
+  border-bottom: none; /* 最後一行不加底線 */
+  padding-bottom: 0;
+}
+
+/* 讓「勝利投手：」等標籤項目有固定寬度，後面的文字對齊 */
+.meta-item strong {
+  color: var(--text-main, #111827);
+  width: 90px; /* 標籤固定寬度 */
+  flex-shrink: 0; /* 避免寬度被壓縮 */
+  font-weight: 700;
+}
