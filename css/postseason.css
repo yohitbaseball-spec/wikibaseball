@@ -125,3 +125,144 @@
       font-size: 15px;
       margin-top: 2px;
     }
+
+.series-section {
+      margin-top: 30px;
+    }
+
+    .series-title {
+      font-size: 16px;
+      font-weight: bold;
+      background: #eaecf0;
+      padding: 8px 12px;
+      border: 1px solid #a2a9b1;
+      border-bottom: none;
+    }
+
+    /* 折疊組件容器 */
+    details.game-accordion {
+      border: 1px solid #a2a9b1;
+      background-color: #ffffff;
+      margin-bottom: -1px; /* 消除相鄰邊框重疊 */
+      font-size: 13px;
+    }
+
+    /* 摘要標題欄（未展開時顯示的常規表格列） */
+    summary.game-summary {
+      padding: 10px 14px;
+      background-color: #f8f9fa;
+      cursor: pointer;
+      list-style: none; /* 隱藏原生箭頭 */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+      transition: background-color 0.15s ease;
+    }
+
+    summary.game-summary:hover {
+      background-color: #eaf3ff;
+    }
+
+    /* 自訂展開箭頭 indicator */
+    summary.game-summary::-webkit-details-marker { display: none; }
+    summary.game-summary::before {
+      content: "▶";
+      font-size: 10px;
+      color: #36b;
+      margin-right: 10px;
+      transition: transform 0.2s ease;
+    }
+    details[open] summary.game-summary::before {
+      transform: rotate(90deg);
+    }
+
+    .summary-left {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .game-tag {
+      background: #36b;
+      color: #fff;
+      font-weight: bold;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 11px;
+    }
+
+    .game-matchup {
+      font-weight: bold;
+    }
+
+    .game-winner {
+      color: #0b0;
+      font-size: 12px;
+      margin-left: 8px;
+    }
+
+    .summary-right {
+      color: #54595d;
+      font-size: 12px;
+    }
+
+    /* 展開後的詳細內容區塊 */
+    .game-detail-box {
+      padding: 15px;
+      background-color: #ffffff;
+      border-top: 1px solid #a2a9b1;
+    }
+
+    /* 各局比分板 (Line Score Table) */
+    table.linescore {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: center;
+      font-size: 12px;
+      margin-bottom: 12px;
+    }
+
+    table.linescore th, table.linescore td {
+      border: 1px solid #a2a9b1;
+      padding: 5px;
+    }
+
+    table.linescore th {
+      background-color: #eaecf0;
+    }
+
+    table.linescore td.team-col {
+      text-align: left;
+      font-weight: bold;
+      padding-left: 8px;
+      background-color: #f8f9fa;
+      width: 120px;
+    }
+
+    table.linescore td.stat-col {
+      font-weight: bold;
+      background-color: #f8f9fa;
+      width: 35px;
+    }
+
+    /* 個人紀錄與戰績統計欄位 (Pitching/HR info) */
+    .boxscore-meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 10px;
+      background-color: #f8f9fa;
+      padding: 10px;
+      border: 1px solid #e0e0e0;
+      font-size: 12px;
+    }
+
+    .meta-item {
+      line-height: 1.6;
+    }
+
+    .meta-item strong {
+      color: #202122;
+      display: inline-block;
+      width: 70px;
+    }
