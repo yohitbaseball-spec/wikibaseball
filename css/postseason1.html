@@ -1,0 +1,118 @@
+.wiki-bracket-wrapper {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    /* 樹狀圖整體容器 */
+    .wiki-bracket-container {
+      display: flex;
+      gap: 32px; /* 欄與欄之間的橫向間距 */
+      font-size: 13px;
+      padding: 10px;
+    }
+
+    /* 每一輪（一欄）結構：固定寬度 240px，防止被過度拉長 */
+    .wiki-column {
+      display: flex;
+      flex-direction: column;
+      width: 240px;
+      flex-shrink: 0;
+    }
+
+    /* 1. 頂部階段標題 */
+    .wiki-header {
+      background-color: #f8f9fa;
+      border: 1px solid #a2a9b1;
+      font-weight: bold;
+      text-align: center;
+      padding: 6px 4px;
+      font-size: 14px;
+      height: 42px;
+      box-sizing: border-box;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .wiki-header small {
+      font-size: 11px;
+      font-weight: normal;
+      color: #54595d;
+    }
+
+    /* 2. 對決區塊內容：利用 flex + gap 讓卡片產生漂亮間距並自動居中對齊 */
+    .wiki-matches-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around; /* 讓 2 場、1 場的欄位能在高度內平均分佈居中 */
+      flex-grow: 1;
+      gap: 16px; /* ★關鍵修正：卡片與卡片之間的垂直間距，避免黏在一起 */
+    }
+
+    /* 對決卡片 (Matchup Table) */
+    .wiki-match {
+      border-collapse: collapse;
+      width: 100%;
+      background-color: #f8f9fa;
+      border: 1px solid #a2a9b1;
+      box-sizing: border-box;
+      margin: 0; /* 統一由父容器 gap 控制間距 */
+    }
+
+    .wiki-match td {
+      padding: 6px 8px;
+      border: 1px solid #a2a9b1;
+    }
+
+    /* 種子號碼欄 */
+    .wiki-seed {
+      background-color: #eaecf0;
+      text-align: center;
+      width: 28px;
+      font-weight: bold;
+    }
+
+    /* 隊伍名稱欄 */
+    .wiki-team {
+      background-color: #ffffff;
+    }
+
+    /* 勝場 / 比分欄 */
+    .wiki-score {
+      background-color: #f8f9fa;
+      text-align: center;
+      width: 28px;
+      font-weight: bold;
+    }
+
+    /* 晉級獲勝隊伍高亮 */
+    .wiki-win .wiki-team {
+      font-weight: bold;
+      background-color: #eaf3ff; /* 維基經典淡藍 */
+    }
+    .wiki-win .wiki-score {
+      background-color: #d5e4f9;
+      font-weight: bold;
+    }
+
+    /* 總冠軍卡片 */
+    .wiki-champ-box {
+      border: 2px solid #d2a100;
+      background-color: #fef6e4;
+      text-align: center;
+      padding: 8px;
+      font-weight: bold;
+      border-radius: 4px;
+      margin-top: 12px;
+    }
+    .wiki-champ-title {
+      color: #8c6d00;
+      font-size: 11px;
+    }
+    .wiki-champ-name {
+      color: #000000;
+      font-size: 14px;
+      margin-top: 2px;
+    }
