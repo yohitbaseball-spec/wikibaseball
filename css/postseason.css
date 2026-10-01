@@ -127,8 +127,19 @@
     }
 
 .series-section {
-      margin-top: 30px;
+      margin-top: 8px; /* 這裡改小 */
+      margin-bottom: 20px;
     }
+
+/* 2. 新增對戰組合小標題 (取代原本直接放 <b> 的做法) */
+.series-subtitle {
+  font-size: 14px;
+  font-weight: bold;
+  color: #111827;
+  margin-top: 16px;
+  margin-bottom: 6px; /* 控制標題與下方 .series-section 的間距 */
+  display: block;
+}
 
     .series-title {
       font-size: 16px;
