@@ -298,13 +298,12 @@ table.linescore .stat-col {
   font-weight: 700;
 }
 
-/* 晉級標籤樣式 */
-.win-tag {
-  background-color: #2e7d32; /* 綠色背景 */
-  color: #ffffff;
-  font-size: 11px;
+.series-result {
+  background-color: #eaf3ff;
+  border: 1px solid #a2a9b1;
+  border-top: none;
+  padding: 8px 14px;
+  font-size: 13px;
   font-weight: bold;
-  padding: 2px 6px;
-  border-radius: 3px;
-  margin-left: 8px;
+  color: #0b2545;
 }
