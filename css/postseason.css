@@ -305,5 +305,6 @@ table.linescore .stat-col {
   padding: 8px 14px;
   font-size: 13px;
   font-weight: bold;
+  text-align: center;
   color: #0b2545;
 }
