@@ -1,5 +1,15 @@
 [
   {
+    "url": "players/周祐庭.html",
+    "name": "周祐庭",
+    "team": "酷購樂猿隊",
+    "number": "3",
+    "position": "1B",
+    "nationality": "台灣",
+    "batsThrows": "右投左打",
+    "honors": []
+  },
+  {
     "url": "players/許景成.html",
     "name": "許景成",
     "team": "南投雷霆隊",
@@ -15,6 +25,16 @@
     "team": "高雄未來之鷹隊",
     "number": "22",
     "position": "C",
+    "nationality": "台灣",
+    "batsThrows": "右投左打",
+    "honors": []
+  },
+  {
+    "url": "players/林聖哲.html",
+    "name": "林聖哲",
+    "team": "台東鋼鐵人隊",
+    "number": "26",
+    "position": "OF",
     "nationality": "台灣",
     "batsThrows": "右投左打",
     "honors": []
