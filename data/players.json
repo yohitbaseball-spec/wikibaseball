@@ -1,5 +1,15 @@
 [
   {
+    "url": "players/周硯廷.html",
+    "name": "周硯廷",
+    "team": "墾丁鯊魚隊",
+    "number": "28",
+    "position": "OF",
+    "nationality": "台灣",
+    "batsThrows": "右投左打",
+    "honors": []
+  },
+  {
     "url": "players/周祐庭.html",
     "name": "周祐庭",
     "team": "酷購樂猿隊",
@@ -17,6 +27,16 @@
     "position": "SS",
     "nationality": "台灣",
     "batsThrows": "右投右打",
+    "honors": []
+  },
+  {
+    "url": "players/王凱霆.html",
+    "name": "王凱霆",
+    "team": "大福熊隊",
+    "number": "14",
+    "position": "P",
+    "nationality": "台灣",
+    "batsThrows": "左投左打",
     "honors": []
   },
   {
