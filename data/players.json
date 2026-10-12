@@ -80,6 +80,16 @@
     "honors": []
   },
   {
+    "url": "players/吳弦.html",
+    "name": "吳弦",
+    "team": "苗栗石虎隊",
+    "number": "7",
+    "position": "OF",
+    "nationality": "台灣",
+    "batsThrows": "右投左打",
+    "honors": []
+  },
+  {
     "url": "players/何威漢.html",
     "name": "何威漢",
     "team": "南投雷霆隊",
@@ -147,6 +157,16 @@
     "position": "SS",
     "nationality": "台灣",
     "batsThrows": "右投兩打",
+    "honors": []
+  },
+  {
+    "url": "players/唐若帆.html",
+    "name": "唐若帆",
+    "team": "苗栗石虎隊",
+    "number": "23",
+    "position": "SS",
+    "nationality": "台灣",
+    "batsThrows": "右投左打",
     "honors": []
   },
   {
@@ -345,6 +365,16 @@
     "team": "全達鴨隊",
     "number": "29",
     "position": "1B",
+    "nationality": "台灣",
+    "batsThrows": "右投左打",
+    "honors": []
+  },
+  {
+    "url": "players/鄭佳豪.html",
+    "name": "鄭佳豪",
+    "team": "阿里山小火車隊",
+    "number": "37",
+    "position": "2B",
     "nationality": "台灣",
     "batsThrows": "右投左打",
     "honors": []
