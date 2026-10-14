@@ -60,6 +60,16 @@
     "honors": []
   },
   {
+    "url": "players/陳信鴻.html",
+    "name": "陳信鴻",
+    "team": "北鐵狼隊",
+    "number": "26",
+    "position": "OF",
+    "nationality": "台灣",
+    "batsThrows": "左投左打",
+    "honors": []
+  },
+  {
     "url": "players/廖冠任.html",
     "name": "廖冠任",
     "team": "北鐵狼隊",
@@ -187,6 +197,16 @@
     "position": "OF",
     "nationality": "台灣",
     "batsThrows": "右投左打",
+    "honors": []
+  },
+  {
+    "url": "players/羅廷宇.html",
+    "name": "羅廷宇",
+    "team": "花蓮眼鏡蛇隊",
+    "number": "46",
+    "position": "OF",
+    "nationality": "台灣",
+    "batsThrows": "左投左打",
     "honors": []
   },
   {
