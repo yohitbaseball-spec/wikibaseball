@@ -24,6 +24,7 @@
         "SS": "兄弟", "OF1": "統一", "OF2": "兄弟", "OF3": "味全", "UTL": "富邦"
       }
     },
+    
     "2024": {
       "P": { "name": "黃子鵬", "country": "TW" },
       "C": { "name": "戴培峰", "country": "TW" },
@@ -38,6 +39,23 @@
       "teams": {
         "P": "樂天", "C": "富邦", "1B": "兄弟", "2B": "味全", "3B": "味全", 
         "SS": "兄弟", "OF1": "統一", "OF2": "兄弟", "OF3": "台鋼", "UTL": "統二"
+      }
+    },
+
+    "2049": {
+      "P": { "name": "", "country": "TW" },
+      "C": { "name": "", "country": "TW" },
+      "1B": { "name": "", "country": "TW" },
+      "2B": { "name": "", "country": "TW" },
+      "3B": { "name": "", "country": "TW" },
+      "SS": { "name": "", "country": "TW" },
+      "OF1": { "name": "", "country": "TW" },
+      "OF2": { "name": "李小亨", "country": "TW" },
+      "OF3": { "name": "", "country": "TW" },
+      "UTL": { "name": "", "country": "TW" },
+      "teams": {
+        "P": "", "C": "", "1B": "", "2B": "", "3B": "", 
+        "SS": "", "OF1": "", "OF2": "花蓮眼鏡蛇", "OF3": "", "UTL": ""
       }
     },
     
