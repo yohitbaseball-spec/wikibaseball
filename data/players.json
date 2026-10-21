@@ -1,99 +1,49 @@
 [
   {
-    "url": "players/何威漢.html",
-    "name": "何威漢",
-    "team": "南投雷霆隊",
-    "number": "21",
-    "position": "OF",
-    "nationality": "台灣",
-    "batsThrows": "右投右打",
-    "honors": []
-  },
-  {
-    "url": "players/張益勳.html",
-    "name": "張益勳",
-    "team": "北鐵狼隊",
-    "number": "4",
-    "position": "OF",
-    "nationality": "台灣",
-    "batsThrows": "右投右打",
-    "honors": []
-  },
-  {
-    "url": "players/鍾詩晟.html",
-    "name": "鍾詩晟",
-    "team": "微秒彗星隊",
-    "number": "86",
-    "position": "P",
-    "nationality": "台灣",
-    "batsThrows": "右投右打",
-    "honors": []
-  },
-  {
-    "url": "players/李俊熙.html",
-    "name": "李俊熙",
-    "team": "高雄未來之鷹隊",
-    "number": "35",
+    "url": "players/周硯廷.html",
+    "name": "周硯廷",
+    "team": "墾丁鯊魚隊",
+    "number": "28",
     "position": "OF",
     "nationality": "台灣",
     "batsThrows": "右投左打",
     "honors": []
   },
   {
-    "url": "players/劉子睿.html",
-    "name": "劉子睿",
-    "team": "新世紀恐龍隊",
-    "number": "14",
-    "position": "2B",
-    "nationality": "台灣",
-    "batsThrows": "右投左打",
-    "honors": []
-  },
-  {
-    "url": "players/吳弦.html",
-    "name": "吳弦",
-    "team": "苗栗石虎隊",
-    "number": "7",
-    "position": "OF",
-    "nationality": "台灣",
-    "batsThrows": "右投左打",
-    "honors": []
-  },
-  {
-    "url": "players/Jakub_Novák.html",
-    "name": "Jakub Novák",
+    "url": "players/周祐庭.html",
+    "name": "周祐庭",
     "team": "酷購樂猿隊",
-    "number": "26",
+    "number": "3",
+    "position": "1B",
+    "nationality": "台灣",
+    "batsThrows": "右投左打",
+    "honors": []
+  },
+  {
+    "url": "players/許景成.html",
+    "name": "許景成",
+    "team": "南投雷霆隊",
+    "number": "7",
     "position": "SS",
     "nationality": "台灣",
     "batsThrows": "右投右打",
     "honors": []
   },
   {
-    "url": "players/鄭佳豪.html",
-    "name": "鄭佳豪",
-    "team": "阿里山小火車隊",
-    "number": "37",
-    "position": "2B",
+    "url": "players/王凱霆.html",
+    "name": "王凱霆",
+    "team": "大福熊隊",
+    "number": "14",
+    "position": "P",
     "nationality": "台灣",
-    "batsThrows": "右投左打",
+    "batsThrows": "左投左打",
     "honors": []
   },
   {
-    "url": "players/陳祐廷.html",
-    "name": "陳祐廷",
-    "team": "新北幻境英雄隊",
-    "number": "27",
-    "position": "2B",
-    "nationality": "台灣",
-    "batsThrows": "右投右打",
-    "honors": []
-  },
-  {
-    "url": "players/羅以翔.html",
-    "name": "羅以翔",
-    "team": "阿里山小火車隊",
-    "number": "26",
+    "url": "players/郭哲恩.html",
+    "name": "郭哲恩",
+    "team": "酷購樂猿隊",
+    "number": "8",
     "position": "OF",
     "nationality": "台灣",
     "batsThrows": "右投右打",
@@ -110,63 +60,13 @@
     "honors": []
   },
   {
-    "url": "players/張子澔.html",
-    "name": "張子澔",
-    "team": "微秒彗星隊",
-    "number": "28",
-    "position": "OF",
-    "nationality": "台灣",
-    "batsThrows": "右投右打",
-    "honors": []
-  },
-  {
-    "url": "players/張庭睿.html",
-    "name": "張庭睿",
-    "team": "高雄未來之鷹隊",
+    "url": "players/林聖哲.html",
+    "name": "林聖哲",
+    "team": "台東鋼鐵人隊",
     "number": "26",
-    "position": "SS",
+    "position": "OF",
     "nationality": "台灣",
     "batsThrows": "右投左打",
-    "honors": []
-  },
-  {
-    "url": "players/阿華田米烙.html",
-    "name": "阿華田米烙",
-    "team": "北鐵狼隊",
-    "number": "37",
-    "position": "SS",
-    "nationality": "台灣",
-    "batsThrows": "右投右打",
-    "honors": []
-  },
-  {
-    "url": "players/黃士鈞.html",
-    "name": "黃士鈞",
-    "team": "南投雷霆隊",
-    "number": "36",
-    "position": "3B",
-    "nationality": "台灣",
-    "batsThrows": "右投右打",
-    "honors": []
-  },
-  {
-    "url": "players/蘇宥鋅.html",
-    "name": "蘇宥鋅",
-    "team": "大福熊隊",
-    "number": "47",
-    "position": "OF",
-    "nationality": "台灣",
-    "batsThrows": "左投左打",
-    "honors": []
-  },
-  {
-    "url": "players/陳思翰.html",
-    "name": "陳思翰",
-    "team": "花蓮眼鏡蛇隊",
-    "number": "67",
-    "position": "2B",
-    "nationality": "台灣",
-    "batsThrows": "右投右打",
     "honors": []
   },
   {
@@ -180,126 +80,6 @@
     "honors": []
   },
   {
-    "url": "players/張承恩.html",
-    "name": "張承恩",
-    "team": "北鐵狼隊",
-    "number": "35",
-    "position": "OF",
-    "nationality": "台灣",
-    "batsThrows": "右投左打",
-    "honors": []
-  },
-  {
-    "url": "players/鄭皓元.html",
-    "name": "鄭皓元",
-    "team": "酷購樂猿隊",
-    "number": "63",
-    "position": "OF",
-    "nationality": "台灣",
-    "batsThrows": "右投右打",
-    "honors": []
-  },
-  {
-    "url": "players/周硯廷.html",
-    "name": "周硯廷",
-    "team": "墾丁鯊魚隊",
-    "number": "28",
-    "position": "OF",
-    "nationality": "台灣",
-    "batsThrows": "右投左打",
-    "honors": []
-  },
-  {
-    "url": "players/鄭家宏.html",
-    "name": "鄭家宏",
-    "team": "大福熊隊",
-    "number": "8",
-    "position": "OF",
-    "nationality": "台灣",
-    "batsThrows": "右投左打",
-    "honors": []
-  },
-  {
-    "url": "players/林宏祐.html",
-    "name": "林宏祐",
-    "team": "竹科工程師隊",
-    "number": "7",
-    "position": "OF",
-    "nationality": "台灣",
-    "batsThrows": "右投右打",
-    "honors": []
-  },
-  {
-    "url": "players/曾祐庭.html",
-    "name": "曾祐庭",
-    "team": "大福熊隊",
-    "number": "1",
-    "position": "OF",
-    "nationality": "台灣",
-    "batsThrows": "右投右打",
-    "honors": []
-  },
-  {
-    "url": "players/許景成.html",
-    "name": "許景成",
-    "team": "南投雷霆隊",
-    "number": "7",
-    "position": "SS",
-    "nationality": "台灣",
-    "batsThrows": "右投右打",
-    "honors": []
-  },
-  {
-    "url": "players/林佳樂.html",
-    "name": "林佳樂",
-    "team": "酷購樂猿隊",
-    "number": "14",
-    "position": "SS",
-    "nationality": "台灣",
-    "batsThrows": "右投左打",
-    "honors": []
-  },
-  {
-    "url": "players/林聖哲.html",
-    "name": "林聖哲",
-    "team": "台東鋼鐵人隊",
-    "number": "26",
-    "position": "OF",
-    "nationality": "台灣",
-    "batsThrows": "右投左打",
-    "honors": []
-  },
-  {
-    "url": "players/李小亨.html",
-    "name": "李小亨",
-    "team": "花蓮眼鏡蛇隊",
-    "number": "1",
-    "position": "OF",
-    "nationality": "台灣",
-    "batsThrows": "右投左打",
-    "honors": []
-  },
-  {
-    "url": "players/吳宇哲.html",
-    "name": "吳宇哲",
-    "team": "北鐵狼隊",
-    "number": "48",
-    "position": "P",
-    "nationality": "台灣",
-    "batsThrows": "右投右打",
-    "honors": []
-  },
-  {
-    "url": "players/趙子龍.html",
-    "name": "趙子龍",
-    "team": "花蓮眼鏡蛇隊",
-    "number": "4",
-    "position": "1B",
-    "nationality": "台灣",
-    "batsThrows": "右投右打",
-    "honors": []
-  },
-  {
     "url": "players/廖冠任.html",
     "name": "廖冠任",
     "team": "北鐵狼隊",
@@ -310,31 +90,31 @@
     "honors": []
   },
   {
-    "url": "players/邱宥傑.html",
-    "name": "邱宥傑",
+    "url": "players/林琨鎰.html",
+    "name": "林琨鎰",
     "team": "北鐵狼隊",
-    "number": "78",
+    "number": "71",
+    "position": "2B",
+    "nationality": "台灣",
+    "batsThrows": "右投右打",
+    "honors": []
+  },
+  {
+    "url": "players/吳弦.html",
+    "name": "吳弦",
+    "team": "苗栗石虎隊",
+    "number": "7",
     "position": "OF",
     "nationality": "台灣",
     "batsThrows": "右投左打",
     "honors": []
   },
   {
-    "url": "players/王凱霆.html",
-    "name": "王凱霆",
-    "team": "大福熊隊",
-    "number": "14",
-    "position": "P",
-    "nationality": "台灣",
-    "batsThrows": "左投左打",
-    "honors": []
-  },
-  {
-    "url": "players/鍾岳霖.html",
-    "name": "鍾岳霖",
-    "team": "酷購樂猿隊",
-    "number": "15",
-    "position": "3B",
+    "url": "players/何威漢.html",
+    "name": "何威漢",
+    "team": "南投雷霆隊",
+    "number": "21",
+    "position": "OF",
     "nationality": "台灣",
     "batsThrows": "右投右打",
     "honors": []
@@ -350,23 +130,63 @@
     "honors": []
   },
   {
-    "url": "players/周祐庭.html",
-    "name": "周祐庭",
-    "team": "酷購樂猿隊",
-    "number": "3",
-    "position": "1B",
+    "url": "players/林宏祐.html",
+    "name": "林宏祐",
+    "team": "竹科工程師隊",
+    "number": "7",
+    "position": "OF",
+    "nationality": "台灣",
+    "batsThrows": "右投右打",
+    "honors": []
+  },
+  {
+    "url": "players/陳祐廷.html",
+    "name": "陳祐廷",
+    "team": "新北幻境英雄隊",
+    "number": "27",
+    "position": "2B",
+    "nationality": "台灣",
+    "batsThrows": "右投右打",
+    "honors": []
+  },
+  {
+    "url": "players/李俊熙.html",
+    "name": "李俊熙",
+    "team": "高雄未來之鷹隊",
+    "number": "35",
+    "position": "OF",
     "nationality": "台灣",
     "batsThrows": "右投左打",
     "honors": []
   },
   {
-    "url": "players/李政宇.html",
-    "name": "李政宇",
-    "team": "全達鴨隊",
-    "number": "29",
-    "position": "1B",
+    "url": "players/林澤安.html",
+    "name": "林澤安",
+    "team": "南投雷霆隊",
+    "number": "14",
+    "position": "3B",
     "nationality": "台灣",
     "batsThrows": "右投左打",
+    "honors": []
+  },
+  {
+    "url": "players/邱家濬.html",
+    "name": "邱家濬",
+    "team": "大福熊隊",
+    "number": "13",
+    "position": "3B",
+    "nationality": "台灣",
+    "batsThrows": "右投左打",
+    "honors": []
+  },
+  {
+    "url": "players/余宥達.html",
+    "name": "余宥達",
+    "team": "奇醫海燕隊",
+    "number": "6",
+    "position": "SS",
+    "nationality": "台灣",
+    "batsThrows": "右投兩打",
     "honors": []
   },
   {
@@ -380,11 +200,11 @@
     "honors": []
   },
   {
-    "url": "players/林琨鎰.html",
-    "name": "林琨鎰",
+    "url": "players/林澤村.html",
+    "name": "林澤村",
     "team": "北鐵狼隊",
-    "number": "71",
-    "position": "2B",
+    "number": "88",
+    "position": "P",
     "nationality": "台灣",
     "batsThrows": "右投右打",
     "honors": []
@@ -410,33 +230,53 @@
     "honors": []
   },
   {
-    "url": "players/林澤村.html",
-    "name": "林澤村",
-    "team": "北鐵狼隊",
-    "number": "88",
-    "position": "P",
+    "url": "players/羅廷宇.html",
+    "name": "羅廷宇",
+    "team": "花蓮眼鏡蛇隊",
+    "number": "46",
+    "position": "OF",
+    "nationality": "台灣",
+    "batsThrows": "左投左打",
+    "honors": []
+  },
+  {
+    "url": "players/黃士鈞.html",
+    "name": "黃士鈞",
+    "team": "南投雷霆隊",
+    "number": "36",
+    "position": "3B",
     "nationality": "台灣",
     "batsThrows": "右投右打",
     "honors": []
   },
   {
-    "url": "players/何仁峻.html",
-    "name": "何仁峻",
-    "team": "NX星航者隊",
-    "number": "27",
+    "url": "players/張承恩.html",
+    "name": "張承恩",
+    "team": "北鐵狼隊",
+    "number": "35",
+    "position": "OF",
+    "nationality": "台灣",
+    "batsThrows": "右投左打",
+    "honors": []
+  },
+  {
+    "url": "players/阿華田米烙.html",
+    "name": "阿華田米烙",
+    "team": "北鐵狼隊",
+    "number": "37",
+    "position": "SS",
+    "nationality": "台灣",
+    "batsThrows": "右投右打",
+    "honors": []
+  },
+  {
+    "url": "players/方志恆.html",
+    "name": "方志恆",
+    "team": "花蓮眼鏡蛇隊",
+    "number": "56",
     "position": "OF",
     "nationality": "台灣",
     "batsThrows": "右投右打",
-    "honors": []
-  },
-  {
-    "url": "players/林澤安.html",
-    "name": "林澤安",
-    "team": "南投雷霆隊",
-    "number": "14",
-    "position": "3B",
-    "nationality": "台灣",
-    "batsThrows": "右投左打",
     "honors": []
   },
   {
@@ -450,33 +290,13 @@
     "honors": []
   },
   {
-    "url": "players/余宥達.html",
-    "name": "余宥達",
-    "team": "奇醫海燕隊",
-    "number": "6",
-    "position": "SS",
+    "url": "players/吳宇哲.html",
+    "name": "吳宇哲",
+    "team": "北鐵狼隊",
+    "number": "48",
+    "position": "P",
     "nationality": "台灣",
-    "batsThrows": "右投兩打",
-    "honors": []
-  },
-  {
-    "url": "players/羅廷宇.html",
-    "name": "羅廷宇",
-    "team": "花蓮眼鏡蛇隊",
-    "number": "46",
-    "position": "OF",
-    "nationality": "台灣",
-    "batsThrows": "左投左打",
-    "honors": []
-  },
-  {
-    "url": "players/邱家濬.html",
-    "name": "邱家濬",
-    "team": "大福熊隊",
-    "number": "13",
-    "position": "3B",
-    "nationality": "台灣",
-    "batsThrows": "右投左打",
+    "batsThrows": "右投右打",
     "honors": []
   },
   {
@@ -490,10 +310,50 @@
     "honors": []
   },
   {
-    "url": "players/江子雲.html",
-    "name": "江子雲",
-    "team": "NX星航者隊",
-    "number": "55",
+    "url": "players/徐翊恩.html",
+    "name": "徐翊恩",
+    "team": "酷購樂猿隊",
+    "number": "16",
+    "position": "SS",
+    "nationality": "台灣",
+    "batsThrows": "右投左打",
+    "honors": []
+  },
+  {
+    "url": "players/曾祐庭.html",
+    "name": "曾祐庭",
+    "team": "大福熊隊",
+    "number": "1",
+    "position": "OF",
+    "nationality": "台灣",
+    "batsThrows": "右投右打",
+    "honors": []
+  },
+  {
+    "url": "players/鍾詩晟.html",
+    "name": "鍾詩晟",
+    "team": "微秒彗星隊",
+    "number": "86",
+    "position": "P",
+    "nationality": "台灣",
+    "batsThrows": "右投右打",
+    "honors": []
+  },
+  {
+    "url": "players/李小亨.html",
+    "name": "李小亨",
+    "team": "花蓮眼鏡蛇隊",
+    "number": "1",
+    "position": "OF",
+    "nationality": "台灣",
+    "batsThrows": "右投左打",
+    "honors": []
+  },
+  {
+    "url": "players/張益勳.html",
+    "name": "張益勳",
+    "team": "北鐵狼隊",
+    "number": "4",
     "position": "OF",
     "nationality": "台灣",
     "batsThrows": "右投右打",
@@ -510,13 +370,93 @@
     "honors": []
   },
   {
-    "url": "players/方志恆.html",
-    "name": "方志恆",
+    "url": "players/張庭睿.html",
+    "name": "張庭睿",
+    "team": "高雄未來之鷹隊",
+    "number": "26",
+    "position": "SS",
+    "nationality": "台灣",
+    "batsThrows": "右投左打",
+    "honors": []
+  },
+  {
+    "url": "players/陳思翰.html",
+    "name": "陳思翰",
     "team": "花蓮眼鏡蛇隊",
-    "number": "56",
+    "number": "67",
+    "position": "2B",
+    "nationality": "台灣",
+    "batsThrows": "右投右打",
+    "honors": []
+  },
+  {
+    "url": "players/張子澔.html",
+    "name": "張子澔",
+    "team": "微秒彗星隊",
+    "number": "28",
     "position": "OF",
     "nationality": "台灣",
     "batsThrows": "右投右打",
+    "honors": []
+  },
+  {
+    "url": "players/何仁峻.html",
+    "name": "何仁峻",
+    "team": "NX星航者隊",
+    "number": "27",
+    "position": "OF",
+    "nationality": "台灣",
+    "batsThrows": "右投右打",
+    "honors": []
+  },
+  {
+    "url": "players/羅以翔.html",
+    "name": "羅以翔",
+    "team": "阿里山小火車隊",
+    "number": "26",
+    "position": "OF",
+    "nationality": "台灣",
+    "batsThrows": "右投右打",
+    "honors": []
+  },
+  {
+    "url": "players/鍾岳霖.html",
+    "name": "鍾岳霖",
+    "team": "酷購樂猿隊",
+    "number": "15",
+    "position": "3B",
+    "nationality": "台灣",
+    "batsThrows": "右投右打",
+    "honors": []
+  },
+  {
+    "url": "players/Jakub_Novák.html",
+    "name": "Jakub Novák",
+    "team": "酷購樂猿隊",
+    "number": "26",
+    "position": "SS",
+    "nationality": "台灣",
+    "batsThrows": "右投右打",
+    "honors": []
+  },
+  {
+    "url": "players/鄭家宏.html",
+    "name": "鄭家宏",
+    "team": "大福熊隊",
+    "number": "8",
+    "position": "OF",
+    "nationality": "台灣",
+    "batsThrows": "右投左打",
+    "honors": []
+  },
+  {
+    "url": "players/劉子睿.html",
+    "name": "劉子睿",
+    "team": "新世紀恐龍隊",
+    "number": "14",
+    "position": "2B",
+    "nationality": "台灣",
+    "batsThrows": "右投左打",
     "honors": []
   },
   {
@@ -530,13 +470,83 @@
     "honors": []
   },
   {
-    "url": "players/徐翊恩.html",
-    "name": "徐翊恩",
+    "url": "players/邱宥傑.html",
+    "name": "邱宥傑",
+    "team": "北鐵狼隊",
+    "number": "78",
+    "position": "OF",
+    "nationality": "台灣",
+    "batsThrows": "右投左打",
+    "honors": []
+  },
+  {
+    "url": "players/江子雲.html",
+    "name": "江子雲",
+    "team": "NX星航者隊",
+    "number": "55",
+    "position": "OF",
+    "nationality": "台灣",
+    "batsThrows": "右投右打",
+    "honors": []
+  },
+  {
+    "url": "players/李政宇.html",
+    "name": "李政宇",
+    "team": "全達鴨隊",
+    "number": "29",
+    "position": "1B",
+    "nationality": "台灣",
+    "batsThrows": "右投左打",
+    "honors": []
+  },
+  {
+    "url": "players/鄭佳豪.html",
+    "name": "鄭佳豪",
+    "team": "阿里山小火車隊",
+    "number": "37",
+    "position": "2B",
+    "nationality": "台灣",
+    "batsThrows": "右投左打",
+    "honors": []
+  },
+  {
+    "url": "players/趙子龍.html",
+    "name": "趙子龍",
+    "team": "花蓮眼鏡蛇隊",
+    "number": "4",
+    "position": "1B",
+    "nationality": "台灣",
+    "batsThrows": "右投右打",
+    "honors": []
+  },
+  {
+    "url": "players/林佳樂.html",
+    "name": "林佳樂",
     "team": "酷購樂猿隊",
-    "number": "16",
+    "number": "14",
     "position": "SS",
     "nationality": "台灣",
     "batsThrows": "右投左打",
+    "honors": []
+  },
+  {
+    "url": "players/鄭皓元.html",
+    "name": "鄭皓元",
+    "team": "酷購樂猿隊",
+    "number": "63",
+    "position": "OF",
+    "nationality": "台灣",
+    "batsThrows": "右投右打",
+    "honors": []
+  },
+  {
+    "url": "players/蘇宥鋅.html",
+    "name": "蘇宥鋅",
+    "team": "大福熊隊",
+    "number": "47",
+    "position": "OF",
+    "nationality": "台灣",
+    "batsThrows": "左投左打",
     "honors": []
   },
   {
