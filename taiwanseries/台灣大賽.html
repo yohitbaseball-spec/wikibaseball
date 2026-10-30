@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>台灣大賽</title>
+  <link rel="stylesheet" href="../css/taiwanseries.css">
+</head>
+<body>
+
+<div class="container">
+
+  <!-- 頂部導覽列 -->
+  <nav class="topnav">
+    <a href="../index.html">首頁</a> / 
+    <a href="../league/室內棒球聯盟.html">室內棒球聯盟</a> / 
+    <b>台灣大賽</b>
+  </nav>
+
+  <!-- 頁首標題 -->
+  <div class="header">
+    <h1>室內棒球聯盟台灣大賽</h1>
+    <div class="sub">Indoor Baseball League Championship Series (Taiwan Series)</div>
+  </div>
+
+  <!-- 賽制與年度概況介紹 -->
+  <section class="award-intro">
+    <h2>賽制與年度概況</h2>
+    <p>台灣大賽（Taiwan Series），即室內棒球聯盟年度總冠軍賽，是室內棒球聯盟每年球季最高榮譽的終極決戰。經過季後挑戰賽重重考驗後、最終晉級的兩支頂尖球隊，將進行七戰四勝制的總冠軍爭霸戰，勝者將奪下該年度的室內棒球聯盟年度總冠軍錦標與最高榮譽。在聯盟歷史紀錄與官方統計中，「年度第一」專指例行賽全季戰績最佳（勝率最高）的球隊；「總冠軍」則頒給最終於台灣大賽中勝出的球隊。</p>
+    
+ <!-- 表格1：球隊歷年參賽與奪冠戰績統計表-->
+ <!-- 該有的 HTML 表格容器保持不動 -->
+<h2 class="section-title">球隊台灣大賽參賽與奪冠歷史統計</h2>
+<div style="overflow-x: auto; margin-top: 15px;">
+  <table class="wiki-yellow-table" id="teamStatsTable">
+    <thead>
+      <tr>
+        <th>球隊名稱</th>
+        <th>奪冠次數</th>
+        <th>參賽次數</th>
+        <th>出賽</th>
+        <th>勝場</th>
+        <th>敗場</th>
+        <th>和局</th>
+        <th>勝率</th>
+        <th>上次奪冠年份</th>
+        <th>上次參加年份</th>
+        <th>球團前身/過渡名稱</th>
+        <th>備註</th>
+      </tr>
+    </thead>
+    <tbody id="teamStatsBody">
+      <!-- 這裡會由外部 JS 自動載入 -->
+    </tbody>
+  </table>
+</div>
+
+    
+  <!-- 歷年台灣大賽歷史總覽表格-->
+  <h2 class="section-title">歷年台灣大賽紀錄</h2>
+  <div style="overflow-x: auto; margin-top: 15px;">
+    <table class="series-history-table">
+      <thead>
+        <tr>
+          <th>年度</th>
+          <th>獲勝球隊</th>
+          <th>總教練</th>
+          <th>MVP</th>
+          <th>對戰成績</th>
+          <th style="min-width: 170px;">勝敗順序</th>
+          <th>落敗球隊</th>
+          <th>總教練</th>
+          <th>優秀球員獎</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr>
+          <td>2052年</td>
+          <td><a href="../teams/奇醫海燕隊.html">奇醫海燕隊</a></td>
+          <td>陸振浪</td>
+          <td><a href="../players/林柏丞.html">林柏丞</a></td>
+          <td>4勝1敗</td>
+          <td>
+            <div class="wl-pills">
+              <span class="wl-pill w">W</span>
+              <span class="wl-pill w">W</span>
+              <span class="wl-pill l">L</span>
+              <span class="wl-pill w">W</span>
+              <span class="wl-pill w">W</span>
+              <span class="wl-pill empty">-</span>
+              <span class="wl-pill empty">-</span>
+            </div>
+          </td>
+          <td><a href="../teams/大福熊隊.html">大福熊隊</a></td>
+          <td></td>
+          <td><a href="../players/林承侑.html">林承侑</a></td>
+        </tr>
+      
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 頁尾歷年獎項與導覽框 (Navbox) -->
+  <div class="award-navbox">
+    <div class="navbox-title">室內棒球聯盟（IBL）歷年季後賽與冠軍總覽</div>
+    <div class="navbox-grid">
+      
+      <div class="navbox-group">
+        <div class="navbox-header">季後賽系列</div>
+        <div class="navbox-content">
+          <a href="季後賽總覽.html">季後賽總覽</a>
+          <a href="外卡生死戰.html">外卡生死戰</a>
+          <a href="分區八強賽.html">分區八強賽</a>
+          <a href="四強準決賽.html">四強準決賽</a>
+          <a href="台灣大賽.html" class="active">台灣大賽（總冠軍賽）</a>
+        </div>
+      </div>
+
+      <div class="navbox-group">
+        <div class="navbox-header">年度榮譽</div>
+        <div class="navbox-content">
+          <a href="年度MVP.html">年度最有價值球員</a>
+          <a href="新人王.html">年度新人王</a>
+          <a href="金手套獎.html">金手套獎</a>
+          <a href="最佳十人.html">最佳十人獎</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+  <script src="../js/taiwan_series_stats.js"></script>
+
+</body>
+</html>
