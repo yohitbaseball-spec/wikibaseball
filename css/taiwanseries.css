@@ -1,0 +1,422 @@
+/* ==========================================
+       歷年獎項專屬全域 CSS (金手套高級深色調)
+       ========================================== */
+    :root {
+      --award-primary: #46A3FF;      /* 主色：藍色 */
+      --award-primary-dark: #1D6FD6; /* 深藍 */
+      --award-accent: #6BB7FF;       /* 淺藍 */
+      --award-second: #F0F8FF;       /* 表格隔行配色 */
+      
+      --text-main: #111827;          /* 主要文字 */
+      --text-muted: #4b5563;         /* 次要文字 */
+      --bg-body: #f8fafc;            /* 頁面背景 */
+      --bg-card: #ffffff;            /* 容器背景 */
+      --border-color: #e2e8f0;       /* 邊線 */
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Helvetica Neue", Arial, "Noto Sans TC", sans-serif;
+      background: var(--bg-body);
+      color: var(--text-main);
+      line-height: 1.7;
+    }
+
+    a {
+      color: var(--award-primary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    a:hover {
+      color: var(--award-primary-dark);
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px 20px 80px 20px;
+    }
+
+    /* ===== 頂部導覽列 ===== */
+    .topnav {
+      display: flex;
+      gap: 10px;
+      padding: 14px 0;
+      border-bottom: 2px solid var(--border-color);
+      margin-bottom: 20px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .topnav a {
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .topnav a:hover {
+      color: var(--award-primary);
+    }
+
+    /* ===== 頁首標題 ===== */
+    .header {
+      margin-bottom: 25px;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 2.2rem;
+      color: var(--text-main);
+      font-weight: 700;
+    }
+    .header .sub {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    /* ===== 年份選單 ===== */
+    .year-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 30px;
+    }
+
+    .year-btn {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      padding: 5px 12px;
+      cursor: pointer;
+      font-size: 0.88rem;
+      color: var(--text-main);
+      border-radius: 3px;
+      transition: all 0.2s;
+    }
+
+    .year-btn:hover {
+      background: var(--award-second);
+      border-color: var(--award-primary);
+    }
+
+    .year-btn.active {
+      background: var(--award-primary-dark);
+      color: #ffffff;
+      border-color: var(--award-primary-dark);
+      font-weight: bold;
+    }
+
+    /* ===== 獎項介紹區塊 ===== */
+    .award-intro {
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 1px dashed var(--border-color);
+    }
+
+    .award-intro h2, .section-title {
+      margin: 0 0 10px 0;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #000000;
+      border-bottom: 1px solid #000000;
+      padding-bottom: 5px;
+    }
+
+    .section-title {
+      margin-top: 40px;
+    }
+
+    .award-intro p {
+      margin: 0 0 15px 0;
+      font-size: 0.95rem;
+      color: var(--text-main);
+      line-height: 1.7;
+    }
+
+    .series-overview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .overview-item {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-left: 4px solid var(--award-primary-dark);
+      padding: 12px 16px;
+      border-radius: 4px;
+    }
+
+    .overview-item h4 {
+      margin: 0 0 6px 0;
+      font-size: 0.95rem;
+      color: var(--award-primary-dark);
+    }
+
+    .overview-item p {
+      margin: 0;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    /* ===== 樹狀對決圖樣式 ===== */
+    .wiki-bracket-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      margin-bottom: 40px;
+    }
+
+    .wiki-bracket-container {
+      display: flex;
+      gap: 30px;
+      font-size: 13px;
+      padding: 10px 0;
+    }
+
+    .wiki-column {
+      display: flex;
+      flex-direction: column;
+      width: 240px;
+      flex-shrink: 0;
+    }
+
+    .wiki-header {
+      background-color: #f8f9fa;
+      border: 1px solid var(--border-color);
+      font-weight: bold;
+      text-align: center;
+      padding: 6px 4px;
+      font-size: 14px;
+      height: 42px;
+      box-sizing: border-box;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 4px;
+    }
+
+    .wiki-header small {
+      font-size: 11px;
+      font-weight: normal;
+      color: var(--text-muted);
+    }
+
+    .wiki-matches-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      flex-grow: 1;
+      gap: 16px;
+    }
+
+    .wiki-match {
+      border-collapse: collapse;
+      width: 100%;
+      background-color: #f8f9fa;
+      border: 1px solid var(--border-color);
+      box-sizing: border-box;
+    }
+
+    .wiki-match td {
+      padding: 6px 8px;
+      border: 1px solid var(--border-color);
+    }
+
+    .wiki-seed {
+      background-color: var(--award-second);
+      text-align: center;
+      width: 28px;
+      font-weight: bold;
+    }
+
+    .wiki-team {
+      background-color: #ffffff;
+    }
+
+    .wiki-score {
+      background-color: #f8f9fa;
+      text-align: center;
+      width: 28px;
+      font-weight: bold;
+    }
+
+    .wiki-win .wiki-team {
+      font-weight: bold;
+      background-color: #eaf3ff;
+    }
+
+    .wiki-win .wiki-score {
+      background-color: #d5e4f9;
+      font-weight: bold;
+    }
+
+    .wiki-champ-box {
+      border: 2px solid #d2a100;
+      background-color: #fef6e4;
+      text-align: center;
+      padding: 8px;
+      font-weight: bold;
+      border-radius: 4px;
+      margin-top: 12px;
+    }
+
+    .wiki-champ-title {
+      color: #8c6d00;
+      font-size: 11px;
+    }
+
+    .wiki-champ-name {
+      color: var(--text-main);
+      font-size: 14px;
+      margin-top: 2px;
+    }
+
+    /* ===== 通用維基日職風格金黃色表格 ===== */
+    table.wiki-yellow-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      background-color: #ffffff;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    table.wiki-yellow-table th, 
+    table.wiki-yellow-table td {
+      padding: 8px 10px;
+      text-align: center;
+      border: 1px solid var(--border-color);
+    }
+
+    /* 金黃色亮眼表頭 */
+    table.wiki-yellow-table th {
+      background-color: #ffd800 !important;
+      color: #111827 !important;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    table.wiki-yellow-table tbody tr:nth-child(even) td {
+      background-color: #fbfcfd;
+    }
+
+    /* 歷史或消滅/過渡隊伍的灰色低調背景 (還原圖片底部灰色區塊) */
+    table.wiki-yellow-table tr.defunct-row td {
+      background-color: #e5e7eb !important;
+      color: #4b5563;
+    }
+
+    /* 勝敗圓形標籤 (W/L/S/未打) */
+    .wl-pills {
+      display: flex;
+      gap: 3px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .wl-pill {
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    .wl-pill.w { background-color: #2e7d32; } /* 贏：綠色 */
+    .wl-pill.l { background-color: #c62828; } /* 輸：紅色 */
+    .wl-pill.s { background-color: #1565c0; } /* 和局：藍色 */
+    .wl-pill.empty { background-color: #d1d5db; color: #9ca3af; } /* 未打：灰色 */
+
+    /* ===== 頁尾歷年獎項導覽框 (Navbox) ===== */
+    .award-navbox {
+      margin-top: 60px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      overflow: hidden;
+      font-size: 0.88rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    .navbox-title {
+      background: var(--award-primary-dark);
+      color: #ffffff;
+      font-weight: 700;
+      text-align: center;
+      padding: 10px 15px;
+      letter-spacing: 0.5px;
+    }
+
+    .navbox-grid {
+      display: flex;
+      flex-direction: column;
+      background: #ffffff;
+    }
+
+    .navbox-group {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .navbox-group:first-child {
+      border-top: none;
+    }
+
+    .navbox-header {
+      background: var(--award-second);
+      color: var(--text-main);
+      font-weight: 700;
+      padding: 12px 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-right: 1px solid var(--border-color);
+    }
+
+    .navbox-content {
+      padding: 10px 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 16px;
+      align-items: center;
+      line-height: 1.8;
+    }
+
+    .navbox-content a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .navbox-content a:hover {
+      color: var(--award-primary);
+      text-decoration: underline;
+    }
+
+    .navbox-content a.active {
+      display: inline-block;
+      color: var(--award-primary-dark);
+      font-weight: 800;
+      border-bottom: 2px solid var(--award-primary-dark);
+      padding: 2px 6px;
+      background-color: var(--award-second);
+      border-radius: 3px 3px 0 0;
+    }
+
+    @media (max-width: 640px) {
+      .navbox-group {
+        grid-template-columns: 1fr;
+      }
+      .navbox-header {
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+      }
+    }
