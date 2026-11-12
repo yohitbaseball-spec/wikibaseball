@@ -1,105 +1,75 @@
-/* ===== 賽事資訊專屬排版 ===== */
-.info-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 12px 24px;
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  padding: 20px 24px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  margin-top: 15px;
+/* ==========================================
+   歷年獎項專屬全域 CSS (金手套高級深色調) - 完整擴充版
+   ========================================== */
+:root {
+  --award-primary: #0645ad;      /* 主色：藍色 */
+  --award-primary-dark: #0b0080; /* 深藍 */
+  --award-accent: #6BB7FF;       /* 淺藍 */
+  --award-second: #F0F8FF;       /* 表格隔行配色 */
+  
+  --text-main: #111827;          /* 主要文字 */
+  --text-muted: #4b5563;         /* 次要文字 */
+  --bg-body: #f8fafc;            /* 頁面背景 */
+  --bg-card: #ffffff;            /* 容器背景 */
+  --border-color: #e2e8f0;       /* 邊線 */
+  
+  --field-grass: #4caf50;        /* 草皮綠 */
+  --field-dirt: #DEB8AA;         /* 紅土 */
 }
 
-.info-item {
-  display: flex;
-  align-items: flex-start;
-  font-size: 0.95rem;
-  line-height: 1.6;
-  border-bottom: 1px dashed var(--border-color);
-  padding-bottom: 8px;
+html {
+  scroll-behavior: smooth;
 }
 
-.info-item:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
-}
-
-.info-label {
-  flex-shrink: 0;
-  width: 100px;
-  font-weight: 700;
-  color: var(--award-primary-dark);
-}
-
-.info-value {
+body {
+  margin: 0;
+  font-family: "Helvetica Neue", Arial, "Noto Sans TC", sans-serif;
+  background: var(--bg-body);
   color: var(--text-main);
-  flex-grow: 1;
+  line-height: 1.7;
 }
 
-/* 針對參賽國家加上小間距裝飾 */
-.country-tags {
-  display: inline-flex;
-  gap: 8px;
-  flex-wrap: wrap;
+a {
+  color: var(--award-primary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+a:hover {
+  color: var(--award-primary-dark);
+  text-decoration: underline;
 }
 
-.match-card {
-  background: #fff;
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  padding: 12px 20px;
-  margin-bottom: 12px;
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px 20px 80px 20px;
+}
+
+/* ===== 頂部導覽與頁面錨點導覽 ===== */
+.topnav {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.02);
+  gap: 10px;
+  padding: 14px 0;
+  border-bottom: 2px solid var(--border-color);
+  margin-bottom: 20px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
 }
-.match-teams {
-  font-weight: bold;
-  font-size: 1rem;
-}
-.match-status {
-  font-size: 0.8rem;
-  padding: 2px 8px;
-  border-radius: 10px;
-  background: #e2e8f0;
-}
-.match-status.live { background: #fee2e2; color: #dc2626; } /* 進行中 */
-.match-status.final { background: #e0f2fe; color: #0284c7; } /* 已結束 */
-
-.team-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 15px;
-  margin-top: 15px;
-}
-.team-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  padding: 15px;
-  text-align: center;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-.team-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  border-color: var(--award-primary);
+.topnav a {
+  color: var(--text-muted);
+  font-weight: 500;
 }
 
 .event-nav {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   background: #ffffff;
   padding: 10px 15px;
   border: 1px solid var(--border-color);
   border-radius: 6px;
-  margin-bottom: 30px;
+  margin-bottom: 35px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-  position: sticky;
-  top: 10px;
-  z-index: 100;
+  overflow-x: auto;
 }
 .event-nav a {
   padding: 6px 14px;
@@ -107,76 +77,93 @@
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--text-muted);
+  white-space: nowrap;
 }
-.event-nav a.active, .event-nav a:hover {
+.event-nav a:hover, .event-nav a.active {
   background: var(--award-primary);
   color: #fff;
   text-decoration: none;
 }
 
-.tournament-subnav {
-  display: flex;
-  gap: 8px;
-  background: var(--bg-card);
+/* ===== 頁首標題 ===== */
+.header {
+  margin-bottom: 25px;
+}
+.header h1 {
+  margin: 0;
+  font-size: 2.2rem;
+  color: var(--text-main);
+  font-weight: 700;
+}
+.header .sub {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+/* ===== 區塊標題與通用卡片 ===== */
+.award-intro {
+  margin-bottom: 40px;
+  padding-bottom: 25px;
+  border-bottom: 1px dashed var(--border-color);
+}
+
+.award-intro h2 {
+  margin: 0 0 15px 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-main);
+  border-bottom: 2px solid var(--award-primary-dark);
+  padding-bottom: 6px;
+}
+
+/* ===== 賽事資訊定義表格 ===== */
+.info-table {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 10px 15px;
+  font-size: 0.95rem;
+  background: #ffffff;
+  padding: 20px;
   border: 1px solid var(--border-color);
   border-radius: 6px;
-  padding: 10px 15px;
-  margin-bottom: 30px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
-  position: sticky;
-  top: 15px; /* 當頁面往下滾動時，會自動吸頂 */
-  z-index: 100;
-  overflow-x: auto;
-  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+}
+.info-label {
+  font-weight: 700;
+  color: var(--award-primary-dark);
+}
+.info-value {
+  color: var(--text-main);
 }
 
-.tournament-subnav a {
-  padding: 6px 14px;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--text-muted);
-  text-decoration: none;
-  transition: all 0.2s;
-}
-
-.tournament-subnav a:hover {
-  background: var(--award-second);
-  color: var(--award-primary);
-}
-
-.tournament-subnav a.active {
-  background: var(--award-primary);
-  color: #ffffff;
-}
-
-/* 讓錨點跳轉時帶有平滑滾動與適當的頂部緩衝距離 */
-section[id] {
-  scroll-margin-top: 80px; 
-}
-
-/* ===== 參賽隊伍與球員名單區塊 ===== */
+/* ===== 參賽隊伍與球員名單 ===== */
 .team-section {
-  margin-bottom: 35px;
+  margin-bottom: 25px;
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.02);
 }
 
 .team-title {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: var(--text-main);
   margin-bottom: 12px;
   display: flex;
   align-items: center;
   gap: 8px;
-  border-bottom: 2px solid var(--award-primary);
-  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 8px;
 }
 
 .roster-list {
   list-style: none;
   padding-left: 0;
   margin: 0;
-  font-size: 0.92rem;
+  font-size: 0.9rem;
 }
 
 .roster-list li {
@@ -188,33 +175,89 @@ section[id] {
   gap: 6px;
 }
 
-/* 職位標籤（如 總教練、投 手） */
 .roster-category {
   font-weight: 700;
   color: var(--award-primary-dark);
   min-width: 75px;
-  display: inline-block;
 }
 
-/* 球員與球團名稱樣式 */
 .roster-item {
   color: var(--text-main);
 }
 
 .team-affil {
   color: var(--text-muted);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
 }
 
-/* 備註樣式 */
 .roster-note {
-  margin-top: 10px;
+  margin-top: 12px;
   font-size: 0.85rem;
   color: var(--text-muted);
   background: var(--award-second);
   padding: 8px 12px;
   border-radius: 4px;
   border-left: 3px solid var(--award-primary);
+}
+
+/* ===== 賽程表與逐場賽況卡片 ===== */
+.match-card {
+  background: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 15px 20px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.02);
+}
+.match-info {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+.match-teams {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text-main);
+}
+.match-status {
+  font-size: 0.8rem;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-weight: 600;
+}
+.match-status.final { background: #e0f2fe; color: #0284c7; }
+.match-status.upcoming { background: #f1f5f9; color: #64748b; }
+
+/* ===== 獎項表格排版 ===== */
+table.stats {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  font-size: 0.9rem;
+}
+table.stats th, table.stats td {
+  padding: 10px 8px;
+  text-align: center;
+  border-bottom: 1px solid var(--border-color);
+}
+table.stats th {
+  background: var(--award-primary-dark) !important;
+  color: #ffffff !important;
+  font-weight: 600;
+}
+table.stats tbody tr:nth-child(even) td {
+  background: var(--award-second) !important;
+}
+
+@media (max-width: 768px) {
+  .info-table { grid-template-columns: 1fr; }
+  .match-card { flex-direction: column; align-items: flex-start; gap: 10px; }
 }
 
 
