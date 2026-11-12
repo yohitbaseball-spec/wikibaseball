@@ -546,3 +546,59 @@ table.wiki-mini-standings tr.mini-subhead th {
   color: #ffffff;
   font-weight: 600;
 }
+
+/* ==========================================
+   賽事介紹區塊 (Tournament Intro & Overview Box)
+   ========================================== */
+.tournament-intro-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--tourney-primary);
+  border-radius: 6px;
+  padding: 18px 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.tournament-intro-card h2 {
+  margin: 0 0 10px 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.tournament-intro-card p {
+  margin: 0 0 14px 0;
+  font-size: 0.92rem;
+  color: var(--text-main);
+  line-height: 1.7;
+}
+
+/* 賽事核心資訊三欄式小卡 (日期、地點、賽制) */
+.tournament-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.meta-box {
+  background: var(--tourney-tint);
+  border: 1px solid var(--border-color);
+  padding: 10px 14px;
+  border-radius: 4px;
+}
+
+.meta-box .meta-label {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-weight: 700;
+  margin-bottom: 2px;
+  text-transform: uppercase;
+}
+
+.meta-box .meta-value {
+  font-size: 0.88rem;
+  color: var(--text-main);
+  font-weight: 700;
+}
