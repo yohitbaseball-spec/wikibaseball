@@ -389,3 +389,160 @@ table.linescore .rhe-col {
   justify-content: center;
   gap: 8px 16px;
 }
+
+/* ==========================================
+   維基風格：預賽總覽大表 + 右側戰績並排區塊
+   ========================================== */
+.overview-split-layout {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  margin-bottom: 30px;
+}
+
+.overview-main-col {
+  flex: 1;
+  min-width: 0; /* 防止表格撐破 flex 容器 */
+}
+
+.overview-side-col {
+  width: 280px;
+  flex-shrink: 0;
+}
+
+/* 手機與平板自動改為上下堆疊 */
+@media (max-width: 860px) {
+  .overview-split-layout {
+    flex-direction: column;
+  }
+  .overview-side-col {
+    width: 100%;
+  }
+}
+
+/* 維基灰框總覽大表 */
+table.wiki-schedule-matrix {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.84rem;
+  background: #ffffff;
+  border: 1px solid #9ca3af;
+}
+
+table.wiki-schedule-matrix th,
+table.wiki-schedule-matrix td {
+  border: 1px solid #9ca3af;
+  padding: 5px 8px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* 最頂部大標題列 */
+table.wiki-schedule-matrix tr.matrix-banner th {
+  background: #e5e7eb;
+  color: #111827;
+  font-size: 0.98rem;
+  font-weight: 700;
+  padding: 7px 10px;
+  letter-spacing: 0.5px;
+}
+
+/* 第二層欄位標題列 */
+table.wiki-schedule-matrix tr.matrix-subhead th {
+  background: #f3f4f6;
+  color: #111827;
+  font-weight: 700;
+}
+
+/* 日期跨列儲存格 */
+td.date-cell {
+  background: #f9fafb;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* 客隊靠右、主隊靠左、比數置中（還原維基對戰視覺） */
+td.away-team {
+  text-align: right !important;
+  padding-right: 10px !important;
+}
+
+td.home-team {
+  text-align: left !important;
+  padding-left: 10px !important;
+}
+
+td.score-cell {
+  font-family: "Consolas", "Monaco", monospace;
+  font-weight: 700;
+  letter-spacing: 1px;
+  min-width: 78px;
+}
+
+/* 地主隊 / 重點隊伍淡黃高亮底色 */
+td.host-highlight {
+  background-color: #fef08a !important;
+  font-weight: 700;
+}
+
+/* 隊徽/國旗小圖示與占位徽章 */
+.team-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  vertical-align: middle;
+}
+
+.team-flag-icon {
+  display: inline-block;
+  width: 18px;
+  height: 13px;
+  line-height: 13px;
+  text-align: center;
+  font-size: 9px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--tourney-primary);
+  border-radius: 2px;
+  border: 1px solid rgba(0,0,0,0.15);
+}
+
+/* 決賽種子占位標籤 (如 P1, P2, P3, P4) */
+.seed-pill {
+  display: inline-block;
+  background: #6b7280;
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+/* 右側深灰表頭戰績小表 */
+table.wiki-mini-standings {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.83rem;
+  background: #ffffff;
+  border: 1px solid #6b7280;
+}
+
+table.wiki-mini-standings th,
+table.wiki-mini-standings td {
+  border: 1px solid #9ca3af;
+  padding: 5px 6px;
+  text-align: center;
+}
+
+table.wiki-mini-standings tr.mini-banner th {
+  background: #4b5563;
+  color: #ffffff;
+  font-size: 0.9rem;
+  padding: 6px;
+}
+
+table.wiki-mini-standings tr.mini-subhead th {
+  background: #6b7280;
+  color: #ffffff;
+  font-weight: 600;
+}
