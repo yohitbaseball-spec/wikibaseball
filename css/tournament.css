@@ -114,4 +114,45 @@
   text-decoration: none;
 }
 
+.tournament-subnav {
+  display: flex;
+  gap: 8px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 10px 15px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  position: sticky;
+  top: 15px; /* 當頁面往下滾動時，會自動吸頂 */
+  z-index: 100;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.tournament-subnav a {
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.tournament-subnav a:hover {
+  background: var(--award-second);
+  color: var(--award-primary);
+}
+
+.tournament-subnav a.active {
+  background: var(--award-primary);
+  color: #ffffff;
+}
+
+/* 讓錨點跳轉時帶有平滑滾動與適當的頂部緩衝距離 */
+section[id] {
+  scroll-margin-top: 80px; 
+}
+
 
