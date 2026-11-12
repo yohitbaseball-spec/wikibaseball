@@ -1,604 +1,117 @@
-/* ==========================================
-   單一賽事 / 盃賽專屬獨立 CSS (tournament.css)
-   延續全站維基數據視覺語言，獨立運作不衝突
-   ========================================== */
-:root {
-  --tourney-primary: #1D6FD6;      /* 賽事主色：深藍 */
-  --tourney-accent: #46A3FF;       /* 輔助亮藍 */
-  --tourney-tint: #F0F8FF;         /* 淡藍隔行/高亮底色 */
-  --tourney-gold: #ffd800;         /* 冠軍/排行榜經典黃表頭 */
-  --tourney-gold-soft: #fef6e4;    /* 冠軍/獎項淡金底色 */
-  
-  --text-main: #111827;            /* 主要文字 */
-  --text-muted: #4b5563;           /* 次要文字 */
-  --bg-body: #f8fafc;              /* 頁面底色 */
-  --bg-card: #ffffff;              /* 卡片底色 */
-  --border-color: #e2e8f0;         /* 邊線色 */
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  font-family: "Helvetica Neue", Arial, "Noto Sans TC", sans-serif;
-  background: var(--bg-body);
-  color: var(--text-main);
-  line-height: 1.65;
-}
-
-/* 維基百科經典深藍連結 */
-a {
-  color: #0645ad;
-  text-decoration: none;
-  transition: color 0.15s;
-}
-a:hover {
-  color: #0b0080;
-  text-decoration: underline;
-}
-
-.container {
-  max-width: 1040px;
-  margin: 0 auto;
-  padding: 20px 20px 80px 20px;
-}
-
-/* ===== 頂部導覽與頁首 ===== */
-.topnav {
-  display: flex;
-  gap: 8px;
-  padding: 12px 0;
-  border-bottom: 2px solid var(--border-color);
-  margin-bottom: 20px;
-  font-size: 0.85rem;
-  color: var(--text-muted);
-}
-.topnav a {
-  color: var(--text-muted);
-  font-weight: 500;
-}
-
-.header {
-  margin-bottom: 24px;
-}
-.header h1 {
-  margin: 0;
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--text-main);
-}
-.header .sub {
-  font-size: 0.92rem;
-  color: var(--text-muted);
-  margin-top: 4px;
-}
-
-/* 頁面快速錨點目錄 */
-.quick-toc {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 28px;
-  padding: 10px 14px;
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  font-size: 0.85rem;
-}
-.quick-toc span {
-  font-weight: 700;
-  color: var(--text-main);
-  margin-right: 4px;
-}
-.quick-toc a {
-  padding: 2px 10px;
-  background: var(--tourney-tint);
-  border-radius: 4px;
-  font-weight: 500;
-}
-
-/* ===== 區塊標題 ===== */
-.section-title {
-  margin: 38px 0 14px 0;
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: #000000;
-  border-bottom: 1.5px solid #000000;
-  padding-bottom: 5px;
-}
-
-/* ===== 1. 參賽隊伍、球員名單與備註卡片網格 ===== */
-.roster-grid {
+/* ===== 賽事資訊專屬排版 ===== */
+.info-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
-  gap: 16px;
-}
-
-.team-roster-card {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 12px 24px;
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: 6px;
-  overflow: hidden;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
-  display: flex;
-  flex-direction: column;
+  padding: 20px 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  margin-top: 15px;
 }
 
-.roster-card-header {
-  background: var(--tourney-primary);
-  color: #ffffff;
-  padding: 8px 14px;
-  font-weight: 700;
+.info-item {
+  display: flex;
+  align-items: flex-start;
   font-size: 0.95rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  line-height: 1.6;
+  border-bottom: 1px dashed var(--border-color);
+  padding-bottom: 8px;
 }
 
-.roster-card-header a {
-  color: #ffffff;
+.info-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
 }
 
-.roster-badge {
-  background: rgba(255, 255, 255, 0.2);
-  padding: 1px 8px;
-  border-radius: 10px;
-  font-size: 0.75rem;
-  font-weight: 500;
+.info-label {
+  flex-shrink: 0;
+  width: 100px;
+  font-weight: 700;
+  color: var(--award-primary-dark);
 }
 
-.roster-body {
-  padding: 12px 14px;
-  font-size: 0.84rem;
+.info-value {
+  color: var(--text-main);
   flex-grow: 1;
 }
 
-.roster-group {
-  margin-bottom: 8px;
-  line-height: 1.6;
-}
-.roster-group:last-child {
-  margin-bottom: 0;
-}
-
-.pos-label {
-  display: inline-block;
-  font-weight: 700;
-  color: var(--tourney-primary);
-  min-width: 48px;
+/* 針對參賽國家加上小間距裝飾 */
+.country-tags {
+  display: inline-flex;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
-/* 參賽隊伍專屬備註欄 */
-.roster-note {
-  background: #f8fafc;
-  border-top: 1px dashed var(--border-color);
-  padding: 8px 14px;
-  font-size: 0.8rem;
-  color: var(--text-muted);
-}
-.roster-note strong {
-  color: var(--text-main);
-}
-
-/* ===== 2. 緊湊型通用數據表格（戰績排行 / 賽程 / 獎項） ===== */
-.table-wrap {
-  width: 100%;
-  overflow-x: auto;
-}
-
-table.tourney-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.83rem;
-  background: var(--bg-card);
+.match-card {
+  background: #fff;
   border: 1px solid var(--border-color);
-}
-
-table.tourney-table th,
-table.tourney-table td {
-  padding: 6px 8px;
-  text-align: center;
-  border: 1px solid var(--border-color);
-  white-space: nowrap;
-}
-
-/* 藍底白字標準表頭（用於賽程、獎項） */
-table.tourney-table th {
-  background: var(--tourney-primary);
-  color: #ffffff;
-  font-weight: 700;
-}
-
-/* 黃金表頭變體（用於戰績排行榜） */
-table.tourney-table.gold-head th {
-  background: var(--tourney-gold);
-  color: #111827;
-}
-
-table.tourney-table tbody tr:nth-child(even) td {
-  background: #fbfcfd;
-}
-
-/* 晉級線標示（例如前兩名晉級決賽） */
-table.tourney-table tr.qualify-row td {
-  background: var(--tourney-tint) !important;
-}
-
-.text-left {
-  text-align: left !important;
-}
-
-/* 賽程狀態標籤 */
-.status-tag {
-  display: inline-block;
-  padding: 1px 6px;
-  border-radius: 3px;
-  font-size: 0.75rem;
-  font-weight: 700;
-}
-.status-tag.done { background: #e2e8f0; color: #334155; }
-.status-tag.live { background: #fee2e2; color: #b91c1c; }
-.status-tag.upcoming { background: #dbeafe; color: #1d4ed8; }
-
-/* ===== 3. 逐場賽況折疊戰報 (Box Score) ===== */
-details.game-card {
-  border: 1px solid var(--border-color);
-  background: var(--bg-card);
-  margin-bottom: 6px;
-  border-radius: 4px;
-  font-size: 0.86rem;
-}
-
-summary.game-summary {
-  padding: 8px 14px;
-  background: #f8fafc;
-  cursor: pointer;
-  list-style: none;
+  border-radius: 6px;
+  padding: 12px 20px;
+  margin-bottom: 12px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.02);
 }
-
-summary.game-summary:hover {
-  background: var(--tourney-tint);
+.match-teams {
+  font-weight: bold;
+  font-size: 1rem;
 }
-
-summary.game-summary::-webkit-details-marker {
-  display: none;
-}
-
-summary.game-summary::before {
-  content: "▶";
-  font-size: 10px;
-  color: var(--tourney-primary);
-  margin-right: 8px;
-  transition: transform 0.2s;
-}
-
-details[open] summary.game-summary::before {
-  transform: rotate(90deg);
-}
-
-.game-badge {
-  background: var(--tourney-primary);
-  color: #ffffff;
-  font-weight: 700;
-  padding: 1px 7px;
-  border-radius: 3px;
-  font-size: 0.76rem;
-  margin-right: 6px;
-}
-
-.game-score-highlight {
-  font-weight: 700;
-  color: var(--text-main);
-}
-
-.game-meta-right {
+.match-status {
   font-size: 0.8rem;
-  color: var(--text-muted);
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: #e2e8f0;
 }
+.match-status.live { background: #fee2e2; color: #dc2626; } /* 進行中 */
+.match-status.final { background: #e0f2fe; color: #0284c7; } /* 已結束 */
 
-.game-detail-body {
-  padding: 12px 14px;
-  border-top: 1px solid var(--border-color);
-  background: #ffffff;
-}
-
-/* 局數記分板 Line Score */
-table.linescore {
-  width: 100%;
-  border-collapse: collapse;
-  text-align: center;
-  font-size: 0.8rem;
-  margin-bottom: 10px;
-}
-
-table.linescore th,
-table.linescore td {
-  border: 1px solid var(--border-color);
-  padding: 4px 4px;
-}
-
-table.linescore th {
-  background: var(--tourney-tint);
-  font-weight: 700;
-}
-
-table.linescore .team-name {
-  text-align: left;
-  padding-left: 8px;
-  font-weight: 700;
-  min-width: 110px;
-  background: #f8fafc;
-}
-
-table.linescore .rhe-col {
-  font-weight: 700;
-  background: #f8fafc;
-  width: 28px;
-}
-
-.pitch-hr-summary {
-  background: #f8fafc;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  padding: 8px 12px;
-  font-size: 0.82rem;
+.team-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 4px 16px;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
 }
-
-/* ===== 4. 獎項高亮標籤 ===== */
-.award-badge {
-  display: inline-block;
-  background: var(--tourney-gold-soft);
-  border: 1px solid #e6c200;
-  color: #785a00;
-  font-weight: 700;
-  padding: 1px 8px;
-  border-radius: 4px;
-  font-size: 0.8rem;
-}
-
-/* ===== 頁尾導覽框 ===== */
-.tourney-navbox {
-  margin-top: 50px;
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  overflow: hidden;
-  font-size: 0.85rem;
-  background: #ffffff;
-}
-.navbox-title {
-  background: var(--tourney-primary);
-  color: #ffffff;
-  font-weight: 700;
-  text-align: center;
-  padding: 8px 12px;
-}
-.navbox-links {
-  padding: 10px 16px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px 16px;
-}
-
-/* ==========================================
-   維基風格：預賽總覽大表 + 右側戰績並排區塊
-   ========================================== */
-.overview-split-layout {
-  display: flex;
-  gap: 20px;
-  align-items: flex-start;
-  margin-bottom: 30px;
-}
-
-.overview-main-col {
-  flex: 1;
-  min-width: 0; /* 防止表格撐破 flex 容器 */
-}
-
-.overview-side-col {
-  width: 280px;
-  flex-shrink: 0;
-}
-
-/* 手機與平板自動改為上下堆疊 */
-@media (max-width: 860px) {
-  .overview-split-layout {
-    flex-direction: column;
-  }
-  .overview-side-col {
-    width: 100%;
-  }
-}
-
-/* 維基灰框總覽大表 */
-table.wiki-schedule-matrix {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.84rem;
-  background: #ffffff;
-  border: 1px solid #9ca3af;
-}
-
-table.wiki-schedule-matrix th,
-table.wiki-schedule-matrix td {
-  border: 1px solid #9ca3af;
-  padding: 5px 8px;
-  text-align: center;
-  white-space: nowrap;
-}
-
-/* 最頂部大標題列 */
-table.wiki-schedule-matrix tr.matrix-banner th {
-  background: #e5e7eb;
-  color: #111827;
-  font-size: 0.98rem;
-  font-weight: 700;
-  padding: 7px 10px;
-  letter-spacing: 0.5px;
-}
-
-/* 第二層欄位標題列 */
-table.wiki-schedule-matrix tr.matrix-subhead th {
-  background: #f3f4f6;
-  color: #111827;
-  font-weight: 700;
-}
-
-/* 日期跨列儲存格 */
-td.date-cell {
-  background: #f9fafb;
-  font-weight: 600;
-  line-height: 1.4;
-}
-
-/* 客隊靠右、主隊靠左、比數置中（還原維基對戰視覺） */
-td.away-team {
-  text-align: right !important;
-  padding-right: 10px !important;
-}
-
-td.home-team {
-  text-align: left !important;
-  padding-left: 10px !important;
-}
-
-td.score-cell {
-  font-family: "Consolas", "Monaco", monospace;
-  font-weight: 700;
-  letter-spacing: 1px;
-  min-width: 78px;
-}
-
-/* 地主隊 / 重點隊伍淡黃高亮底色 */
-td.host-highlight {
-  background-color: #fef08a !important;
-  font-weight: 700;
-}
-
-/* 隊徽/國旗小圖示與占位徽章 */
-.team-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  vertical-align: middle;
-}
-
-.team-flag-icon {
-  display: inline-block;
-  width: 18px;
-  height: 13px;
-  line-height: 13px;
-  text-align: center;
-  font-size: 9px;
-  font-weight: 700;
-  color: #fff;
-  background: var(--tourney-primary);
-  border-radius: 2px;
-  border: 1px solid rgba(0,0,0,0.15);
-}
-
-/* 決賽種子占位標籤 (如 P1, P2, P3, P4) */
-.seed-pill {
-  display: inline-block;
-  background: #6b7280;
-  color: #ffffff;
-  font-size: 0.72rem;
-  font-weight: 700;
-  padding: 1px 5px;
-  border-radius: 3px;
-}
-
-/* 右側深灰表頭戰績小表 */
-table.wiki-mini-standings {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.83rem;
-  background: #ffffff;
-  border: 1px solid #6b7280;
-}
-
-table.wiki-mini-standings th,
-table.wiki-mini-standings td {
-  border: 1px solid #9ca3af;
-  padding: 5px 6px;
-  text-align: center;
-}
-
-table.wiki-mini-standings tr.mini-banner th {
-  background: #4b5563;
-  color: #ffffff;
-  font-size: 0.9rem;
-  padding: 6px;
-}
-
-table.wiki-mini-standings tr.mini-subhead th {
-  background: #6b7280;
-  color: #ffffff;
-  font-weight: 600;
-}
-
-/* ==========================================
-   賽事介紹區塊 (Tournament Intro & Overview Box)
-   ========================================== */
-.tournament-intro-card {
+.team-card {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
-  border-left: 4px solid var(--tourney-primary);
   border-radius: 6px;
-  padding: 18px 20px;
-  margin-bottom: 30px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.team-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border-color: var(--award-primary);
 }
 
-.tournament-intro-card h2 {
-  margin: 0 0 10px 0;
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: var(--text-main);
-}
-
-.tournament-intro-card p {
-  margin: 0 0 14px 0;
-  font-size: 0.92rem;
-  color: var(--text-main);
-  line-height: 1.7;
-}
-
-/* 賽事核心資訊三欄式小卡 (日期、地點、賽制) */
-.tournament-meta-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 12px;
-  margin-top: 12px;
-}
-
-.meta-box {
-  background: var(--tourney-tint);
+.event-nav {
+  display: flex;
+  gap: 10px;
+  background: #ffffff;
+  padding: 10px 15px;
   border: 1px solid var(--border-color);
-  padding: 10px 14px;
+  border-radius: 6px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  position: sticky;
+  top: 10px;
+  z-index: 100;
+}
+.event-nav a {
+  padding: 6px 14px;
   border-radius: 4px;
-}
-
-.meta-box .meta-label {
-  font-size: 0.78rem;
+  font-size: 0.9rem;
+  font-weight: 600;
   color: var(--text-muted);
-  font-weight: 700;
-  margin-bottom: 2px;
-  text-transform: uppercase;
+}
+.event-nav a.active, .event-nav a:hover {
+  background: var(--award-primary);
+  color: #fff;
+  text-decoration: none;
 }
 
-.meta-box .meta-value {
-  font-size: 0.88rem;
-  color: var(--text-main);
-  font-weight: 700;
-}
+
