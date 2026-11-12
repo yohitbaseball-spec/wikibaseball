@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>2049年歐亞職棒冠軍爭霸賽</title>
-  <link rel="stylesheet" href="../css/tournament.css">
+  <link rel="stylesheet" href="../css/award.css">
 </head>
 <body>
 
   <div class="container">
-    <!-- 導覽頁面 -->
+    <!-- 頂部路徑導覽 -->
     <div class="topnav">
       <a href="../index.html">首頁</a> /
       <a href="../navbar/歷年榮譽與個人獎項總覽.html">年度獎項</a> /
@@ -22,142 +22,173 @@
       <div class="sub">2049 Asia-Europe Champions Series</div>
     </div>
 
-    <!-- 快速點擊頁面導覽列 (Sticky Subnav) -->
-    <nav class="tournament-subnav">
-      <a href="#intro" class="active">賽事介紹</a>
-      <a href="#teams">參賽隊伍</a>
-      <a href="#schedule">賽程表</a>
-      <a href="#live">逐場賽況</a>
+    <!-- 頁內快速錨點導覽列 -->
+    <div class="event-nav">
+      <a href="#intro">賽事介紹</a>
+      <a href="#rosters">參賽隊伍</a>
+      <a href="#schedule">賽程與賽況</a>
       <a href="#awards">各類獎項</a>
-    </nav>
+    </div>
 
-    <!-- 賽事介紹區塊 -->
+    <!-- 1. 賽事介紹與詳細資訊 -->
     <section id="intro" class="award-intro">
       <h2>賽事介紹</h2>
-      <p>
-        <strong>2049年歐亞職棒冠軍爭霸賽</strong>（2049 Asia-Europe Champions Series）為一項匯集歐亞澳頂尖職棒新銳與代表隊的國際級棒球賽事，旨在促進跨洲際棒球交流與競技水平。
+      <p style="margin-bottom: 20px;">
+        2049年歐亞職棒冠軍爭霸賽為跨越歐亞澳的頂級國際棒球盛事，匯集各大聯盟之新銳與頂尖戰力，於台灣點燃戰火，爭奪最高榮譽。
       </p>
 
-      <div class="info-grid">
-        <div class="info-item">
-          <div class="info-label">賽事名稱</div>
-          <div class="info-value">2049年歐亞職棒冠軍爭霸賽<br><span style="font-size: 0.85rem; color: var(--text-muted);">2049 Asia-Europe Champions Series</span></div>
-        </div>
+      <div class="info-table">
+        <div class="info-label">賽事名稱</div>
+        <div class="info-value">2049年歐亞職棒冠軍爭霸賽（2049 Asia-Europe Champions Series）</div>
+        
+        <div class="info-label">主辦單位</div>
+        <div class="info-value">室內棒球聯盟（IBL）、韓國職棒（KBO）、日本職棒（NPB）、澳洲職棒（ABL）、歐洲職棒大聯盟（EUB）、棒球聯合聯盟（BUL）</div>
+        
+        <div class="info-label">參賽隊伍</div>
+        <div class="info-value">🇹🇼中華、🇯🇵日本、🇰🇷韓國、🇦🇺澳洲、🇨🇿捷克、🇮🇳印度</div>
+        
+        <div class="info-label">比賽地點</div>
+        <div class="info-value">台灣 台北市、新北市</div>
+        
+        <div class="info-label">比賽球場</div>
+        <div class="info-value">新世紀生化競技場、PK PARK</div>
+        
+        <div class="info-label">賽制規則</div>
+        <div class="info-value">分組單環預賽 ➔ 複賽淘汰賽 ➔ 決賽 (季軍/冠軍戰)</div>
+        
+        <div class="info-label">球員限制</div>
+        <div class="info-value">24歲以下（2025/01/01以後出生），或加入職棒未滿3年者；另開放3名29歲以下（2020/01/01以後出生）之外卡球員。</div>
+      </div>
+    </section>
 
-        <div class="info-item">
-          <div class="info-label">主辦單位</div>
-          <div class="info-value">室內棒球聯盟（IBL）、韓國職棒（KBO）、日本職棒（NPB）、澳洲職棒（ABL）、歐洲職棒大聯盟（EUB）、棒球聯合聯盟（BUL）</div>
-        </div>
+    <!-- 2. 參賽隊伍與球員名單 -->
+    <section id="rosters" class="award-intro">
+      <h2>參賽隊伍名單</h2>
 
-        <div class="info-item">
-          <div class="info-label">參賽隊伍</div>
-          <div class="info-value">
-            🇹🇼 中華、🇯🇵 日本、🇰🇷 韓國、🇦🇺 澳洲、🇨🇿 捷克、🇮🇳 印度
-          </div>
+      <!-- 中華代表隊 -->
+      <div class="team-section">
+        <div class="team-title">🇹🇼 中華代表隊</div>
+        <ul class="roster-list">
+          <li>
+            <span class="roster-category">總教練：</span>
+            <span class="roster-item">陳金鋒 <span class="team-affil">(富邦)</span></span>
+          </li>
+          <li>
+            <span class="roster-category">教練團：</span>
+            <span class="roster-item">郭建霖 <span class="team-affil">(首席)</span></span>、
+            <span class="roster-item">陳連宏 <span class="team-affil">(打擊)</span></span>、
+            <span class="roster-item">許銘傑 <span class="team-affil">(投手)</span></span>、
+            <span class="roster-item">蕭一傑 <span class="team-affil">(牛棚)</span></span>、
+            <span class="roster-item">高志綱 <span class="team-affil">(捕手)</span></span>
+          </li>
+          <li>
+            <span class="roster-category">投 手：</span>
+            <span class="roster-item">古林睿煬 <span class="team-affil">(統一)</span></span>、
+            <span class="roster-item">江國豪 <span class="team-affil">(富邦)</span></span>、
+            <span class="roster-item">王彥程 <span class="team-affil">(樂天)</span></span>、
+            <span class="roster-item">陳克羿 <span class="team-affil">(桃猿)</span></span>、
+            <span class="roster-item">曾峻岳 <span class="team-affil">(富邦)</span></span>
+          </li>
+          <li>
+            <span class="roster-category">捕 手：</span>
+            <span class="roster-item">戴培峰 <span class="team-affil">(富邦)</span></span>、
+            <span class="roster-item">林吳晉瑋 <span class="team-affil">(兄弟)</span></span>
+          </li>
+          <li>
+            <span class="roster-category">內野手：</span>
+            <span class="roster-item">葉子霆 <span class="team-affil">(富邦)</span></span>、
+            <span class="roster-item">張政禹 <span class="team-affil">(味全)</span></span>、
+            <span class="roster-item">劉基鴻 <span class="team-affil">(味全)</span></span>
+          </li>
+          <li>
+            <span class="roster-category">外野手：</span>
+            <span class="roster-item">郭天信 <span class="team-affil">(味全)</span></span>、
+            <span class="roster-item">邱智呈 <span class="team-affil">(統一)</span></span>、
+            <span class="roster-item">陳傑憲 <span class="team-affil">(統一)</span></span>
+          </li>
+        </ul>
+        <div class="roster-note">
+          📝 <b>備註：</b>統一獅陳傑憲、味全龍林孝程、富邦悍將江國豪為本屆外卡球員。
         </div>
+      </div>
 
-        <div class="info-item">
-          <div class="info-label">比賽地點</div>
-          <div class="info-value">台灣 台北市、新北市</div>
+      <!-- 日本代表隊 -->
+      <div class="team-section">
+        <div class="team-title">🇯🇵 日本代表隊</div>
+        <ul class="roster-list">
+          <li>
+            <span class="roster-category">總教練：</span>
+            <span class="roster-item">井端弘和</span>
+          </li>
+          <li>
+            <span class="roster-category">投 手：</span>
+            <span class="roster-item">（待公佈）</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 3. 賽程表與逐場賽況 -->
+    <section id="schedule" class="award-intro">
+      <h2>賽程表與逐場賽況</h2>
+      
+      <div class="match-card">
+        <div>
+          <div class="match-info">11月15日 (日) 18:30 | 新世紀生化競技場 (預賽 G1)</div>
+          <div class="match-teams">🇯🇵 日本 5 : 3 🇹🇼 中華</div>
         </div>
-
-        <div class="info-item">
-          <div class="info-label">比賽球場</div>
-          <div class="info-value">新世紀生化競技場、PK PARK</div>
+        <div>
+          <span class="match-status final">已完賽</span>
         </div>
+      </div>
 
-        <div class="info-item">
-          <div class="info-label">賽制規則</div>
-          <div class="info-value">分組單環預賽 ➔ 複賽淘汰賽 ➔ 決賽（季軍/冠軍戰）</div>
+      <div class="match-card">
+        <div>
+          <div class="match-info">11月16日 (一) 18:30 | PK PARK (預賽 G2)</div>
+          <div class="match-teams">🇰🇷 韓國 VS 🇹🇼 中華</div>
         </div>
-
-        <div class="info-item">
-          <div class="info-label">相關認證</div>
-          <div class="info-value">受 WBSC 認證，採其認證國際用球。投手球數無限制、採用指定打擊（DH）。</div>
-        </div>
-
-        <div class="info-item" style="grid-column: 1 / -1;">
-          <div class="info-label">球員限制</div>
-          <div class="info-value">
-            24歲以下（2025年01月01日以後出生），或加入職棒未滿3年者，由所屬聯盟組隊，須為參與職棒聯盟中之球員，且為本國籍。另開放 3 名年齡限制外球員，但須為 29 歲以下（2020年01月01日以後出生）。
-          </div>
+        <div>
+          <span class="match-status upcoming">未開賽</span>
         </div>
       </div>
     </section>
 
-    <!-- 參賽隊伍區塊 -->
-  <section class="award-intro">
-    <h2>參賽隊伍</h2>
+    <!-- 4. 各類獎項 -->
+    <section id="awards" class="award-intro">
+      <h2>大會獎項</h2>
+      <table class="stats">
+        <thead>
+          <tr>
+            <th>獎項名稱</th>
+            <th>得獎者</th>
+            <th>所屬球隊 / 國籍</th>
+            <th>備註 / 成績</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>大會 MVP</b></td>
+            <td><a href="#" class="player-link">陳傑憲</a></td>
+            <td>🇹🇼 中華</td>
+            <td>打擊率 .450、冠軍賽致勝安</td>
+          </tr>
+          <tr>
+            <td><b>最佳投手獎</b></td>
+            <td><a href="#" class="player-link">古林睿煬</a></td>
+            <td>🇹🇼 中華</td>
+            <td>防禦率 0.00、2勝</td>
+          </tr>
+          <tr>
+            <td><b>全壘打王</b></td>
+            <td>（待產生）</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
 
-    <!-- 中華代表隊 -->
-    <div class="team-section">
-      <div class="team-title">🇹🇼 中華代表隊</div>
-      
-      <ul class="roster-list">
-        <li>
-          <span class="roster-category">總教練：</span>
-          <span class="roster-item">陳金鋒 <span class="team-affil">(富邦)</span></span>
-        </li>
-        <li>
-          <span class="roster-category">教練團：</span>
-          <span class="roster-item">郭建霖 <span class="team-affil">(首席)</span></span>、
-          <span class="roster-item">陳連宏 <span class="team-affil">(打擊)</span></span>、
-          <span class="roster-item">許銘傑 <span class="team-affil">(投手)</span></span>、
-          <span class="roster-item">蕭一傑 <span class="team-affil">(牛棚)</span></span>、
-          <span class="roster-item">高志綱 <span class="team-affil">(捕手)</span></span>、
-          <span class="roster-item">林明憲 <span class="team-affil">(外野守備)</span></span>
-        </li>
-        <li>
-          <span class="roster-category">投 手：</span>
-          <span class="roster-item">古林睿煬 <span class="team-affil">(統一)</span></span>、
-          <span class="roster-item">江國豪 <span class="team-affil">(富邦)</span></span>、
-          <span class="roster-item">王彥程 <span class="team-affil">(樂天)</span></span>、
-          <span class="roster-item">陳克羿 <span class="team-affil">(桃猿)</span></span>、
-          <span class="roster-item">邱駿威 <span class="team-affil">(桃猿)</span></span>、
-          <span class="roster-item">曾峻岳 <span class="team-affil">(富邦)</span></span>
-        </li>
-        <li>
-          <span class="roster-category">捕 手：</span>
-          <span class="roster-item">戴培峰 <span class="team-affil">(富邦)</span></span>、
-          <span class="roster-item">林吳晉瑋 <span class="team-affil">(兄弟)</span></span>、
-          <span class="roster-item">蔣少宏 <span class="team-affil">(味全)</span></span>
-        </li>
-        <li>
-          <span class="roster-category">內野手：</span>
-          <span class="roster-item">葉子霆 <span class="team-affil">(富邦)</span></span>、
-          <span class="roster-item">張政禹 <span class="team-affil">(味全)</span></span>、
-          <span class="roster-item">何恆佑 <span class="team-affil">(統一)</span></span>、
-          <span class="roster-item">劉基鴻 <span class="team-affil">(味全)</span></span>
-        </li>
-        <li>
-          <span class="roster-category">外野手：</span>
-          <span class="roster-item">郭天信 <span class="team-affil">(味全)</span></span>、
-          <span class="roster-item">林孝程 <span class="team-affil">(味全)</span></span>、
-          <span class="roster-item">邱智呈 <span class="team-affil">(統一)</span></span>、
-          <span class="roster-item">陳傑憲 <span class="team-affil">(統一)</span></span>
-        </li>
-      </ul>
+  </div>
 
-      <!-- 備註說明 -->
-      <div class="roster-note">
-        📝 <b>備註 I：</b>統一7-ELEVEn獅隊陳傑憲、味全龍隊林孝程、富邦悍將隊江國豪為外卡球員。
-      </div>
-    </div>
-
-    <!-- 日本代表隊（可依此類推複製區塊） -->
-    <div class="team-section">
-      <div class="team-title">🇯🇵 日本代表隊</div>
-      <ul class="roster-list">
-        <li>
-          <span class="roster-category">總教練：</span>
-          <span class="roster-item">井端弘和</span>
-        </li>
-        <!-- 其他守位依此類推 -->
-      </ul>
-    </div>
-
-  </section>
-
-  
 </body>
 </html>
