@@ -643,11 +643,13 @@
     "url": "players/羅國威.html",
     "name": "羅國威",
     "team": "新北幻境英雄隊",
-    "number": "000",
+    "number": "28",
     "position": "OF",
     "nationality": "台灣",
     "batsThrows": "右投右打",
-    "honors": []
+    "honors": [
+      "已退役"
+    ]
   },
   {
     "url": "players/詹晨佑.html",
