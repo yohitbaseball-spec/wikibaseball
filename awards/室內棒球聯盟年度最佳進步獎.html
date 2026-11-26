@@ -5,6 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>室內棒球聯盟年度最佳進步獎</title>
   <link rel="stylesheet" href="../css/award.css">
+  <style>
+    /* 奇數年維持純白，讓淺藍區隔更明顯 */
+    table.stats1 tbody tr {
+      background-color: #ffffff;
+    }
+
+    /* 每 2 列為一年，選取偶數年（第 3-4、7-8、11-12... 列） */
+    table.stats1 tbody tr:nth-child(4n+3),
+    table.stats1 tbody tr:nth-child(4n+4) {
+      background-color: #e8f4ff; /* #F0F8FF，若覺得太淺可改 #e8f4ff */
+    }
+  </style>
 </head>
 <body>
 
@@ -111,7 +123,7 @@
       <div class="navbox-content">
         <a href="室內棒球聯盟年度打擊王.html">打擊王</a>
         <a href="室內棒球聯盟年度安打王.html">安打王</a>
-        <b>全壘打王</b>
+        <a href="室內棒球聯盟年度全壘打王.html">全壘打王</a>
         <a href="室內棒球聯盟年度打點王.html">打點王</a>
         <a href="室內棒球聯盟年度盜壘王.html">盜壘王</a>
         <a href="室內棒球聯盟年度銀棒獎.html">銀棒獎</a>
@@ -127,7 +139,7 @@
         <a href="室內棒球聯盟年度新人王.html">新人王</a>
         <a href="室內棒球聯盟年度MVP.html">年度MVP</a>
         <a href="室內棒球聯盟年度東山再起獎.html">東山再起獎</a>
-        <a href="室內棒球聯盟年度最佳進步獎.html">最佳進步獎</a>
+        <b>最佳進步獎</b>
         <a href="室內棒球聯盟年度單月MVP.html">單月 MVP</a>
       </div>
     </div>
