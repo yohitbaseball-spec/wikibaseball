@@ -58,6 +58,23 @@
         "SS": "", "OF1": "", "OF2": "花蓮眼鏡蛇", "OF3": "", "UTL": ""
       }
     },
+
+    "2050": {
+      "P": { "name": "", "country": "TW" },
+      "C": { "name": "", "country": "TW" },
+      "1B": { "name": "", "country": "TW" },
+      "2B": { "name": "", "country": "TW" },
+      "3B": { "name": "", "country": "TW" },
+      "SS": { "name": "林傑峻", "country": "TW" },
+      "OF1": { "name": "", "country": "TW" },
+      "OF2": { "name": "", "country": "TW" },
+      "OF3": { "name": "", "country": "TW" },
+      "UTL": { "name": "黃宇煬", "country": "TW" },
+      "teams": {
+        "P": "", "C": "", "1B": "", "2B": "", "3B": "", 
+        "SS": "新北幻境英雄隊", "OF1": "", "OF2": "", "OF3": "", "UTL": "NX星航者隊"
+      }
+    },
     
     "2051": {
       "P": { "name": "莊昕晨", "country": "TW" },
